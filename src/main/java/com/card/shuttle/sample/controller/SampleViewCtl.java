@@ -19,9 +19,14 @@ public class SampleViewCtl {
         return "/sample/defaultLayoutTest";
     }
 
-    @GetMapping("/language")
-    public String languageTest(){
-        return "/sample/languageTest";
+    @GetMapping("/language1")
+    public String languageTest1(){
+        return "/sample/languageTest1";
+    }
+    
+    @GetMapping("/language2")
+    public String languageTest2(){
+        return "/sample/languageTest2";
     }
 
     @GetMapping("/ajaxSelectTest")

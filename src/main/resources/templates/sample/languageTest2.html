@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <a th:href="@{/sample/language1}">languageTest1</a>
+    <h1 th:text="#{langPage2}"></h1>
+
+    <div>
+        <a th:href="@{/sample/language2(lang=kr)}">
+            <button th:text="#{lang.ko}"></button>
+        </a>
+        <br><br>
+        <a th:href="@{/sample/language2(lang=en)}">
+            <button th:text="#{lang.en}"></button>
+        </a>
+    </div>
+    <br><br>
+<!--    <div th:text="#{  }"></div>-->
+<!--    <div th:text="#{}"></div>-->
+</div>
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                langData : [
+                    {   titleK : "lang.ko"
+                        ,titleE : "lang.en"
+                    }
+
+                ]
+            },
+            mounted: function () {
+                this.langSet();
+            },
+            methods: {
+                langSet : function(){
+                    cf_call("/sample/languageTest/langSet", {}, this.langSetCB);
+                },
+                langSetCB : function(data){
+                    console.log(data.lang);
+                }
+            },
+            computed: {
+            }
+        })
+    </script>
+</th:block>
+
+</html>

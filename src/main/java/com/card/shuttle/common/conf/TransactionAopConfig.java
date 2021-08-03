@@ -46,7 +46,7 @@ import java.util.Properties;
 public class TransactionAopConfig {
 
 //    private static final int TX_METHOD_TIMEOUT = 10;
-    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.pentas.service.*Service.*(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.card.service.*Svc.*(..))";
 
     @Autowired
     private DataSourceTransactionManager transactionManager;

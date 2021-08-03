@@ -3,10 +3,12 @@ package com.card.shuttle.sample.controller;
 import com.card.shuttle.common.exception.DevException;
 import com.card.shuttle.common.module.mybatis.paginator.domain.PageList;
 import com.card.shuttle.common.module.util.DevMap;
+import com.card.shuttle.controller.CommonCtl;
 import com.card.shuttle.sample.service.SampleSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -14,6 +16,19 @@ public class SampleRestCtl {
 
     @Autowired
     SampleSvc sampleSvc;
+
+    @Autowired
+    CommonCtl commonCtl;
+
+    @PostMapping("/sample/languageTest/langSet")
+    public DevMap langSet(HttpServletRequest request){
+        DevMap rslt = new DevMap();
+
+        String lang = commonCtl.langSet(request);
+        rslt.put("lang", lang);
+
+        return rslt;
+    }
 
     @PostMapping("/sample/ajaxSelectTest/test01")
     public List<DevMap> ajaxSelectTest01(@RequestBody DevMap param){
