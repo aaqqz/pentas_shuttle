@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+  <h2>sample index</h2>
+  <a th:href="@{/sample/language(lang=en)}">Language 테스트페이지 이동</a>
+  <br><br>
+  <a th:href="@{/sample/layoutTest}">layout 테스트페이지 이동</a>
+  <br><br>
+  <a href="/sample/ajaxSelectTest">Ajax 조회 테스트페이지 이동</a>
+  <br><br>
+  <a href="/sample/exceptionTest">Exception 테스트페이지 이동</a>
+  <br><br>
+  <a href="/sample/scriptTest">Script 테스트페이지 이동</a>
+  <br><br>
+  <a href="/sample/crudTest">Ajax crud 테스트페이지 이동</a>
+  <br><br>
+  <a href="/sample/ajaxParallelTest">Ajax 병렬실행 테스트페이지 이동</a>
+</body>
+</html>

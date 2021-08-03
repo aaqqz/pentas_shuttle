@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content">
+  <a href="/sample">index</a>
+  <h3>Script 테스트</h3>
+  <br>
+  <br>
+  <input v-model="number" onkeyup="cf_onlyNum(this);"> cf_onlyNum
+  <br>
+  <br>
+  <input onkeyup="cf_onlyNumFormat(this)"> cf_onlyNumFormat
+  <br>
+  <br>
+  <input v-model="isEmpty">
+  <button @click="alert(cf_isEmpty( isEmpty ))">cf_isEmpty</button>
+  <br>
+  <br>
+  <button @click="alert(cf_whatIsIt( whatIsIt ))">cf_whatIsIt</button>
+  <br>
+  <br>
+  <button @click="alert( cf_genUUID() )">cf_genUUID</button>
+  <br>
+  <br>
+  <button @click="alert( cf_genrandom() )">cf_genrandom</button>
+  <br>
+  <br>
+  <input onkeyup="telePhoneCheck(this)"> telePhoneCheck
+  <br>
+  <br>
+<!--  <input onkeyup="limitByte()" class="limitByte" limitByte="10"> limitByte-->
+</div>
+
+
+<th:block layout:fragment="script">
+  <script type="text/javascript">
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        number : 0,
+        isEmpty : "",
+        whatIsIt : [1,2,3]
+      },
+      mounted: function () {
+
+      },
+      methods: {
+      },
+      computed: {
+      }
+    })
+  </script>
+</th:block>
+
+</html>

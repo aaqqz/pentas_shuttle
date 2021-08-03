@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <br><br>
+    <button @click="alertTest('click')">alertTest</button>
+    <br><br>
+    <div id="app">{{message}}</div>
+    <br><br>
+    <div v-if="check == true">
+        <div>true</div>
+    </div>
+    <div v-else>
+        <div>false</div>
+    </div>
+    <br><br>
+    <input v-model="emptyData">
+    <div>{{emptyData}}</div>
+    <button @click="modelTest( emptyData )">v-modelTest</button>
+</div>
+
+
+<th:block layout:fragment="script">
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message : "message Test",
+            check : true,
+            emptyData : ""
+        },
+        mounted: function () {
+            this.alertTest('init');
+        },
+        methods: {
+            alertTest : function(val){
+                alert(val);
+            },
+            modelTest : function(val){
+                alert(val)
+            }
+        },
+        computed: {
+        }
+    })
+</script>
+</th:block>
+
+</html>

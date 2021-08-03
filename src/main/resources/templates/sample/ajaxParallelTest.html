@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <h3>Ajax 병렬실행 테스트</h3>
+    <br>
+    ## 본 테스트결과는 콘솔로그를 확인하세요.<br>
+    <br>
+    테스트1 : <input type="button" @click="test1()" value="실행">
+    <br><br>
+    테스트2 : <input type="button" @click="test2()" value="실행">
+</div>
+
+
+<th:block layout:fragment="script">
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+
+        },
+        mounted: function () {
+
+        },
+        methods: {
+            test1 : function (){
+                cf_call("/sample/ajaxParallelTest/run_ajax1", {}, this.test1_1CB);
+                cf_call("/sample/ajaxParallelTest/run_ajax2", {}, this.test1_2CB);
+            },
+            test1_1CB : function (data){
+                console.log(">>> test1_1CB rslt : " + data.rslt);
+            },
+            test1_2CB : function (data){
+                console.log(">>> test1_2CB rslt : " + data.rslt);
+            },
+
+            //////////////////////////////////
+
+            test2 : function (){
+                this.test2_1();
+                this.test2_2();
+            },
+            test2_1 : function (){
+                var param = {
+                    idx : "111",
+                }
+                cf_call("/sample/ajaxParallelTest/run_ajax3", param, this.test2_1CB);
+            },
+            test2_1CB : function (data){
+                console.log(">>> test2_1CB rslt : " + data.rslt);
+            },
+            test2_2 : function (){
+                var param = {
+                    idx : "222",
+                }
+                cf_call("/sample/ajaxParallelTest/run_ajax3", param, this.test2_2CB);
+            },
+            test2_2CB : function (data){
+                console.log(">>> test2_2CB rslt : " + data.rslt);
+            },
+        },
+        computed: {
+        }
+    })
+</script>
+</th:block>
+
+</html>

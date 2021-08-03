@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <h3>Ajax 조회 테스트</h3>
+    <br>
+    ** 일반조회 테스트
+    <br>
+    - USR_NAME : <input type="text" v-model="usrNameA" @keyup.enter="test01()"><input type="button" value="검색" @click="test01()">
+    <br>
+    <table border="1">
+        <th>USR_ID</th>
+        <th>USR_NAME</th>
+        <th>USR_NO</th>
+        <tbody>
+            <tr v-for="dList in usrDataA">
+                <td>{{dList.usrNo}}</td>
+                <td>{{dList.usrId}}</td>
+                <td>{{dList.usrName}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    ==================================
+    <br>
+    <br>
+    ** 페이지조회 테스트
+    <br>
+    - 페이지번호(필수) :
+    <input type="text" @keyup.enter="test02()" onkeyup="cf_onlyNum(this);" v-model="page" maxlength="2"><br>
+<!--    - 정렬기준01(필수) :-->
+<!--    <input type="text" @keyup.enter="test02()" value="">-->
+<!--    &nbsp;(오름차순여부 <input type="checkbox" id="SORT_01_ASC_YN">Y)<br>-->
+<!--    - 정렬기준02 :-->
+<!--    <input type="text" @keyup.enter="test02()">-->
+<!--    &nbsp;(오름차순여부 <input type="checkbox" id="SORT_02_ASC_YN">Y)<br>-->
+    - USR_NAME :
+    <input type="text" @keyup.enter="test02()" v-model="usrNameB"><br>
+    - USR_ID :
+    <input type="text" @keyup.enter="test02()" v-model="usrIdB"><br>
+    - USR_NO :
+    <input type="text" @keyup.enter="test02()" v-model="usrNoB"><br>
+    <input type="button" value="검색" @click="test02()">
+    <br><br>
+    ## 페이지정보
+    <br>
+    => 현재페이지 : <span>{{pageInfo.page}}</span><br>
+    => 총 데이터수 : <span>{{pageInfo.totalCount}}</span><br>
+    => 총 페이지 : <span>{{pageInfo.totalPages}}</span><br>
+    <br>
+    <table border="1">
+        <th>USR_ID</th>
+        <th>USR_NAME</th>
+        <th>USR_NO</th>
+        <tbody>
+        <tr v-for="dList in usrDataB">
+            <td>{{dList.usrNo}}</td>
+            <td>{{dList.usrId}}</td>
+            <td>{{dList.usrName}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<th:block layout:fragment="script">
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            usrNameA : "",
+            usrDataA : [],
+
+            page :"1",
+            usrNameB : "",
+            usrIdB : "",
+            usrNoB : "",
+            usrDataB : [],
+            pageInfo : []
+        },
+        mounted: function () {
+            this.test01();
+        },
+        methods: {
+
+            test01 : function(){
+                var param = {
+                    usrName : this.usrName,
+                }
+                cf_call('/sample/ajaxSelectTest/test01', param, this.test01CB)
+            },
+            test01CB : function(data){
+                console.log(data);
+                this.usrDataA = data;
+            },
+
+            test02 : function(){
+                var param = {
+                    page : this.page,
+                    usrName : this.usrNameB,
+                    usrId : this.usrIdB,
+                    usrNo : this.usrNoB,
+                }
+                console.log(param)
+                cf_call('/sample/ajaxSelectTest/test02', param, this.test02CB)
+            },
+            test02CB : function(data){
+                console.log(data)
+                this.usrDataB = data.listPage;
+                this.pageInfo = data.pageInfo;
+                console.log(this.usrDataB);
+            }
+
+        },
+        computed: {
+        }
+    })
+</script>
+</th:block>
+
+</html>

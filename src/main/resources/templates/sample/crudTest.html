@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <h3>crud 테스트</h3>
+
+    <br>
+    ** 데이터확인
+    <br>
+    <input type="button" value="검색" @click="selectData();">
+    <br>
+    <br>
+    <div>
+        <table border="1">
+            <th>USR_ID</th>
+            <th>USR_NAME</th>
+            <th>USR_NO</th>
+            <tbody v-if="usrData.length == 0">
+                <tr >
+                    <td>첫번째 칸</td>
+                    <td>두번째 칸</td>
+                    <td>두번째 칸</td>
+                </tr>
+            </tbody>
+            <tbody v-else>
+            <tr v-for="item in usrData">
+                <td>{{ item.usrId }}</td>
+                <td>{{ item.usrName }}</td>
+                <td>{{ item.usrNo }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    <br>
+    <br>
+    ** 데이터 초기화
+    <br>
+    <input type="button" value="데이터 초기화 실행" @click="resetData();">
+    <br>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    <br>
+    <br>
+    ** insert 테스트
+    <br>
+    <input type="button" value="insert 테스트" @click="insertTest();">
+    <br>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    <br>
+    <br>
+    ** update 테스트
+    <br>
+    <input type="button" value="update 테스트" @click="updateTest();">
+    <br>
+
+</div>
+
+
+<th:block layout:fragment="script">
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        data: {
+            usrData : []
+        },
+        mounted: function () {
+
+        },
+        methods: {
+            selectData : function(){
+                var param = {}
+                cf_call('/sample/transactionTest/selectData', param, this.selectDataCB);
+            },
+            selectDataCB : function(data){
+                console.log(data);
+                this.usrData = data;
+            },
+            resetData : function(){
+                var param = {}
+                cf_call('/sample/crudTest/resetData', param, this.resetDataDB);
+            },
+            resetDataDB : function(data){
+                console.log(data)
+            },
+            insertTest : function(){
+                var param = {}
+                cf_call("/sample/crudTest/insertTest", param, this.insertTestCB);
+            },
+            insertTestCB : function(data){
+                console.log(data);
+            },
+            updateTest : function(){
+                var param = {
+                    usrName : "홍길동01"
+                }
+                cf_call("/sample/crudTest/updateTest", param, this.updateTestCB);
+            },
+            updateTestCB : function(data){
+                console.log(data);
+                this.usrData = data;
+            },
+        },
+        computed: {
+        }
+    })
+</script>
+</th:block>
+
+</html>

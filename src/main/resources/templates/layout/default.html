@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shuttle Card</title>
+    <!--공통 영역-->
+    <th:block th:replace="fragment/cmmn :: cmmnFragment" ></th:block>
+
+    <!--페이지 js, css -->
+    <th:block layout:fragment="css"></th:block>
+    <th:block layout:fragment="js"></th:block>
+</head>
+
+<body>
+    <!-- vue 렌더링 감추기 -->
+    <div id="app" v-cloak>
+
+        <!-- fragment/header == 경로-->
+        <!-- headerFragment == 경로 파일중 th:fragment="headerFragment 정의된 곳"-->
+        <th:block th:replace="fragment/header :: headerFragment"></th:block>
+
+        <th:block layout:fragment="content"></th:block>
+
+        <th:block th:replace="fragment/footer :: footerFragment"></th:block>
+
+        <!--페이지 js -->
+    </div>
+    <th:block layout:fragment="script"></th:block>
+</body>
+
+</html>

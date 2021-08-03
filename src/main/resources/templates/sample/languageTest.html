@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<a th:href="@{/sample}">index</a>
+<h1 th:text="#{welcome.hello}">인사말이 들어갈 자리입니다.</h1>
+<span th:text="#{welcome}">환영 메시지가 들어갈 자리입니다.</span>
+
+<div>
+    <a th:href="@{/sample/language(lang=kr)}">
+        <button th:text="#{lang.ko}"></button>
+    </a>
+    <br><br>
+    <a th:href="@{/sample/language(lang=en)}">
+        <button th:text="#{lang.en}"></button>
+    </a>
+</div>
+</body>
+</html>

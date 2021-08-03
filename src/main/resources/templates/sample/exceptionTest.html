@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <h3>Exception 테스트</h3>
+    <br>
+    <br>
+    ** Exception alert 테스트 : <input type="button" value="실행" @click="test01();">
+    <br>
+    <br>
+</div>
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                test01 : function(){
+                    var param = {
+                    }
+                    cf_call('/sample/exceptionTest/test01', param, this.test01CB)
+                },
+                test01CB : function(data){
+                    console.log(data);
+                },
+            },
+            computed: {
+            }
+        })
+    </script>
+</th:block>
+
+</html>
