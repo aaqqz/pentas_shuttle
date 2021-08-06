@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="flex f-btw align-center mrt10">
-            <input type="text" class="wh text-c" value="2021-04-06" readonly>
+            <input type="text" class="wh text-c" value="2021-04-06" readonly @click="popupOpen('popupDialog')">
             <span>-</span>
             <input type="text" class="wh text-c" value="2021-04-06" readonly>
         </div>
@@ -45,9 +45,8 @@
                 <div class="fs-10 fc-blue mrt5">0원</div>
             </div>
         </div>
-
-
     </div>
+
     <!--  이용내역 없을때  -->
     <div class="cardHisIInfo">
         <div class="noneImg">
@@ -57,6 +56,24 @@
     </div>
 
     <div layout:fragment="popup">
+        <div id="popupDialog" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        Popup Content
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn-close" onclick="popupClose('popupDialog')"><span>닫기</span></button>
+                        <button type="button" class="btn btn-succ"><span>확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div layout:fragment="slideFootPopup">
 
     </div>
 </div>

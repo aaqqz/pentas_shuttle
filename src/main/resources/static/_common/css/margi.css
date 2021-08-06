@@ -139,4 +139,4 @@
 .popup-wrap.type-select .popup {width:100%; transform:translate(0, 100%);}
 .popup-wrap.type-alert .popup {transform:translate(0, 8.33vw);}
 .popup-wrap.type-confirm .popup {transform:translate(0, 8.33vw);}
-.popup-wrap.is-active .popup {transform:translate(0,0);}
+.popup-wrap.is-active .popup {transform:translate(0,0); width: 100%}

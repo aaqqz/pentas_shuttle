@@ -12,10 +12,10 @@
 }
 .dateBtn{
     background: #fff;
-    padding: 0 4.5vw;
+    padding: 2.7vw 4.5vw;
     border-radius: 27.78vw;
 
-    height: 9.72vw;
+    /*height: 9.72vw;*/
     align-items: center;
     display: flex;
 }
