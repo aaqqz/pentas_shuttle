@@ -21,8 +21,8 @@
                     <label for="sRadio12"><span>Global</span></label>
                 </span>
             </div>
-            <input type="text" class="fs-14" value="" placeholder="ID">
-            <input type="password" class="fs-14" value="" placeholder="PW">
+            <input type="text" class="fs-14 loginInput" value="" placeholder="ID">
+            <input type="password" class="fs-14 loginInput" value="" placeholder="PW">
             <div class="loginBtn">로그인</div>
             <div class="loginCntWrap">
                 <div>아이디 찾기</div>
@@ -30,6 +30,53 @@
                 <div>아이디 찾기</div>
                 <div class="hBar"></div>
                 <div>회원가입</div>
+            </div>
+        </div>
+
+        <div class="cardBtnWrap flex f-clm mrt20">
+            <div class="flex f-evn">
+                <div class="flex f-clm align-center cardBtn">
+                    <div class="cardBtnImg">
+                        <img th:src="@{/card/img/pay.png}">
+                    </div>
+                    <div class="fs-10 mrt5">결제</div>
+                </div>
+                <div class="hBar"></div>
+                <div class="flex f-clm align-center cardBtn">
+                    <div class="cardBtnImg">
+                        <img th:src="@{/card/img/charge.png}">
+                    </div>
+                    <div class="fs-10 mrt5">충전</div>
+                </div>
+                <div class="hBar"></div>
+                <div class="flex f-clm align-center cardBtn">
+                    <div class="cardBtnImg">
+                        <img th:src="@{/card/img/admin.png}">
+                    </div>
+                    <div class="fs-10 mrt5">결제 관리</div>
+                </div>
+            </div>
+            <div class="flex f-evn mrt20">
+                <div class="flex f-clm align-center cardBtn">
+                    <div class="cardBtnImg">
+                        <img th:src="@{/card/img/regist.png}">
+                    </div>
+                    <div class="fs-10 mrt5">등록</div>
+                </div>
+                <div class="hBar"></div>
+                <div class="flex f-clm align-center cardBtn">
+                    <div class="cardBtnImg">
+                        <img th:src="@{/card/img/mainOff.png}">
+                    </div>
+                    <div class="fs-10 mrt5">메인카드</div>
+                </div>
+                <div class="hBar"></div>
+                <div class="flex f-clm align-center cardBtn">
+                    <div class="cardBtnImg">
+                        <img th:src="@{/card/img/change.png}">
+                    </div>
+                    <div class="fs-10 mrt5">전환</div>
+                </div>
             </div>
         </div>
 
@@ -96,9 +143,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+
+
+
     card Main
     <div>
         <a href="/sample">sample</a>

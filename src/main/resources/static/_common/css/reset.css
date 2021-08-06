@@ -791,11 +791,15 @@ footer
     border-radius: 27.78vw;
     font-size: 3.33vw;
 }
+
 .flex{
     display: flex;
 }
 .f-btw{
     justify-content: space-between;
+}
+.f-evn{
+    justify-content: space-evenly;
 }
 .f-clm{
     flex-direction: column;

@@ -37,3 +37,12 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
+.cardBtnImg{
+    width: 7.11vw;
+}
+.cardBtn{
+    width: 25vw;
+}
+.bg{
+    background: #f1f5f8;
+}
