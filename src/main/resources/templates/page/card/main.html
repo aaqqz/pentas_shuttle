@@ -34,26 +34,26 @@
         </div>
 
         <div class="eventWrap mrt20">
-            <div class="eventTop flex f-btw">
+            <div class="eventTop flex f-btw mrr15">
                 <div class="fw-bold">일상의 혜택</div>
-                <div class="flex f-btw">
-                    <div class="fs-14">
+                <div class="flex f-btw align-center" @click="goEvent('list')">
+                    <div class="fs-12 mrr5">
                         더보기
                     </div>
-                    <div class="arrowRG">
+                    <div class="arrowRG flex align-center">
                         <img th:src="@{/_common/img/arrow-right-gray.png}">
                     </div>
                 </div>
             </div>
 
-            <div class="eventCnt flex f-clm mrt15">
-                <div class="flex f-btw">
-                    <div>
-                        <div>더우니까 줄서지 마세요</div>
-                        <div>터치 몇번으로 주문은 간단하게</div>
+            <div class="eventCnt flex f-clm mrt15 pdr15 pdl15">
+                <div class="flex f-btw pdt15 pdb15" @click="goEvent('detail')">
+                    <div class="eventTextWrap">
+                        <div class="fw-bold">더우니까 줄서지 마세요</div>
+                        <div class="fs-12">터치 몇번으로 주문은 간단하게</div>
                     </div>
-                    <div class="flex">
-                        <div class="eventProd">
+                    <div class="flex align-center">
+                        <div class="eventProd mrr10">
                             <img th:src="@{/event/img/event_prod_01.png}">
                         </div>
                         <div class="arrowRG">
@@ -61,14 +61,16 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="bar-gray"></div>
-                <div class="flex f-btw">
-                    <div>
-                        <div>더우니까 줄서지 마세요</div>
-                        <div>터치 몇번으로 주문은 간단하게</div>
+
+                <div class="flex f-btw pdt15 pdb15">
+                    <div class="eventTextWrap">
+                        <div class="fw-bold">더우니까 줄서지 마세요</div>
+                        <div class="fs-12">터치 몇번으로 주문은 간단하게</div>
                     </div>
-                    <div class="flex">
-                        <div class="eventProd">
+                    <div class="flex align-center">
+                        <div class="eventProd mrr10">
                             <img th:src="@{/event/img/event_prod_02.png}">
                         </div>
                         <div class="arrowRG">
@@ -76,14 +78,16 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="bar-gray"></div>
-                <div class="flex f-btw">
-                    <div>
-                        <div>더우니까 줄서지 마세요</div>
-                        <div>터치 몇번으로 주문은 간단하게</div>
+
+                <div class="flex f-btw pdt15 pdb15">
+                    <div class="eventTextWrap">
+                        <div class="fw-bold">더우니까 줄서지 마세요</div>
+                        <div class="fs-12">터치 몇번으로 주문은 간단하게</div>
                     </div>
-                    <div class="flex">
-                        <div class="eventProd">
+                    <div class="flex align-center">
+                        <div class="eventProd mrr10">
                             <img th:src="@{/event/img/event_prod_03.png}">
                         </div>
                         <div class="arrowRG">
@@ -123,6 +127,14 @@
       mounted: function () {
       },
       methods: {
+
+          goEvent : function(val){
+              if(val == "list"){
+                  location.href="/event/list"
+              }else{
+                  location.href="/event/detail"
+              }
+          }
       },
       computed: {
       }

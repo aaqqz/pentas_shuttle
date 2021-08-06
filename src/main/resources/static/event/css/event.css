@@ -32,8 +32,14 @@ img{
     height:100%;
 }
 .detailImg{
-    width: 100vw;
+    width: 70vw;
+    float: right;
+    margin-top: 20vw;
+    margin-right: 5vw;
 }
 .bannerTitle{
     position: absolute;
+}
+.bannerWrap{
+    height: 80vw;
 }

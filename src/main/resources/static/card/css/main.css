@@ -24,11 +24,16 @@
 }
 .eventCnt{
     background-color: #fff;
+    border-radius: 5.56vw;
 }
 .eventProd{
-    width: 27.22vw;
-    height: 21.11vw;
+    width: 15.22vw;
 }
 .arrowRG{
-    width: 3vw;
+    width: 2vw;
+}
+.eventTextWrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
