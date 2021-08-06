@@ -1,9 +1,26 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
     <div th:fragment="headerFragment">
-        <div class="header" style="background-color: red">
-            header
-        </div>
-    </div>
 
+        <div class="header">
+            <header class="tenten_header header_main">
+                <div class="header_inner">
+                    <button type="button" class="header_opener">
+                        <div class="headerIcon">
+                            <img th:src="@{/_common/img/arrow.png}">
+                        </div>
+                        <span class="blind">메뉴 열기</span>
+                    </button>
+                    <h1 class="header_logo">
+                        <a href="#">
+                            <span class="back">메인</span>
+                        </a>
+                    </h1>
+                    <div class="util">
+
+                    </div>
+                </div>
+            </header>
+        </div>
+
+    </div>
 </html>

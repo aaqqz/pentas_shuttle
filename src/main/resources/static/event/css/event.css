@@ -1,0 +1,39 @@
+.bannerTop{
+    width: 100%;
+    height: 39.72vw;
+    border-top-left-radius: 5.56vw;
+    border-top-right-radius: 5.56vw;
+}
+.bannerFoot{
+    width: 100%;
+    /*height: 39.72vw;*/
+    background-color: #fff;
+    border-bottom-left-radius: 5.56vw;
+    border-bottom-right-radius: 5.56vw;
+}
+.bg-green{
+    background-color: #b4f28f;
+}
+.bg-pink{
+    background-color: #f598ad;
+}
+.bg-gray{
+    background-color: #cddddd;
+}
+.bannerListImg{
+    width: 45vw;
+    float: right;
+    padding-top: 6.33vw !important;
+    padding-right: 6.33vw !important;
+
+}
+img{
+    width:100%;
+    height:100%;
+}
+.detailImg{
+    width: 100vw;
+}
+.bannerTitle{
+    position: absolute;
+}

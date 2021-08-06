@@ -2,15 +2,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+      layout:decorator="~{layout/default}">
 
-<th:block layout:fragment="css">
-</th:block>
-<th:block layout:fragment="js">
-</th:block>
+<head>
+    <link rel="stylesheet" th:href="@{/event/css/event.css}">
+</head>
 
 <div layout:fragment="content" class="content">
-    event List
+    <div class="mrl20 mrr20 mrt20">
+        <div class="pageTitle">
+            <div class="fs-18 fw-bold">셔틀카드만의 특별한 혜택!</div>
+            <div class="fs-18 mrt5 mrb10">여러분도 만나 보시겠습니까?</div>
+        </div>
+
+        <div class="bannerBox mrb20" @click="goPage()">
+            <div class="bannerTitle pdt30 pdl30">
+                <div class="">BannerText</div>
+                <div class="mrt5 fw-bold">BannerSubText</div>
+            </div>
+            <div class="bannerTop bg-green">
+                <div class="bannerListImg">
+                    <img th:src="@{/event/img/event_prod_01.png}">
+                </div>
+            </div>
+            <div class="bannerFoot pdt10 pdb15 pdl15 pdr15">
+                <div>
+                    전국 TestTestTestTestTestTest
+                </div>
+                <div>
+                    전국 TestTestTestTestTestTest
+                </div>
+            </div>
+        </div>
+
+        <div class="bannerBox mrb20">
+            <div class="bannerTitle pdt30 pdl30">
+                <div class="">BannerText</div>
+                <div class="mrt5 fw-bold">BannerSubText</div>
+            </div>
+            <div class="bannerTop bg-pink">
+                <div class="bannerListImg">
+                    <img th:src="@{/event/img/event_prod_02.png}">
+                </div>
+            </div>
+            <div class="bannerFoot pdt10 pdb15 pdl15 pdr15">
+                <div>
+                    전국 TestTestTestTestTestTest
+                </div>
+                <div>
+                    전국 TestTestTestTestTestTest
+                </div>
+            </div>
+        </div>
+
+        <div class="bannerBox mrb20">
+            <div class="bannerTitle pdt30 pdl30">
+                <div class="">BannerText</div>
+                <div class="mrt5 fw-bold">BannerSubText</div>
+            </div>
+            <div class="bannerTop bg-gray">
+                <div class="bannerListImg">
+                    <img th:src="@{/event/img/event_prod_03.png}">
+                </div>
+            </div>
+            <div class="bannerFoot pdt10 pdb15 pdl15 pdr15">
+                <div>
+                    전국 TestTestTestTestTestTest
+                </div>
+                <div>
+                    전국 TestTestTestTestTestTest
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -20,14 +84,13 @@
     var app = new Vue({
       el: "#app",
       data: {
-          eventList : [
-              { title : "" }
-          ],
       },
       mounted: function () {
       },
       methods: {
-
+          goPage : function(){
+              location.href="/event/detail";
+          }
       },
       computed: {
       }

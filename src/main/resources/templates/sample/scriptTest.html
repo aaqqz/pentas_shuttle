@@ -27,7 +27,7 @@
   <button @click="alert(cf_whatIsIt( whatIsIt ))">cf_whatIsIt</button>
   <br>
   <br>
-  <button @click="alert( cf_genUUID() )">cf_genUUID</button>
+  <button @click="cf_genUUID_console( )">cf_genUUID</button>
   <br>
   <br>
   <button @click="alert( cf_genrandom() )">cf_genrandom</button>
@@ -54,6 +54,9 @@
 
       },
       methods: {
+        cf_genUUID_console : function(){
+          console.log("MN"+cf_genUUID());
+        }
       },
       computed: {
       }

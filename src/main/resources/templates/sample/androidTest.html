@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<th:block layout:fragment="css">
+</th:block>
+<th:block layout:fragment="js">
+</th:block>
+
+<div layout:fragment="content" class="content">
+    <h3>android 테스트</h3>
+    <br>
+    <br>
+        <button @click="androidTest('test')">androidTest</button>
+        <button @click="onQrScanner()">onQrScanner</button>
+        <button @click="onScanPress()">onScanPress</button>
+    <br>
+    <br>
+</div>
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+        function qrScanResult(rsltData){
+            alert(rsltData);
+        }
+        function cardScanResult(rsltData){
+            alert(rsltData);
+
+
+        }
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                androidTest : function(data){
+                    console.log(111);
+                    var returnVal = window.Android.test(data);
+                    alert(returnVal);
+                },
+                onQrScanner : function(){
+                    window.Android.onQrScanner();
+                },
+                qrScanResult : function (rsltData){
+                    alert(rsltData);
+                },
+
+                onScanPress : function(){
+                    return window.Android.onScanPress();
+                },
+                // cardScanResult : function (rsltData){
+                //     alert(rsltData);
+                // }
+
+            },
+            computed: {
+            }
+        })
+    </script>
+</th:block>
+
+</html>

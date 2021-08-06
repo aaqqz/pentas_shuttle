@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
@@ -7,10 +7,6 @@
     <title>Shuttle Card</title>
     <!--공통 영역-->
     <th:block th:replace="fragment/cmmn :: cmmnFragment" ></th:block>
-
-    <!--페이지 js, css -->
-    <th:block layout:fragment="css"></th:block>
-    <th:block layout:fragment="js"></th:block>
 </head>
 
 <body>
@@ -27,6 +23,11 @@
 
         <!--페이지 js -->
     </div>
+
+    <th:block layout:fragment="popup"></th:block>
+    <th:block layout:fragment="slideTopPopup"></th:block>
+    <th:block layout:fragment="slideFootPopup"></th:block>
+
     <th:block layout:fragment="script"></th:block>
 </body>
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<head>
+    <link rel="stylesheet" th:href="@{/card/css/history.css}">
+</head>
+
+<div layout:fragment="content" class="content">
+    <div class="mrl20 mrr20 mrt20">
+        <div class="tabMenu flex">
+            <div class="tabBtn mrr10" :class="{'onPay':pay == 1}" @click="changePay(1)">결제</div>
+            <div class="tabBtn" :class="{'onPay':pay == 2}" @click="changePay(2)">충전</div>
+        </div>
+
+        <div class="flex f-btw mrt20">
+            <div class="flex">
+                <div class="dateBtn mrr10 fc-gray fs-14" :class="{'onDate':date == 1}" @click="changeDate(1)">1주일</div>
+                <div class="dateBtn mrr10 fc-gray fs-14" :class="{'onDate':date == 2}" @click="changeDate(2)">1개월</div>
+                <div class="dateBtn mrr10 fc-gray fs-14" :class="{'onDate':date == 3}" @click="changeDate(3)">3개월</div>
+            </div>
+        </div>
+        <div class="flex f-btw align-center mrt10">
+            <input type="text" class="wh text-c fs-14" value="2021-04-06" readonly>
+            <span>-</span>
+            <input type="text" class="wh text-c fs-14" value="2021-04-06" readonly>
+        </div>
+        <div class="flex f-btw align-center mrt10">
+            <select class="select demo2 wh fs-14 text-c">
+                <option class="fs-14" selected>전체</option>
+                <option class="fs-14" v-if="pay == 1">결제완료</option>
+                <option class="fs-14" v-if="pay == 1">결제취소</option>
+                <option class="fs-14" v-if="pay == 2">충전완료</option>
+                <option class="fs-14" v-if="pay == 2">충전취소</option>
+            </select>
+            <div class="searchBtn fc-white fs-14">조회</div>
+        </div>
+
+        <div class="cardInfo mrt15 flex f-btw align-center">
+            <div class="fs-14">총 12건</div>
+            <div class="text-r">
+                <div class="fs-14 fc-gray">2021.07.29 ~ 2021.08.05</div>
+                <div class="fs-14 fc-blue mrt5">0원</div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--  이용내역 없을때  -->
+    <div class="cardHisIInfo">
+        <div class="noneImg">
+            <img th:src="@{/card/img/none.png}">
+        </div>
+        <div class="mrt20 fc-gray">이용 내역이 없습니다.</div>
+    </div>
+
+    <div layout:fragment="popup">
+
+    </div>
+</div>
+<div>
+
+</div>
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                pay : 1,
+                date : 1
+            },
+            mounted: function () {
+            },
+            methods: {
+                changePay : function(val){
+                    this.pay = val;
+                },
+                changeDate : function(val){
+                    this.date = val;
+                },
+
+            },
+            computed: {
+            }
+        })
+    </script>
+</th:block>
+
+</html>

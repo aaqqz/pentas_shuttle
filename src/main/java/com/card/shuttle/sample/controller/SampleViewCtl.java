@@ -51,4 +51,9 @@ public class SampleViewCtl {
     public String ajaxParallelTest(){
         return "sample/ajaxParallelTest";
     }
+
+    @GetMapping("/androidTest")
+    public String androidTest(){
+        return "sample/androidTest";
+    }
 }

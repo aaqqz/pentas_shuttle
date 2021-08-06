@@ -13,6 +13,8 @@ public class CardViewCtl {
         return "/page/card/main";
     }
 
-//    @GetMapping("/event")
-//    public String eventvent
+    @GetMapping("/history")
+    public String cardHistory(){
+        return "/page/card/history";
+    }
 }

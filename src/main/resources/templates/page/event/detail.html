@@ -2,15 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+      layout:decorator="~{layout/default}">
 
-<th:block layout:fragment="css">
-</th:block>
-<th:block layout:fragment="js">
-</th:block>
+<head>
+    <link rel="stylesheet" th:href="@{/event/css/event.css}">
+</head>
 
 <div layout:fragment="content" class="content">
-    event Detail
+    <div class="bannerTitle pdt30 pdl30">
+        <div class="fs-18">BannerText</div>
+        <div class="mrt10 fs-22 fw-bold">BannerSubText</div>
+    </div>
+    <div class="detailImg">
+        <img th:src="@{/event/img/eventDetailProd.png}">
+    </div>
+    <div class="infoWrap mrl20 mrr20">
+        <div class="mrt35 fw-bold">행사기간</div>
+        <div class="mrt10">2021.8.20(화) ~ 10.31(목)</div>
+        <div class="mrt15 fw-bold">대상카드</div>
+        <div class="mrt10">셔틀 멤버쉽 카드</div>
+        <div class="mrt15 fw-bold">행사내용</div>
+        <div class="mrt10">전국 모든 매장에서 대상 카드로</div>
+        <div class="mrt5">
+            <span class="fc-blue">불고기 버거 구매시 프라이드 1개 </span><span>증정</span>
+        </div>
+        <div class="mrt5">(결제건당 1개, 1일 1회 적)</div>
+        <div class="mrt25 mrb25 bar-gray"></div>
+        <div class="fw-bold" >유의사항</div>
+        <div class="fs-14 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>
+        <div class="fs-14 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>
+        <div class="fs-14 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>
+        <div class="fs-14 mrt10">- 다른 프로모션, 쿠포, 제휴카드 할인 및 혜택과 중복 적용되지 않습니다.</div>
+    </div>
 </div>
 
 
