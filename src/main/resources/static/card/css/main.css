@@ -9,6 +9,12 @@
 .loginBtn{
     background-color: #2496ee;
     color: #fff;
+    height: 9.72vw;
+    width: 85%;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .loginCntWrap{
     display: flex;
@@ -43,6 +49,15 @@
 .cardBtn{
     width: 25vw;
 }
-.bg{
+.loginInput{
     background: #f1f5f8;
+    width: 85%;
+}
+.loginCntBtn{
+    width: 25vw;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 6vw;
 }

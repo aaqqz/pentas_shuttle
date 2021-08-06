@@ -11,25 +11,25 @@
     <div class="mrl20 mrr20 mrt20">
 
         <div class="loginWrap">
-            <div class="radio-demo1-area">
+            <div class="radio-demo1-area mrt10">
                 <span class="radio demo1">
                     <input type="radio" name="sRadio1" id="sRadio11" checked="">
-                    <label for="sRadio11"><span>Korea</span></label>
+                    <label for="sRadio11"><span class="fs14">Korea</span></label>
                 </span>
                 <span class="radio demo1">
                     <input type="radio" name="sRadio1" id="sRadio12">
-                    <label for="sRadio12"><span>Global</span></label>
+                    <label for="sRadio12"><span class="fs14">Global</span></label>
                 </span>
             </div>
-            <input type="text" class="fs-14 loginInput" value="" placeholder="ID">
-            <input type="password" class="fs-14 loginInput" value="" placeholder="PW">
-            <div class="loginBtn">로그인</div>
-            <div class="loginCntWrap">
-                <div>아이디 찾기</div>
+            <input type="text" class="loginInput mrt10" v-model="id" placeholder="ID">
+            <input type="password" class="loginInput mrt10" v-model="pw" placeholder="PW">
+            <div class="loginBtn mrt10" @click="login()">로그인</div>
+            <div class="loginCntWrap flex f-evn mrt10 mrb10">
+                <div class="loginCntBtn">아이디 찾기</div>
                 <div class="hBar"></div>
-                <div>아이디 찾기</div>
+                <div class="loginCntBtn">비밀번호 찾기</div>
                 <div class="hBar"></div>
-                <div>회원가입</div>
+                <div class="loginCntBtn">회원가입</div>
             </div>
         </div>
 
@@ -173,18 +173,30 @@
     var app = new Vue({
       el: "#app",
       data: {
+          id : "pentas",
+          pw : "",
       },
       mounted: function () {
       },
       methods: {
+          login : function(){
+              if(this.id !== "pentas"){
+
+                  return;
+              }else if(this.pw !== "1234"){
+                  return;
+              }
+              alert("Asd");
+          },
 
           goEvent : function(val){
+
               if(val == "list"){
                   location.href="/event/list"
               }else{
                   location.href="/event/detail"
               }
-          }
+          },
       },
       computed: {
       }
