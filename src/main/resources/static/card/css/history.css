@@ -8,11 +8,16 @@
 .onPay{
     padding-bottom: 3vw;
     border-bottom: 0.83vw solid #2496ee;
+    font-weight: bold;
 }
 .dateBtn{
     background: #fff;
-    padding: 3vw 4.5vw;
+    padding: 0 4.5vw;
     border-radius: 27.78vw;
+
+    height: 9.72vw;
+    align-items: center;
+    display: flex;
 }
 .onDate{
     color: #ffffff;
@@ -32,14 +37,14 @@
     height: 9.72vw;
     padding: 0 8.33vw 0 5.56vw;
     border-radius: 27.78vw 0 0 27.78vw;
-    font-size: 4.44vw;
+    font-size: 3.33vw;
     width: 80%;
-    border: 0.28vw solid #ddd;
     -webkit-appearance: none; /* 화살표 없애기 for chrome*/
     -moz-appearance: none;    /* 화살표 없애기 for firefox*/
     appearance: none;         /* 화살표 없애기 공통*/
     background: url(../../_common/img/arrow-bot.png) no-repeat 97% white;
     background-size: 3vw;
+    border: none;
 
 }
 .select.demo2:before {
