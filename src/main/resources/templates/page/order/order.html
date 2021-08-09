@@ -173,9 +173,7 @@
       <!-- //Section -->
     </div>        
   </div>
-</div>
-
-<div layout:fragment="slideFootPopup">
+  <div layout:fragment="slideFootPopup">
     <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
         <section class="popup slide">
             <div class="popup-head">
@@ -259,12 +257,15 @@
             <div class="popup-foot">
                 <div class="btn_wrap">
                     <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('popupAlert')"><span>닫기</span></button> -->
-                    <button type="button" class="btn btn-succ-all" onclick="popupClose('popupAlert')"><span>확인</span></button>
+                    <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup')]"><span>확인</span></button>
                 </div>
             </div>
         </section>
     </div>
 </div>
+</div>
+
+
 
 
 
@@ -274,6 +275,7 @@
     var app = new Vue({
       el: "#app",
       data: {
+          
       },
         mounted: function () {
       },

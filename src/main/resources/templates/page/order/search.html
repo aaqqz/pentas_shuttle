@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
+      
 <head>
   <link rel="stylesheet" th:href="@{/order/css/search.css}">
 </head>
@@ -14,10 +15,21 @@
         <!-- Section -->
         <div class="content">
             <div class="search-container">
-                <div class="form-controls pdt20 pdb20 pdr20 pdl20">
+                <!-- <div class="form-controls pdt20 pdb20 pdr20 pdl20">
                     <input type="text" name="" id="" value="" placeholder="매장을 검색해주세요." class="input search">
+                    <label for="sFiles1" class="btn demo2 type-attach" role="button">
+                        <span><input type="file" name="sFiles1" id="sFiles1" value="찾아보기" tabindex="-1" aria-hidden="true" onchange="fileAttachSrc(this, event)">첨부</span>
+                    </label>
+                </div> -->
+                <div class="form-controls pdt20 pdb20 pdr20 pdl20">
+                    <!-- <h4 class="g-h3">기본</h4> -->
+                    <span class="file-add demo2">
+                        <input type="text" id="sFilesName11" class="input search " placeholder="매장을 입력해주세요.">
+                        <label class="btn demo3 type-attach" role="button">
+                            <span><input type="button" name="sFiles1" id="sFiles1">검색</span>
+                        </label>
+                    </span>
                 </div>
-
                 <div class="grid demo1">
                     <div class="col col-12">
                         <!-- <h3 class="g-h3">Tab Panels</h3> -->
@@ -25,10 +37,10 @@
                         <div class="tab-nav demo1">
                             <ul role="tablist" class="tab-list">
                                 <li id="tabItem21" role="tab" aria-controls="tabpanel21" aria-selected="true" class="js-tab is-active">
-                                    <button type="button" class="btn"><span>인기메뉴</span></button>
+                                    <button type="button" class="btn"><span class="fs-14">인기메뉴</span></button>
                                 </li>
                                 <li id="tabItem22" role="tab" aria-controls="tabpanel22" aria-selected="false" class="js-tab">
-                                    <button type="button" class="btn"><span>피자</span></button>
+                                    <button type="button" class="btn"><span class="fs-14">피자</span></button>
                                 </li>
                             </ul>
                         </div>
@@ -42,12 +54,12 @@
                                             <div class="weekday">
                                                 <div class="items">
                                                     <div class="thumbnail_list">
-                                                        <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
+                                                        <img th:src="@{/order/img/main_banner.png}">
                                                     </div>
                                                     <div class="desc">
                                                         <div class="">
-                                                            <p class="name">유니크 감성 소품, 무아스</p>
-                                                            <p class="list-content">피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!</p>
+                                                            <p class="name">펜타에스</p>
+                                                            <p class="list-content">파스타피자 전문 맛집입니다. 인스타 팔로우수 5000만</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -59,35 +71,62 @@
                             <!-- //탭내용1 -->
 
                             <!-- 탭내용2 -->
-                            <div id="tabpanel22" role="tabpanel" aria-labelledby="tabItem22" class="tab-cont">
-                            <div class="multi-time-sale time-sale">
-                                    <article id="content1">
+                            <div  id="tabpanel22" role="tabpanel" aria-labelledby="tabItem22" class="tab-cont">
+                                <div class="multi-time-sale time-sale">
+                                    <!-- <article id="content1"> -->
                                         <!-- <div class="multi-head">
                                             <h2 class="headline ftLt">JUST 1 DAY</h2>
                                             <span class="time ftLt" id="countdown">07:35:59 <s>남음</s></span>
                                         </div> -->
-                                        <div class="weekday">
+                                        <div class="weekday" onclick="popupOpen('slideFootPopup')">
                                             <div class="items">
                                                 <div class="thumbnail_list">
                                                     <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
                                                 </div>
                                                 <div class="desc">
-                                                    <!-- <b class="discount color-red">
-                                                    ~50% </b> -->
-                                                    <p class="name">
-                                                        피자먹자 피자
-                                                    </p>
-                                                    <p class="list-content">
-                                                        피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!
-                                                    </p>
-                                                    <div class="price">
-                                                        <b class="sum">9,207원~</b>
+                                                    <div class="">
+                                                        <p class="name fs-14">
+                                                            유니크 감성 소품, 무아스유니크 감성asdasd 소품, 무아스
+                                                        </p>
+                                                        <p class="list-content">
+                                                            피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!
+                                                            피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!
+                                                            피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!
+                                                        </p>
+                                                        <div class="price">
+                                                            <p class="sum fs-num">9,207원~</b>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <a href="#"></a>
                                             </div>
                                         </div>
-                                    </article>
+                                    <!-- </article> -->
+                                </div>
+            
+                                <div class="multi-time-sale time-sale">
+                                        <div class="weekday" onclick="popupOpen('slideFootPopup')">
+                                            <div class="items">
+                                                <div class="thumbnail_list">
+                                                    <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
+                                                </div>
+                                                <div class="desc">
+                                                    <div class="">
+                                                        <p class="name fs-14">
+                                                            유니크 감성 소품, 무아스유니크 감성asdasd 소품, 무아스
+                                                        </p>
+                                                        <p class="list-content">
+                                                            피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!
+                                                            피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!
+                                                            피자 포테이토피자, 닭가슴살 먹자, 벌크업벌크업!
+                                                        </p>
+                                                        <div class="price">
+                                                            <p class="sum fs-num">9,207원~</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- </article> -->
                                 </div>
                             </div>
                             <!-- //탭내용2 -->

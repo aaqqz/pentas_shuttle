@@ -89,7 +89,13 @@ ul.g-desc > li:before {content:''; position:absolute; left:0; top:10px; display:
     line-height: 7.50vw;
     color: #fff;
     background: #2496ee;}
-
+    .btn.demo3 {   height: 9.72vw;
+        padding: 0 5.56vw 0;
+        border: 1px solid #ddd;
+        border-radius: 0px 27.78vw 27.78vw 0px;
+        line-height: 7.50vw;
+        color: #fff;
+        background: #2496ee;}
 /* SelectList */
 .btn-demo1-area {border:1px solid #eee;}
 .btn-demo1-area li + li {border-top:1px solid #eee;}
@@ -125,7 +131,7 @@ textarea.input.demo1:hover,
 textarea.input.demo1.is-focused {border-color:#0089b3;}
 
 /* File Attach */
-.file-add.demo2 {position:relative; display:inline-flex; height: 13.89vw;}
+.file-add.demo2 {position:relative; display:inline-flex; height: 13.89vw; width: 100%;}
 .file-add.demo2 input[type="file"] {position:absolute; width:0; height:0; overflow:hidden;}
 .file-add.demo2 input[type="text"] {display:inline-table;}
 /* .file-add.demo2 .btn-file {display:inline-table;} */
@@ -164,7 +170,7 @@ textarea.input.demo1.is-focused {border-color:#0089b3;}
 
 .check.demo1 {display:inline-flex; position:relative; margin:5px 0; line-height:1;}
 .check.demo1 label {display:inline-flex; position:relative; min-width:6.94vw; min-height:6.94vw; line-height:5.56vw;}
-.check.demo1 label span {display:inline-block; padding-left: 9.78vw;    display: flex;
+.check.demo1 label span {display:inline-block; padding-left: 8.78vw;    display: flex;
     justify-content: center;
     align-items: center;}
 .check.demo1 > input {width: 6.94vw; height: 6.94vw; border:1px solid #ddd; background:#fff; }
