@@ -51,7 +51,7 @@
 .header_inner .util .btn_goapp span {display:table-cell; vertical-align:middle; height:2.08rem; padding: 0.2rem 0.73rem 0 0.69rem; font-size:1.04rem; color:#ff214f; font-family:'CoreSansCBold', 'AppleSDGothicNeo-Bold', 'NotoSansKRBold'; border: 0.1rem solid #ff214f; border-radius: 1.04rem;}
 .header_inner .util .btn_shoppingbag {margin-left:1rem;}
 .header_inner .util a {display:inline-block; position:relative; margin-left:1.29rem;}
-.header_inner .util [class^="i_"] {font-size:2.39rem;}
+.header_inner .util [class^="i_"] {font-size: 6.56vw;}
 .header_inner .util .badge {position:absolute; right:0; bottom:-.34rem; min-width:1.37rem; height:1.37rem; padding:.1em .4em 0; line-height:1.37rem; text-align:center; font-family:'CoreSansCBold'; font-size:.94rem; color:var(--white); background:var(--ten); border-radius:.7rem;}
 .headerIcon{
     display: flex;

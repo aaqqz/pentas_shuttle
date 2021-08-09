@@ -5,6 +5,14 @@
       layout:decorator="layout/default">
 <head>
   <link rel="stylesheet" th:href="@{/order/css/order.css}">
+<link rel="stylesheet" th:href="@{/card/css/main.css}">
+    <!-- Swiper library S -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@5.3.6/js/swiper.min.js"></script>
+    <!-- vue-awesome-swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper"></script>
+    <script type="text/javascript">Vue.use(window.VueAwesomeSwiper)</script>
+    <!-- Swiper library E -->
 </head>
 
 <div layout:fragment="content" class="content">
@@ -17,7 +25,7 @@
                         <div class="list-head">
                             <span class="check demo1">
                                 <input type="checkbox" name="sCheck1" id="sCheck1">
-                                <label for="sCheck1"><span>전체선택</span></label>
+                                <label for="sCheck1"><span class="fs-16">전체선택</span></label>
                             </span>
                         </div>
 
@@ -89,8 +97,7 @@
             <button type="button" class="btn btn-com" onclick="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
         </div>
     </div>
-</div>
-
+    
 <div layout:fragment="slideFootPopup">
     <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
         <section class="popup slide">
@@ -103,25 +110,52 @@
                     <!-- <div class="popup-con-head"></div> -->
                     <div class="popup-con-body">
                         <section class="card-option">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="price-card">
-                                            <img th:src="@{/order/img/card01.png}">
+                            <div class="cardWrap">
+                            <div class="swiper-pagination"></div>
+                            <swiper ref="swiperComponent" :options="swiperOption()">
+                                <swiper-slide>
+                                    <div class="cardBox pd15">
+                                        <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                                        <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                                        <div class="flex f-btw mrt25 mrb25">
+                                            <div class="fc-white fs-14">사용 가능 금액</div>
+                                            <div class="fc-white fs-14">5000 원</div>
+                                        </div>
+                                        <div class="bar-white"></div>
+                                        <div class="cardHis flex f-btw mrt15">
+                                            <div class="fc-white">7월에 <span>0 원 </span>사용</div>
+                                            <div class="cardHisArrow">
+                                                <img th:src="@{/card/img/arrow-down-white.png}">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="price-card">
-                                            <img th:src="@{/order/img/card02.png}">
+                                    <div class="cardHisAco">
+                                        <div>asdasd</div>
+                                    </div>
+                                </swiper-slide>
+                                <swiper-slide>
+                                    <div class="cardBox pd15">
+                                        <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                                        <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                                        <div class="flex f-btw mrt25 mrb25">
+                                            <div class="fc-white fs-14">사용 가능 금액</div>
+                                            <div class="fc-white fs-14">5000 원</div>
+                                        </div>
+                                        <div class="bar-white"></div>
+                                        <div class="cardHis flex f-btw mrt15">
+                                            <div class="fc-white">7월에 <span>0 원 </span>사용</div>
+                                            <div class="cardHisArrow">
+                                                <img th:src="@{/card/img/arrow-down-white.png}">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="swiper-slide">
-                                        <div class="price-card">
-                                            <img th:src="@{/order/img/card03.png}">
-                                        </div>
+                                    <div class="cardHisAco">
+                                        <div>asdasd</div>
                                     </div>
-                                </div>
-                                </div>
+                                </swiper-slide>
+                    
+                            </swiper>
+                            </div>
                         </section>
     
                         <div class="price-con-cl">
@@ -143,10 +177,12 @@
         </section>
     </div>
 </div>
+</div>
+
 
 <!-- 카드로 결제했을시 완료 팝업 -->
-<div layout:fragment="slideFootPopup">
-    <div id="slideFootPopup" class="popup-wrap type-basic">
+<div layout:fragment="popup">
+    <div id="popup" class="popup-wrap type-basic">
         <section class="popup demo1">
             <div class="popup-body">
                 <div class="popup-content fs-16">
@@ -169,11 +205,34 @@
     var app = new Vue({
       el: "#app",
       data: {
+        cardSeq : 0
       },
       mounted: function () {
+        this.init();
       },
       methods: {
-          
+        swiperOption : function(){
+                    return {
+                        // 'allowTouchMove': value,
+                        'pagination': {
+                            'el': '.swiper-pagination',
+                            'type': 'fraction',
+                            // 'clickable' : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+                        },
+                        on: {
+                            'slideChangeTransitionEnd': function () {
+                                this.cardSeq = this.activeIndex;
+                            }
+                        },
+                        effect: 'coverflow',
+                        coverflowEffect: {
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 300,
+                            slideShadows: false,
+                        }
+                    };
+                }
       },
       computed: {
       }
