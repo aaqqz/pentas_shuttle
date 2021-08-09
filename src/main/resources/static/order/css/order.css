@@ -12,6 +12,12 @@
 .multi-time-sale .container .list-head { border-bottom: 0.56vw solid #1a1a1a; padding-bottom: 1.39vw; }
 .price-card { margin-right: 8.33vw; }
 
+.cardWrap .swiper-pagination {
+    position: relative !important;
+    top: 9.89vw;
+    right: 27.78vw;
+    margin-left: 64vw;
+}
 .list-body { }
 .list-body .list-price { }
 .list-body .list-price .check-del{ display: flex; justify-content: space-between; }
