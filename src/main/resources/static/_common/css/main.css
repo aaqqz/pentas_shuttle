@@ -121,9 +121,9 @@
 	letter-spacing: -1px;
 	padding: 0;
 	border-bottom: none;}
-.time-sale .weekday .name {display:block; margin-top:3.6rem; height: 9.78vw; color:#000;}
+.time-sale .weekday .name {display:block; margin-top:3rem; height: 9.78vw; color:#000;}
 .time-sale .weekday .price {
-	margin-bottom: 4.56vw;
+	margin-bottom: 4.2vw;
     color: #d3002e;
     font-size: 1.37rem;
     letter-spacing: -0.034rem;
