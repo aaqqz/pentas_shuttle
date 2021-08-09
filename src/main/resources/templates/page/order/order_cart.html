@@ -71,7 +71,7 @@
                                             
                                             <input type='button' class="miner" onclick='count("minus")'  value='-'/>
                                         </div>
-                                        <span class="price-num fs-num">3,600원<span>
+                                        <span class="price-num fs-num">3,600C<span>
                                     </div>
                                 </div>
                             </div>
@@ -86,13 +86,13 @@
         </div>
 
         <div class="com-btn">
-            <button type="button" class="btn btn-com" onclick="popupOpen('popupSelect')"><span class="fs-14">결제하기</span></button>
+            <button type="button" class="btn btn-com" onclick="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
         </div>
     </div>
 </div>
 
 <div layout:fragment="slideFootPopup">
-    <div id="popupSelect" class="popup-wrap type-select" role="dialog" aria-modal="false">
+    <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
         <section class="popup slide">
             <div class="popup-head">
                 <h3 class="popup-tit">결제카드 선택</h3>
@@ -106,39 +106,58 @@
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <div class="price-card" style="margin-right: 30px;">
-                                            <img src="/glocsy/resources/static/order/img/card01.png">
+                                        <div class="price-card">
+                                            <img th:src="@{/order/img/card01.png}">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
-                                        <div class="price-card" style="margin-right: 30px;">
-                                            <img src="/glocsy/resources/static/order/img/card02.png">
+                                        <div class="price-card">
+                                            <img th:src="@{/order/img/card02.png}">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
-                                        <div class="price-card" style="margin-right: 30px;">
-                                            <img src="/glocsy/resources/static/order/img/card03.png">
+                                        <div class="price-card">
+                                            <img th:src="@{/order/img/card03.png}">
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                         </section>
     
-                        <div class="price-con">
-                            <div class="fot-price">총 가격</div>
-                            <div class="fot-num">27,200원</div>
+                        <div class="price-con-cl">
+                            <div class="fot-price-ll fs-16">우리은행<span>(5210-03**-****-9447)</span></div>
+                            <div class="fot-price fs-16">남은잔액<span class="fot-num fs-16 mrl5">27,200원</span></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="popup-foot">
                 <div class="btn_wrap">
-                    <button type="button" class="btn btn-exit" onclick="popupClose('popupDialog')"><span>닫기</span></button>
-                    <button type="button" class="btn btn-succ"><span>주문담기</span></button>
+                    <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+                    <button type="button" class="btn btn-succ" onclick="popupClose('popupAlert')"><span>이카드로 결제하기</span></button>
                 </div>
             </div>
             <div class="popup-close">
-                <button type="button" class="btn btn-close" onclick="popupClose('popupSelect')"><span>닫기</span></button>
+                <button type="button" class="btn btn-close" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- 카드로 결제했을시 완료 팝업 -->
+<div layout:fragment="slideFootPopup">
+    <div id="slideFootPopup" class="popup-wrap type-basic">
+        <section class="popup demo1">
+            <div class="popup-body">
+                <div class="popup-content fs-16">
+                    결제가 완료되었습니다.
+                </div>
+            </div>
+            <div class="popup-foot">
+                <div class="btn_wrap">
+                    <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('slideFootPopup')"><span>닫기</span></button> -->
+                    <button type="button" class="btn btn-succ-all" onclick="popupClose('slideFootPopup')"><span>확인</span></button>
+                </div>
             </div>
         </section>
     </div>
@@ -154,6 +173,7 @@
       mounted: function () {
       },
       methods: {
+          
       },
       computed: {
       }
