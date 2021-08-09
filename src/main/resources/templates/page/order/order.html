@@ -13,7 +13,7 @@
       <div class="main-banner">
           <div class="desc" >
               <!-- <span class="label label-speech"><b class="discount">~50%</b></span> -->
-              <h2 class="headline">펜타에스</h2>
+              <h2 class="headline" @click="asd()">펜타에스</h2>
               <p class="subcopy">PENTAS</p>
           </div>
           <div class="thumbnail">
@@ -43,7 +43,7 @@
                   <!-- 탭내용1 -->
                   <div  id="tabpanel21" role="tabpanel" aria-labelledby="tabItem21" class="tab-cont is-active">
                     <div class="multi-time-sale time-sale">
-                            <div class="weekday" onclick="popupOpen('popupSelect')">
+                            <div class="weekday" onclick="popupOpen('slideFootPopup')">
                                 <div class="items">
                                     <div class="thumbnail_list">
                                         <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
@@ -74,7 +74,7 @@
                                 <h2 class="headline ftLt">JUST 1 DAY</h2>
                                 <span class="time ftLt" id="countdown">07:35:59 <s>남음</s></span>
                             </div> -->
-                            <div class="weekday" onclick="popupOpen('popupSelect')">
+                            <div class="weekday" onclick="popupOpen('slideFootPopup')">
                                 <div class="items">
                                     <div class="thumbnail_list">
                                         <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
@@ -109,7 +109,7 @@
                                 <h2 class="headline ftLt">JUST 1 DAY</h2>
                                 <span class="time ftLt" id="countdown">07:35:59 <s>남음</s></span>
                             </div> -->
-                            <div class="weekday" onclick="popupOpen('popupSelect')">
+                            <div class="weekday" onclick="popupOpen('slideFootPopup')">
                                 <div class="items">
                                     <div class="thumbnail_list">
                                         <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
@@ -140,7 +140,7 @@
                                 <h2 class="headline ftLt">JUST 1 DAY</h2>
                                 <span class="time ftLt" id="countdown">07:35:59 <s>남음</s></span>
                             </div> -->
-                            <div class="weekday" onclick="popupOpen('popupSelect')">
+                            <div class="weekday" onclick="popupOpen('slideFootPopup')">
                                 <div class="items">
                                     <div class="thumbnail_list">
                                         <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
@@ -175,9 +175,8 @@
   </div>
 </div>
 
-
 <div layout:fragment="slideFootPopup">
-    <div id="popupSelect" class="popup-wrap type-select" role="dialog" aria-modal="false">
+    <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
         <section class="popup slide">
             <div class="popup-head">
                 <h3 class="popup-tit ">[인기메뉴] 디트로이트 피자</h3>
@@ -237,34 +236,37 @@
             </div>
             <div class="popup-foot">
                 <div class="btn_wrap">
-                    <button type="button" class="btn btn-exit" onclick="popupClose('popupDialog')"><span>닫기</span></button>
-                    <button type="button" class="btn btn-succ" onclick="popupOpen('popup')"><span>주문담기</span></button>
+                    <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+                    <button type="button" class="btn btn-succ" onclick="popupOpen('popupAlert')"><span>주문담기</span></button>
                 </div>
             </div>
             <div class="popup-close">
-                <button type="button" class="btn btn-close" onclick="popupClose('popupSelect')"><span>닫기</span></button>
+                <button type="button" class="btn btn-close"><span>닫기</span></button>
             </div>
         </section>
     </div>
 </div>
 
-<div layout:fragment="popup">
-    <div id="popup" class="popup-wrap type-basic">
+<div layout:fragment="popupAlert">
+    <div id="popupAlert" class="popup-wrap type-basic">
         <section class="popup demo1">
             <div class="popup-body">
                 <div class="popup-content fs-16">
-                    Popup Content
+                    주문을 담았습니다. <br>
+                    상단 장바구니 아이콘을 확인하세요.
                 </div>
             </div>
             <div class="popup-foot">
                 <div class="btn_wrap">
-                    <button type="button" class="btn btn-close-al" onclick="popupClose('popup')"><span>닫기</span></button>
-                    <button type="button" class="btn btn-succ-al"><span>확인</span></button>
+                    <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('popupAlert')"><span>닫기</span></button> -->
+                    <button type="button" class="btn btn-succ-all" onclick="popupClose('popupAlert')"><span>확인</span></button>
                 </div>
             </div>
         </section>
     </div>
 </div>
+
+
 
 <th:block layout:fragment="script">
   <script type="text/javascript">
@@ -273,12 +275,13 @@
       el: "#app",
       data: {
       },
-      mounted: function () {
+        mounted: function () {
       },
       methods: {
-      },
+
+     },
       computed: {
-      }
+        }
     })
     
   </script>

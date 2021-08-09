@@ -140,50 +140,54 @@ if (callback){ typeof(callback) == 'function' ? callback() : callback; }
 
 
 var popupOptions = {
-$popArr: [],
-zIndexUnit: 1000,
+	$popArr: [],
+	zIndexUnit: 1000,
 }
 function popupOpen(id, callback){
-var $popWrap = $('#'+id);
-var $focus = $popWrap.find('.popup-focus');
+	var $popWrap = $('#'+id);
+	var $focus = $popWrap.find('.popup-focus');
 
-//팝업이 남아있는 경우
-if (popupOptions.$popArr.length){
-	$activePopWrap = popupOptions.$popArr[popupOptions.$popArr.length - 1];
-	$activePopWrap.addClass('is-disabled');
-}
+	//팝업이 남아있는 경우
+	if (popupOptions.$popArr.length){
+		$activePopWrap = popupOptions.$popArr[popupOptions.$popArr.length - 1];
+		$activePopWrap.addClass('is-disabled');
+	}
 
-$popWrap.data('opener', $activeFocus).addClass('is-active');
+	$popWrap.data('opener', $activeFocus).addClass('is-active');
 
-//다중팝업설정
-popupOptions.$popArr.push($popWrap);
-var zIndex = popupOptions.zIndexUnit + popupOptions.$popArr.length;
-$popWrap.css({'z-index':zIndex});
-}
+	//다중팝업설정
+	popupOptions.$popArr.push($popWrap);
+	var zIndex = popupOptions.zIndexUnit + popupOptions.$popArr.length;
+	$popWrap.css({'z-index':zIndex});
+	}
 
-function popupClose(id, callback){
-var $popWrap = $('#'+id);
-var $focus = $popWrap.data('opener');
-var $activePopWrap = null;
-$popWrap.removeClass('is-dimmer is-active').removeAttr('style');
+	function popupClose(id, callback){
+	var $popWrap = $('#'+id);
+	var $focus = $popWrap.data('opener');
+	var $activePopWrap = null;
+	$popWrap.removeClass('is-dimmer is-active').removeAttr('style');
+	if (popupAlert) {
+		console.log('드러옴');
 
-//다중팝업 설정
-popupOptions.$popArr.pop();
+		
+	}
+	//다중팝업 설정
+	popupOptions.$popArr.pop();
 
-//팝업이 남아있는 경우
-if (popupOptions.$popArr.length){
-	//팝업활성화
-	$activePopWrap = popupOptions.$popArr[popupOptions.$popArr.length - 1];
-	$activePopWrap.removeClass('is-disabled');
+	//팝업이 남아있는 경우
+	if (popupOptions.$popArr.length){
+		//팝업활성화
+		$activePopWrap = popupOptions.$popArr[popupOptions.$popArr.length - 1];
+		$activePopWrap.removeClass('is-disabled');
 
-	//접근성초점
-	// $document.off('focusin.popupEvent click.popupEvent').on('focusin.popupEvent click.popupEvent', function(e){
-	// 	if ($activePopWrap.has(e.target).length === 0) { 
-	// 		$lastFocus = $activePopWrap.data('opener');
-	// 		$lastFocus.focus();
-	// 	}
-	// });
-} 
+		//접근성초점
+		// $document.off('focusin.popupEvent click.popupEvent').on('focusin.popupEvent click.popupEvent', function(e){
+		// 	if ($activePopWrap.has(e.target).length === 0) { 
+		// 		$lastFocus = $activePopWrap.data('opener');
+		// 		$lastFocus.focus();
+		// 	}
+		// });
+	} 
 }
 
 /* Popover */
