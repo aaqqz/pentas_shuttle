@@ -37,7 +37,7 @@
                                         <label for="sCheck11"><span class="blind">숨김처리</span></label>
                                     </span>
                                     <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span>삭제</span></button>
+                                        <button type="button" class="btn btn-close"><span class="fs-14">삭제</span></button>
                                     </div>
                                 </div>
 
@@ -48,7 +48,7 @@
                                         <div class="num">
                                             <input type='button' class="plus" onclick='count("plus")' value='+'/>
 
-                                            <div id='result' class="num-cout" >0</div>
+                                            <div id='result' class="num-cout fs-14" >0</div>
                                             
                                             <input type='button' class="miner" onclick='count("minus")'  value='-'/>
                                         </div>
@@ -60,11 +60,11 @@
                             <div class="list-price">
                                 <div class="check-del">
                                     <span class="check demo1">
-                                        <input type="checkbox" name="sCheck1" id="sCheck11" checked="">
-                                        <label for="sCheck11"><span class="blind">숨김처리</span></label>
+                                        <input type="checkbox" name="sCheck12" id="sCheck12" checked="">
+                                        <label for="sCheck12"><span class="blind">숨김처리</span></label>
                                     </span>
                                     <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span>삭제</span></button>
+                                        <button type="button" class="btn btn-close"><span class="fs-14">삭제</span></button>
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
                                         <div class="num">
                                             <input type='button' class="plus" onclick='count("plus")' value='+'/>
 
-                                            <div id='result' class="num" >0</div>
+                                            <div id='result' class="num-cout fs-14" >0</div>
                                             
                                             <input type='button' class="miner" onclick='count("minus")'  value='-'/>
                                         </div>
@@ -97,7 +97,6 @@
             <button type="button" class="btn btn-com" onclick="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
         </div>
     </div>
-    
 <div layout:fragment="slideFootPopup">
     <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
         <section class="popup slide">
@@ -111,6 +110,7 @@
                     <div class="popup-con-body">
                         <section class="card-option">
                             <div class="cardWrap">
+
                             <div class="swiper-pagination"></div>
                             <swiper ref="swiperComponent" :options="swiperOption()">
                                 <swiper-slide>
@@ -168,7 +168,7 @@
             <div class="popup-foot">
                 <div class="btn_wrap">
                     <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-                    <button type="button" class="btn btn-succ" onclick="popupClose('popupAlert')"><span>이카드로 결제하기</span></button>
+                    <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert')"><span>이카드로 결제하기</span></button>
                 </div>
             </div>
             <div class="popup-close">
@@ -177,12 +177,10 @@
         </section>
     </div>
 </div>
-</div>
-
 
 <!-- 카드로 결제했을시 완료 팝업 -->
-<div layout:fragment="popup">
-    <div id="popup" class="popup-wrap type-basic">
+<div layout:fragment="popupAlert">
+    <div id="popupAlert" class="popup-wrap type-basic">
         <section class="popup demo1">
             <div class="popup-body">
                 <div class="popup-content fs-16">
@@ -192,12 +190,15 @@
             <div class="popup-foot">
                 <div class="btn_wrap">
                     <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('slideFootPopup')"><span>닫기</span></button> -->
-                    <button type="button" class="btn btn-succ-all" onclick="popupClose('slideFootPopup')"><span>확인</span></button>
+                    <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup')]"><span>확인</span></button>
                 </div>
             </div>
         </section>
     </div>
 </div>
+
+</div>
+
 
 <th:block layout:fragment="script">
   <script type="text/javascript">
