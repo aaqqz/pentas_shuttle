@@ -490,6 +490,7 @@ font-family:'Noto Sans KR', sans-serif; font-size: 3.33vw;  color: #1a1a1a; font
 .mrt100 {margin-top:27.78vw !important;}
 
 .mrb0 {margin-bottom:0px !important;}
+.mrb5 {margin-bottom:1.39vw !important;}
 .mrb10 {margin-bottom:2.78vw !important;}
 .mrb15 {margin-bottom:4.17vw !important;}
 .mrb20 {margin-bottom:5.56vw !important;}
@@ -795,6 +796,9 @@ footer
 
 .flex{
     display: flex;
+}
+.f-center{
+    justify-content: center;
 }
 .f-btw{
     justify-content: space-between;

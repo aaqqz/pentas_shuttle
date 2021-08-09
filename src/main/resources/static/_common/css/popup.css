@@ -5,12 +5,19 @@
 -------------------------------------------------------------------*/
 /* Popup Layout */
 .popup-wrap {visibility:hidden; display:flex; position:fixed; z-index:1002; left:0; top:0; width:100%; height:100%; padding:5.56vw; justify-content:center; align-items:center; flex-direction:column;}
+.popup-wrap-top {visibility:hidden; display:flex; position:fixed; z-index:1002; left:0; top:0; width:100%; height:100%; padding:5.56vw; justify-content:center; align-items:center; flex-direction:column;}
 .popup {position:relative; z-index:11; width:100%; background-color:#fff; opacity:0; transition:all 0.2s ease;}
 .popup-wrap::after {content:''; visibility:hidden; display:block; position:absolute; left:0; top:0; right:0; bottom:0; z-index:10; background:rgba(0,0,0,0.7); opacity:0; transition:all ease 0.3s 0.15s;}
 .popup-wrap.is-active {visibility:visible;}
 .popup-wrap.is-active .popup {opacity:1;}
 .popup-wrap.is-active::after {visibility:visible; opacity:1; transition-delay:0s;}
 .popup-wrap.is-active.is-disabled::after {visibility:hidden; opacity:0; transition-delay:0s;}
+
+.popup-wrap-top::after {content:''; visibility:hidden; display:block; position:absolute; left:0; top:0; right:0; bottom:0; z-index:10; background:rgba(0,0,0,0.7); opacity:0; transition:all ease 0.3s 0.15s;}
+.popup-wrap-top.is-active {visibility:visible;}
+.popup-wrap-top.is-active .popup {opacity:1;}
+.popup-wrap-top.is-active::after {visibility:visible; opacity:1; transition-delay:0s;}
+.popup-wrap-top.is-active.is-disabled::after {visibility:hidden; opacity:0; transition-delay:0s;}
 
 /* Popup Scroll */
 .popup {display:flex; flex-direction:column;}
@@ -22,10 +29,13 @@
 .popup-wrap.type-full {padding:0;}
 .popup-wrap.type-full .popup {width:100%; height:100%; min-height:100%; opacity:1; transform:translate(0, 0);}
 .popup-wrap.type-select {padding:0; justify-content:flex-end;}
+.popup-wrap-top.type-select {padding:0; justify-content:flex-start;}
 .popup-wrap.type-select .popup {width:100%; transform:translate(0, 100%);}
+.popup-wrap-top.type-select .popup {width:100%; transform:translate(0, -100%);}
 .popup-wrap.type-alert .popup {transform:translate(0, 8.33vw);}
 .popup-wrap.type-confirm .popup {transform:translate(0, 8.33vw);}
 .popup-wrap.is-active .popup {transform:translate(0,0);}
+.popup-wrap-top.is-active .popup {transform:translate(0,0);}
 
 
 /* 팝업 기본셋팅 */

@@ -102,19 +102,23 @@
 .cardHisAco {
     display: none;
     overflow: hidden;
-    font-size: 14px;
-    background-color: red;
-    padding: 27px 0;
+    position: relative;
+    top: -5vw;
+    z-index: -1;
+    border-bottom-left-radius: 5.56vw;
+    border-bottom-right-radius: 5.56vw;
     width: 85%;
-    margin: -5vw auto;
-
-    height: 30vw;
+    background-color: #fff;
+    padding: 8vw 4.17vw 4.17vw;
+    margin: 0 auto;
 }
 
-.cardHisAco::before {
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
-    color: #666;
-    margin-right: 5px;
+.hisCont{
+    border-bottom: 1px solid #ddd;
+}
+.hisCont:last-child{
+    border: none;
+}
+.cardHisDetailArrow{
+    width: 1.78vw;
 }
