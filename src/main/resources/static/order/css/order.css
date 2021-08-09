@@ -1,0 +1,31 @@
+/*  오더 메인 배너영역 */
+.main-banner {overflow:hidden; position:relative; width:100%; margin:0 auto; z-index:1;}
+.thumbnail {height: 56.94vw; margin-top: 5.56vw;}
+
+.card-option {padding: 5.56vw 0;}
+
+
+/* order_cart.html */
+.container { padding: 5.56vw 5.56vw 0 5.56vw; }
+.container .list-tit { margin-bottom: 2.78vw; font-weight: bold; }
+.multi-time-sale .container { padding: 5.56vw; }
+.multi-time-sale .container .list-head { border-bottom: 0.56vw solid #1a1a1a; padding-bottom: 5px; }
+
+.list-body { }
+.list-body .list-price { }
+.list-body .list-price .check-del{ display: flex; justify-content: space-between; }
+.list-price { border-bottom: 1px solid #ddd;   padding: 2.78vw 0 4.44vw 0;}
+.list-body .list-price .menu-list { }
+.list-body .list-price:last-child{border: none;}
+
+.list-body .list-price .menu-list .contents { line-height: 1.2;margin-top: 1.39vw; }
+.list-body .list-price .menu-list .contents .sub { line-height: 1.2; color: #aaaeb3; }
+.list-body .list-price .menu-list .menu-fot { display: flex; justify-content: space-between; margin-top: 2.78vw; }
+.list-body .list-price .menu-list .menu-fot .num { display: inline-flex;align-items: center;border: 1px solid #ddd; height: 9.72vw; }
+.list-body .list-price .menu-list .menu-fot .num .plus { display: inline-flex; align-items: center; height: 6.94vw; background: none; padding: 0 2.22vw; font-size: 5.56vw; color: #ddd; }
+.list-body .list-price .menu-list .menu-fot .num .num-cout { padding: 0 1.39vw; width: 6.94vw; text-align: center; }
+.list-body .list-price .menu-list .menu-fot .num .miner { display: inline-flex; align-items: center; height: 6.94vw; background: none; padding: 0 2.78vw; font-size: 7.78vw; color: #ddd; margin-top: -2.78vw;}
+.list-body .list-price .menu-list .menu-fot .price-num {     display: flex;
+    justify-content: center;
+    align-items: center;}
+

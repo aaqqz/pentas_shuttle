@@ -8,8 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class OrderViewCtl {
 
-    @GetMapping("/main")
+    @GetMapping("/order")
+    public String order(){
+        return "/page/order/order";
+    }
+    @GetMapping("/order_cart")
+    public String orderCart(){
+        return "/page/order/order_cart";
+    }
+    @GetMapping("/search")
     public String orderMain(){
-        return "/page/order/main";
+        return "/page/order/search";
     }
 }

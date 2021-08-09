@@ -16,6 +16,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+
 /*-- font --*/
 /* NotoSans */
 /*
@@ -772,7 +773,7 @@ footer
 }
 /* 숫자 넘버 */
 .fs-num {
-    font-size: 5vw;
+    font-size: 4vw;
 }
 .bar-gray {
     border: 1px solid #ddd;
@@ -780,10 +781,6 @@ footer
 .bar-black {
     border: 1px solid #1a1a1a;
 }
-.bar-white {
-    border: 1px solid #fff;
-}
-
 
 
 

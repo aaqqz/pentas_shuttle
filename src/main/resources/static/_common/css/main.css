@@ -42,12 +42,12 @@
 .time-sale .icon-arrow {background-image:url(http://fiximage.10x10.co.kr/m/2017/common/bg_sp_arrow.png?v=1.56); background-repeat:no-repeat; background-size:17.07rem auto;}
 
 /* items list */
-.items .name {height:3.07rem; color:#4a4a4a; font-size:1.19rem; line-height:1.54rem;}
-.items .name, .items .price {font-family:'CoreSansCLight', 'AppleSDGothicNeo-Regular', 'NotoSansKRRegular', sans-serif;}
+.items .name {height:3.07rem; color:#4a4a4a;  line-height:1.54rem;}
+/* .items .name, .items .price {font-family:'CoreSansCLight', 'AppleSDGothicNeo-Regular', 'NotoSansKRRegular', sans-serif;}
 .items .price b {font-family:'AppleSDGothicNeo-Regular'; font-weight:normal;}
-.items .price .discount {font-family:'CoreSansCRegular', sans-serif-medium;}
+.items .price .discount {font-family:'CoreSansCRegular', sans-serif-medium;} */
 .items .price .sum,
-.items .price .won {color:#838383; font:1.11rem/1.11rem 'CoreSansCLight', 'AppleSDGothicNeo-Regular', 'NotoSansKRRegular', sans-serif; letter-spacing:-.02rem;}
+.items .price .won {color:#838383; letter-spacing:-.02rem;}
 
 /* banner type text */
 .text-bnr {position:relative; padding-bottom:5.8rem;}
@@ -67,11 +67,10 @@
 	/* height: 3.24rem; */
 	margin-top: 0px;
 	color: #aaaeb3;
-	font-size: 16px;
-	line-height: 1.71rem;
+	font-size: 4.5vw;
+	/* line-height: 1.71rem; */
 	word-break: break-all;}
-.text-bnr .headline { /* margin-top:1.11rem; padding-right:4.27rem; */ font:22px 'CoreSansCBold', 'AppleSDGothicNeo-Bold', 'NotoSansKRBold';}
-
+.text-bnr .headline { /* margin-top:1.11rem; padding-right:4.27rem; */ font:6.11vw	'CoreSansCBold', 'AppleSDGothicNeo-Bold', 'NotoSansKRBold';}
 
 /* main banner */
 .main-bnr {padding-bottom:0;}
@@ -121,15 +120,15 @@
 	margin: 0 3.33vw 0 44.44vw;
 	padding: 0;
 	border-bottom: none;}
-.time-sale .weekday .name {display:block; margin-top:0.8rem; height:35px; color:#000;}
+.time-sale .weekday .name {display:block; margin-top:3.6rem; height: 9.78vw; color:#000;}
 .time-sale .weekday .price {
-	margin-bottom: 1.4rem;
+	margin-bottom: 4.56vw;
     color: #d3002e;
     font-size: 1.37rem;
     letter-spacing: -0.034rem;
     bottom: 0;}
 .time-sale .weekday .price .sum,
-.time-sale .weekday .price .won {color: #d3002e; font: 5vw 'NotoSansKRMedium';}
+.time-sale .weekday .price .won {color: #d3002e;}
 .time-sale .weekday .discount {display:block; margin-top:0.34rem; font:3.07rem/1.3 'CoreSansCMedium'; letter-spacing:0.09rem;}
 
 .time-sale .weekend {margin-top:3.41rem;}
@@ -475,7 +474,7 @@
 .category-item-list .btn-group {margin-top:-0.34rem;}
 
 /* just 1 day (3~) */
-.multi-time-sale {padding-bottom: 20px;}
+.multi-time-sale {padding-bottom: 5.56vw;}
 .multi-time-sale .multi-head {overflow:hidden; margin-bottom:1.19rem;}
 .multi-time-sale .headline {font:1.71rem/2.30rem 'CoreSansCMedium';}
 .multi-time-sale .time {width:auto; height:1.53rem; margin:.42rem 0 0 1.54rem; padding-left:.85rem; background-color:transparent; border-radius:0; color:#000; font-size:1.11rem; line-height:1.53rem; font-style:italic;}
@@ -488,14 +487,15 @@
 .multi-time-sale .weekday a {position:absolute; top:0; left:0; z-index:15; width:100%; height: 100%; padding:0;}
 .multi-time-sale .weekday .thumbnail {left:0; width:11.78rem; height:11.78rem;}
 
-.multi-time-sale .weekday .name { font-size:4.17vw; line-height:1.2;}
+.multi-time-sale .weekday .name { line-height:1.2;}
 /* .multi-time-sale .weekday .price {font-size:1.28rem; line-height:1.71rem; margin-top:.085rem;} */
 .multi-time-sale .weekday .list-content {
     display: inline-block;
     line-height: 1.3;
-	height: 60px;
+	height: 11.30vw;
     color: #777980;
-    font-size: 4.17vw;
+	margin-top: 1.6vw;
+    /* font-size: 4.17vw; */
     /* display: inline-block; */
     /* width: 200px; */
     white-space: nowrap;

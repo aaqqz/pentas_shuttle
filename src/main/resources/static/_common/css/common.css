@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-
 .warp {
 	background: #f1f5f8;
 }
@@ -858,8 +857,8 @@ ul.commonTabV16a {display:table; width:100% !important; height:3.9rem; border-bo
 
 .btn {display: inline-block;
     /* min-width: 4.95rem; */
-	height: 40px;
-	padding: 15px;
+	height: 11.11vw;
+	padding: 4.17vw;
     /* padding: 0 1.02rem; */
     /* color: #4a4a4a; */
     font-family: 'NotoSansKRRegular', sans-serif;
@@ -1023,14 +1022,14 @@ a.btn.btn-default.btn-black {padding-top:0.17rem; line-height:2.99rem;}
 .items .myview {font-size:1.28rem;}
 .items .no {display:block; margin:-0.26rem 0 0.94rem; color:#434343; font-size:2.05rem;}
 .items .brand {color:#b0b0b0; font:1.02rem/1.02rem 'CoreSansCRegular', 'AppleSDGothicNeo-Medium', 'NotoSansKRMedium';}
-.items .name {overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; height:2.77rem; margin-top:0.77rem; font:1.11rem/1.45rem 'CoreSansCLight', 'AppleSDGothicNeo-Light', 'NotoSansKRLight'; text-overflow:ellipsis; word-break:break-all;}
-.items .price {margin-top:0.3rem;}
+.items .name {overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; height:2.77rem; margin-top:0.77rem; text-overflow:ellipsis; word-break:break-all;}
+.items .price {margin-top:2.3rem;}
 .items .price b {font-family:'CoreSansCMedium';}
 .items .won {font-family:'CoreSansCLight', 'AppleSDGothicNeo-Light', 'NotoSansKRLight'; font-size:1.02rem; font-weight:normal;}
 .items .won:lang(en) {font-size:0.85rem;}
 .items .unit {margin-top:0.34rem;}
 .items .unit:first-child {margin-top:0;}
-.items .sum {color:#2c2c2c; font-size:1.28rem;}
+.items .sum {color:#2c2c2c;}
 .items .discount {font-size:1.11rem; line-height:1.11rem;}
 .items .discount small {font:0.94rem 'CoreSansCRegular', 'AppleSDGothicNeo-Medium', 'NotoSansKRMedium';}
 .items .red {color:#ff3131;}
@@ -1355,3 +1354,24 @@ a.btn.btn-default.btn-black {padding-top:0.17rem; line-height:2.99rem;}
 
 /* 부모창 스크롤 막기 */
 .not-scroll {position:fixed; overflow:hidden; width:100%; height:auto;}
+
+
+/* 총가격 */
+.price-con { border-top: 0.56vw solid #1a1a1a;display: flex; justify-content: space-between; padding: 5.56vw 0 0px 0; }
+.price-con .fot-price { text-align: left;  font-weight: bold; }
+.price-con .fot-num { text-align: right; color: #d3002e;  font-weight: bold;}
+
+
+
+/* 공통 버튼 */
+.com-btn { }
+.com-btn .btn.btn-com {
+    width: 100%;
+    height: 11.11vw;
+    margin: 0 auto;
+    border-radius: 100px;
+    background: #2495ee;
+}
+.com-btn .btn.btn-com span {
+    color: #fff;
+}

@@ -59,24 +59,25 @@ ul.g-desc > li:before {content:''; position:absolute; left:0; top:10px; display:
 /* .grid.demo1 {margin:-10px;} */
 /* .grid.demo1 > .col {padding:10px;} */
 .grid.demo1 .tab-body{
-    padding: 20px 20px 0px 20px;
+    padding: 5.56vw 5.56vw 0px 5.56vw;
 }
 
 /* Tab */
 .tab-nav.demo1 .tab-list {display:flex; height: 13.89vw; width:100%; border-bottom: 1px solid #ddd;}
-.tab-nav.demo1 .tab-list li {flex:1 1 auto;}
-.tab-nav.demo1 .tab-list li .btn {    width: 100%;
+.tab-nav.demo1 .tab-list li {/* flex:1 1 auto; */}
+.tab-nav.demo1 .tab-list li .btn {    
+    width: 100%;
     height: 13.89vw;
 	color: #aaaeb3;
     border-bottom: #1c8dff;}
 .tab-nav.demo1 .tab-list li.is-active .btn { 
     height: 13.89vw;
-    background: none;
+    /* background: none; */
     color: #1f1f1f;
-    font-size: inherit;
+    /* font-size: inherit; */
     font-weight: bold;
-    border-bottom: 3px solid #2496ee;}
-.tab-nav.demo1 + .tab-body .tab-cont {padding:10px 0; line-height:1.5;}
+    border-bottom: 0.83vw solid #2496ee;}
+.tab-nav.demo1 + .tab-body .tab-cont {line-height:1.5;}
 
 
 /* Button */
@@ -130,7 +131,7 @@ textarea.input.demo1.is-focused {border-color:#0089b3;}
 /* .file-add.demo2 .btn-file {display:inline-table;} */
 
 /* Radio */
-.radio.demo1 {display:inline-flex; position:relative; margin:5px 0; line-height:1;}
+.radio.demo1 {display:inline-flex; position:relative; margin: 1.39vw 0; line-height:1;}
 .radio.demo1 label {display:inline-flex; position:relative; min-width:6.94vw; min-height:6.94vw; line-height:5.00vw;}
 .radio.demo1 label span {display:inline-block; padding-left:9.78vw; display: flex;
     justify-content: center;
@@ -167,19 +168,12 @@ textarea.input.demo1.is-focused {border-color:#0089b3;}
     justify-content: center;
     align-items: center;}
 .check.demo1 > input {width: 6.94vw; height: 6.94vw; border:1px solid #ddd; background:#fff; }
-.check.demo1 > input + label:after {content:''; left: 6px;
-    top: 5px;
-    width: 10px;
-    height: 7px; background:none; border-left: 0.56vw solid #ddd; border-bottom:0.56vw solid #ddd; transform:rotate(-45deg);}
+.check.demo1 > input + label:after {content:''; left: 1.67vw; top: 1.39vw; width: 2.78vw; height: 1.94vw; background:none; border-left: 0.56vw solid #ddd; border-bottom:0.56vw solid #ddd; transform:rotate(-45deg);}
 .check.demo1 > input,
 .check.demo1 label:after {position:absolute; left:0; top:0;}
 /* Checked */
 .check.demo1 > input:checked {border-color:#2496ee;}
-
-.check.demo1 > input:checked + label:after {content:''; left: 6px;
-    top: 5px;
-    width: 10px;
-    height: 7px; background:none; border-left: 0.56vw solid #2496ee; border-bottom:0.56vw solid #2496ee; transform:rotate(-45deg);}
+.check.demo1 > input:checked + label:after {content:''; left: 1.67vw; top: 1.39vw; width: 2.78vw; height: 1.94vw; background: none; border-left: 0.56vw solid #2496ee; border-bottom: 0.56vw solid #2496ee; transform:rotate(-45deg);}
 
     /* Focused */
 .check.demo1 > input.is-focused,
