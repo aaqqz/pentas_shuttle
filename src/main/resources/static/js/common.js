@@ -190,3 +190,7 @@ function telePhoneCheck(obj) {
 function goBack(){
     window.history.back();
 }
+
+function goPage(url){
+    window.location.href=url;
+}

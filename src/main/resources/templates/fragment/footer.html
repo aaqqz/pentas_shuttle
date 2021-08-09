@@ -1,20 +1,17 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-    <div th:fragment="footerFragment">
-        <div class="footer">
-            <footer class="footer_main">
-                <ul class="footer_inner">
-                    <li><img th:src="@{/_common/img/ft_order.png}"></li>
-                    <li><img th:src="@{/_common/img/ft_user.png}"></li>
-                    <li><img th:src="@{/_common/img/ft_home.png}"></li>
-                    <li><img th:src="@{/_common/img/ft_event.png}"></li>
-                    <li>
-                        <div class="util">
-                            <a href="" class="btn_search"><i class="i_magnify"></i><span class="blind">검색</span></a>
-                        </div>  
-                    </li>
-                </ul>
-            </footer>
-        </div>
+<div th:fragment="footerFragment">
+    <div class="footer">
+        <footer class="footer_main">
+            <ul class="footer_inner">
+                <li onclick="goPage('/order/order')"><img th:src="@{/_common/img/ft_order.png}"></li>
+                <li onclick="goPage('/card/history')"><img th:src="@{/_common/img/ft_user.png}"></li>
+                <li onclick="goPage('/card/main')"><img th:src="@{/_common/img/ft_home.png}"></li>
+                <li onclick="goPage('/event/list')"><img th:src="@{/_common/img/ft_event.png}"></li>
+                <li onclick="goPage('/order/search')"><img th:src="@{/_common/img/ft_search.png}"></li>
+            </ul>
+        </footer>
     </div>
+</div>
+
 </html>

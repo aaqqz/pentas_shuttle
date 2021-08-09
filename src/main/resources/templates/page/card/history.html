@@ -35,24 +35,90 @@
                 <option class="" v-if="pay == 2">충전완료</option>
                 <option class="" v-if="pay == 2">충전취소</option>
             </select>
-            <div class="searchBtn fc-white">조회</div>
+            <div class="searchBtn fc-white" @click="hisCheck()">조회</div>
         </div>
 
         <div class="cardInfo mrt15 flex f-btw align-center">
-            <div class="fs-10">총 12건</div>
+            <div class="fs-10" v-if="hisCheckVal == true">총 0건</div>
+            <div class="fs-10" v-else>총 6건</div>
             <div class="text-r">
                 <div class="fs-10 fc-gray">2021.07.29 ~ 2021.08.05</div>
-                <div class="fs-10 fc-blue mrt5">0원</div>
+                <div class="fs-10 fc-blue mrt5" v-if="hisCheckVal == true">0 C</div>
+                <div class="fs-10 fc-blue mrt5" v-else>29.700 C</div>
             </div>
         </div>
     </div>
 
     <!--  이용내역 없을때  -->
-    <div class="cardHisIInfo">
+    <div class="cardHisIInfoNone" v-if="hisCheckVal == true">
         <div class="noneImg">
             <img th:src="@{/card/img/none.png}">
         </div>
-        <div class="mrt20 fc-gray fs-10">이용 내역이 없습니다.</div>
+            <div class="mrt20 fc-gray fs-10">이용 내역이 없습니다.</div>
+    </div>
+    <div class="cardHisIInfo" v-else>
+        <div style="overflow:scroll;">
+            <div class="hisCont mrb15 pdb15" @click="popupOpen('popupDialogA')">
+                <div class="flex f-btw">
+                    <div class="">아웃백 사당점</div>
+                    <div class="fc-blue fw-bold">3,300 C</div>
+                </div>
+                <div class="flex f-btw mrt5">
+                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                    <div class="fc-gray fs-10">잔액 25,000 C</div>
+                </div>
+            </div>
+            <div class="hisCont mrb15 pdb15">
+                <div class="flex f-btw">
+                    <div class="">아웃백 사당점</div>
+                    <div class="fc-blue fw-bold">3,300 C</div>
+                </div>
+                <div class="flex f-btw mrt5">
+                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                    <div class="fc-gray fs-10">잔액 25,000 C</div>
+                </div>
+            </div>
+            <div class="hisCont mrb15 pdb15">
+                <div class="flex f-btw">
+                    <div class="">아웃백 사당점</div>
+                    <div class="fc-blue fw-bold">3,300 C</div>
+                </div>
+                <div class="flex f-btw mrt5">
+                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                    <div class="fc-gray fs-10">잔액 25,000 C</div>
+                </div>
+            </div>
+            <div class="hisCont mrb15 pdb15">
+                <div class="flex f-btw">
+                    <div class="">아웃백 사당점</div>
+                    <div class="fc-blue fw-bold">3,300 C</div>
+                </div>
+                <div class="flex f-btw mrt5">
+                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                    <div class="fc-gray fs-10">잔액 25,000 C</div>
+                </div>
+            </div>
+            <div class="hisCont mrb15 pdb15">
+                <div class="flex f-btw">
+                    <div class="">아웃백 사당점</div>
+                    <div class="fc-blue fw-bold">3,300 C</div>
+                </div>
+                <div class="flex f-btw mrt5">
+                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                    <div class="fc-gray fs-10">잔액 25,000 C</div>
+                </div>
+            </div>
+            <div class="hisCont mrb15 pdb15">
+                <div class="flex f-btw">
+                    <div class="">아웃백 사당점</div>
+                    <div class="fc-blue fw-bold">3,300 C</div>
+                </div>
+                <div class="flex f-btw mrt5">
+                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                    <div class="fc-gray fs-10">잔액 25,000 C</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div layout:fragment="popup">
@@ -65,22 +131,55 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn-close-al" onclick="popupClose('popupDialog')"><span>닫기</span></button>
-                        <button type="button" class="btn btn-succ-al"><span>확인</span></button>
+                        <button type="button" class="btn btn-succ-all" onclick="popupClose('popupDialog')"><span>확인</span></button>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <div layout:fragment="slideFootPopup">
-
+    <div layout:fragment="popup">
+        <div id="popupDialogA" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content fs-16">
+                        <div class="flex align-center f-clm">
+                            <div class="fw-bold fs-14">결제완료</div>
+                            <div class="fc-gray mrt15">아웃백 사당점</div>
+                            <div class="fw-bold fc-blue fs-16 mrt5">3,300 C</div>
+                            <div class="bar-gray wh100 mrt15 mab15"></div>
+                            <div class="flex f-btw wh100 mrt40">
+                                <div class="fc-gray">결제일시</div>
+                                <div class="fw-bold">2021.07.23. 14:20:57</div>
+                            </div>
+                            <div class="flex f-btw wh100 mrt10">
+                                <div class="fc-gray">결제수단</div>
+                                <div class="fw-bold">셔틀카드</div>
+                            </div>
+                            <div class="flex f-btw wh100 mrt10">
+                                <div class="fc-gray">승인번호</div>
+                                <div class="fw-bold">4358723</div>
+                            </div>
+                            <div class="flex f-btw wh100 mrt10">
+                                <div class="fc-gray">결제유형</div>
+                                <div class="fw-bold">일시불</div>
+                            </div>
+                            <div class="flex f-btw wh100 mrt10">
+                                <div class="fc-gray">카드별칭</div>
+                                <div class="fw-bold">카드번호 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialogA')"><span>확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </div>
-<div>
-
-</div>
-
 
 <th:block layout:fragment="script">
     <script type="text/javascript">
@@ -89,7 +188,8 @@
             el: "#app",
             data: {
                 pay : 1,
-                date : 1
+                date : 1,
+                hisCheckVal : true
             },
             mounted: function () {
             },
@@ -100,6 +200,15 @@
                 changeDate : function(val){
                     this.date = val;
                 },
+                hisCheck : function(){
+                    console.log(this.hisCheckVal,111);
+                    if (this.hisCheckVal === true){
+                        this.hisCheckVal = false;
+                    }else{
+                        this.hisCheckVal = true;
+                    }
+                    console.log(this.hisCheckVal,222);
+                }
 
             },
             computed: {
