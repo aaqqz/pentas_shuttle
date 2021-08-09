@@ -166,11 +166,7 @@ function popupOpen(id, callback){
 	var $focus = $popWrap.data('opener');
 	var $activePopWrap = null;
 	$popWrap.removeClass('is-dimmer is-active').removeAttr('style');
-	if (popupAlert) {
-		console.log('드러옴');
 
-		
-	}
 	//다중팝업 설정
 	popupOptions.$popArr.pop();
 
@@ -276,3 +272,27 @@ tabInit(); // Tab
 // popoverInit(); // Popover
 }
 
+
+
+
+
+
+
+// 계산
+function count(type)  {
+	// 결과를 표시할 element
+	const resultElement = document.getElementById('result');
+	
+	// 현재 화면에 표시된 값
+	let number = resultElement.innerText;
+	
+	// 더하기/빼기
+	if(type === 'plus') {
+		number = parseInt(number) + 1;
+	}else if(type === 'minus')  {
+		number = parseInt(number) - 1;
+	}
+	
+	// 결과 출력
+	resultElement.innerText = number;
+}
