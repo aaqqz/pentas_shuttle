@@ -48,14 +48,14 @@
         <div class="swiper-pagination"></div>
         <swiper ref="swiperComponent" :options="swiperOption()">
             <swiper-slide>
-                <div class="cardBox pd15">
+                <div class="cardBox pdt25 pdr15 pdl15 pdb15">
                     <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
                     <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
                     <div class="flex f-btw mrt25 mrb25">
                         <div class="fc-white fs-14">사용 가능 금액</div>
                         <div class="fc-white fs-14">5,000 C</div>
                     </div>
-                    <div class="bar-white"></div>
+                    <div class="bar-white mrt30"></div>
                     <div class="cardHis flex f-btw mrt15">
                         <div class="fc-white">7월에 <span>9,900 C </span>사용</div>
                         <div class="cardHisArrow">
@@ -103,14 +103,14 @@
                 </div>
             </swiper-slide>
             <swiper-slide>
-                <div class="cardBox pd15" style="background-color: #e80a4d;">
+                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #ff8030;">
                     <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
                     <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
                     <div class="flex f-btw mrt25 mrb25">
                         <div class="fc-white fs-14">사용 가능 금액</div>
                         <div class="fc-white fs-14">5,000 C</div>
                     </div>
-                    <div class="bar-white"></div>
+                    <div class="bar-white mrt30"></div>
                     <div class="cardHis flex f-btw mrt15">
                         <div class="fc-white">7월에 <span>9,900 C </span>사용</div>
                         <div class="cardHisArrow">
@@ -179,7 +179,7 @@
                     <div class="fs-10 mrt5">충전</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn">
+                <div class="flex f-clm align-center cardBtn" @click="ready()">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/admin.png}">
                     </div>
@@ -201,7 +201,7 @@
                     <div class="fs-10 mrt5">메인카드</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn" @click="test()">
+                <div class="flex f-clm align-center cardBtn" @click="ready()">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/change.png}">
                     </div>
@@ -370,6 +370,10 @@
                         $(this).toggleClass('on').siblings().removeClass('on');
                         $(this).next(".cardHisAco").siblings(".cardHisAco").slideUp(300); // 1개씩 펼치기
                     });
+                },
+                ready : function(){
+                    this.alertText = "준비중입니다."
+                    popupOpen('popupDialog');
                 },
                 login : function(){
                     if(this.id !== "pentas"){
