@@ -47,12 +47,12 @@
       },
       methods: {
         onCardScanner : function(){
-          window.Android.onCardScanner();
+          window.Android.onQrScanner();
         },
-        cardScanResult : function(rsltData){
-          alert("asdasdasd");
-          alert(rsltData);
-        }
+        qrScanResult : function (rsltData){
+          this.alertText = "충전이 완료되었습니다."
+          popupOpen('popupDialog');
+        },
       },
       computed: {
       }

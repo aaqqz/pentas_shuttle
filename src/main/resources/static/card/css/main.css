@@ -131,3 +131,9 @@
     width: 40vw;
     margin: 0 auto;
 }
+.payTab{
+    display: none;
+}
+.on{
+    display: block;
+}

@@ -57,7 +57,7 @@
                     </div>
                     <div class="bar-white"></div>
                     <div class="cardHis flex f-btw mrt15">
-                        <div class="fc-white">7월에 <span>0 C </span>사용</div>
+                        <div class="fc-white">7월에 <span>9,900 C </span>사용</div>
                         <div class="cardHisArrow">
                             <img th:src="@{/card/img/arrow-down-white.png}">
                         </div>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="bar-white"></div>
                     <div class="cardHis flex f-btw mrt15">
-                        <div class="fc-white">7월에 <span>0 C </span>사용</div>
+                        <div class="fc-white">7월에 <span>9,900 C </span>사용</div>
                         <div class="cardHisArrow">
                             <img th:src="@{/card/img/arrow-down-white.png}">
                         </div>
@@ -165,14 +165,14 @@
     <div class="mrl20 mrr20 mrt20">
         <div class="cardBtnWrap flex f-clm mrt20">
             <div class="flex f-evn">
-                <div class="flex f-clm align-center cardBtn" onclick="popupOpen('popupTop')">
+                <div class="flex f-clm align-center cardBtn" @click="popupOpen('popupTop')">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/pay.png}">
                     </div>
                     <div class="fs-10 mrt5">결제</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn">
+                <div class="flex f-clm align-center cardBtn" @click="onQrScanner()">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/charge.png}">
                     </div>
@@ -279,14 +279,14 @@
             <div id="popupDialog" class="popup-wrap type-basic">
                 <section class="popup demo1">
                     <div class="popup-body">
-                        <div class="popup-content">
+                        <div class="popup-content fs-16">
                             {{alertText}}
                         </div>
                     </div>
                     <div class="popup-foot">
                         <div class="btn_wrap">
                             <!--                        <button type="button" class="btn btn-close" onclick="popupClose('popupDialog')"><span>닫기</span></button>-->
-                            <button type="button" class="btn btn-succ" @click="popupClose('popupDialog')"><span>확인</span></button>
+                            <button type="button" class="btn btn btn-succ-all" @click="popupCloseMain()"><span>확인</span></button>
                         </div>
                     </div>
                 </section>
@@ -314,20 +314,39 @@
                 </div>
 
                 <div class="popup-body flex f-clm">
-                    <div class="qrImg">
-                        <img th:src="@{/card/img/qr_off.png}">
+                    <div class="payTab" :class="{'on':payTab == 1}">
+                        <div style="height: 75vw;">
+                            <div class="qrImg">
+                                <img th:src="@{/card/img/qr_off.png}">
+                            </div>
+                            <div class="payText fs-14 fw-bold mrt10">사용가능 금액</div>
+                            <div class="fs-14 mrt10 mrb10">5,000 C</div>
+                            <div class="mrb20">
+                                <input class="payInput fs-14 text-c fc-blue" type="number"> C
+                            </div>
+                        </div>
+                        <div class="btn_wrap-top flex f-center align-center">
+                            <div class="fw-bold fc-blue" @click="payment(2), reCount()">결제하기</div>
+                        </div>
                     </div>
-                    <div class="fs-14 fw-bold mrt10">사용가능 금액</div>
-                    <div class="fs-14 mrt10 mrb10">5,000 C</div>
-                    <div class="mrb20">
-                        <input class="payInput fs-14 text-c fc-blue" type="number"> C
+                    <div class="payTab" :class="{'on':payTab == 2}" >
+                        <div style="height: 75vw;">
+                            <div class="qrImg">
+                                <img th:src="@{/card/img/qr_on.png}">
+                            </div>
+                            <div class="payText fs-14 fw-bold mrt10">결제예정 금액</div>
+                            <div class="fs-14 mrt10 mrb10">2,000 C</div>
+                            <div class="mrb20">
+                                <div class="fs-16 fc-blue mrt20">{{verifyTimeText}}</div>
+                            </div>
+                        </div>
+                        <div class="btn_wrap-top flex f-center align-center">
+                            <div class="fw-bold fc-blue" @click="reCount()">재요청</div>
+                        </div>
                     </div>
-                </div>
-                <div class="btn_wrap-top flex f-center align-center">
-                    <div class="fw-bold fc-blue" @click="payment('succ')">결제하기</div>
                 </div>
                 <div class="popup-close">
-                    <button type="button" class="btn btn-close" onclick="popupClose('popupTop')"><span>닫기</span></button>
+                    <button type="button" class="btn btn-close" @click="[popupClose('popupTop'), payment(1)]"><span>닫기</span></button>
                 </div>
             </section>
         </div>
@@ -345,7 +364,13 @@
                 pw : "",
                 alertText : "",
 
+
                 cardSeq : 0,
+
+                payTab : 1,
+                verifyTime : 0,
+                verifyTimeText : "01:00",
+                timerInterval : null
             },
             mounted: function () {
                 this.init();
@@ -397,9 +422,47 @@
                         }
                     };
                 },
-                payment : function(val){
-                    alert(val)
+
+                onQrScanner : function(){
+                    window.Android.onQrScanner();
                 },
+                qrScanResult : function (rsltData){
+                    this.alertText = "충전이 완료되었습니다."
+                    popupOpen('popupDialog');
+                },
+
+                payment : function(val){
+                    if(val === 1){
+                        clearInterval(this.timerInterval);
+                    }
+                    this.payTab = val;
+                },
+                reCount : function(){
+                    this.verifyTimeText = "01:00";//60000
+                    this.verifyTime = new Date(Date.now() + 60000);
+                    this.timerInterval = setInterval(this.countDown, 1000);
+                },
+                countDown : function(){
+                    var seconds = Math.round((this.verifyTime - Date.now()) / 1000);
+                    var min = Math.floor(seconds / 60);
+                    if(seconds <= 0 && min <= 0) {
+                        clearInterval(this.timerInterval);
+                        this.alertText = "시간이 지났습니다!"
+                        popupOpen('popupDialog');
+                        return;
+                    }
+                    this.verifyTimeText = "0" + min + ":" + this.pad(seconds - (min * 60), 2);
+                },
+                pad : function (n, width) {
+                    n = n + '';
+                    return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+                },
+                popupCloseMain : function(){
+                    this.payment(1);
+                    popupClose('popupDialog');
+                    popupClose('popupTop');
+                },
+
                 goHistory : function(){
                     location.href="/card/history"
                 },
