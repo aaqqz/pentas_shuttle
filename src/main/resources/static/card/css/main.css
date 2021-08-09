@@ -122,3 +122,12 @@
 .cardHisDetailArrow{
     width: 1.78vw;
 }
+
+.payInput{
+    border-bottom: 1px solid #2496ee;
+    border-radius:  0 !important;
+}
+.qrImg{
+    width: 40vw;
+    margin: 0 auto;
+}

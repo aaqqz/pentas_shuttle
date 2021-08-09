@@ -53,7 +53,10 @@
 .popup .btn-succ-all {width: 100%; border-radius: 0px; height: 13.89vw;border-top: 1px solid #ddd;}
 .popup .btn-close-al, .btn-succ-al {width: 50%; height: 13.89vw; border-radius: 0px; border-top:1px solid #ddd;}
 .popup .btn-close-al span, .btn-succ-al span, .btn-succ-all span {font-size: 3.89vw;}
-
+.btn_wrap-top{
+    height: 13.89vw;
+    border-top: 1px solid #ddd;
+}
 /* 얼럿버튼 [e] */
 .popup .btn-exit {width:50%; border-radius: 0px; color: #fff; height: 13.89vw; background: #1a1a1a; }
 /* .popup .btn-exit {width:50%; border-radius: 0px; color: #fff; height: 13.89vw; background: #1a1a1a; } */
@@ -82,6 +85,9 @@
 
 /* 슬라이드 팝업 [커스터마이징] - 아래에서 위로 */
 /* .popup-foot .btn_wrap {display: flex;} */
+.popup-wrap-top .popup.slide {width:100%; height: 106vw; border:1px solid #ddd; background-color:#fff; border-radius: 0 0 5.56vw 5.56vw;}
+.popup-wrap-top .popup.slide .popup-head{display:flex; align-items:center; flex:none; padding:8.33vw 5.56vw; height:13.89vw; border:none;}
+
 .popup.slide {width:41.67vw; border:1px solid #ddd; background-color:#fff; border-radius: 5.56vw 5.56vw 0 0;}
 .popup.slide .popup-head {display:flex; align-items:center; flex:none; padding:8.33vw 5.56vw; height:13.89vw; border-bottom: 0.56vw solid #1a1a1a;}
 .popup.slide .popup-body {overflow:auto; line-height:1.5;}
