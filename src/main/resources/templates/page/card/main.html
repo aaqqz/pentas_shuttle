@@ -6,33 +6,93 @@
 
 <head>
     <link rel="stylesheet" th:href="@{/card/css/main.css}">
+
+    <!-- Swiper library S -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@5.3.6/js/swiper.min.js"></script>
+    <!-- vue-awesome-swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper"></script>
+    <script type="text/javascript">Vue.use(window.VueAwesomeSwiper)</script>
+    <!-- Swiper library E -->
 </head>
+
 <div layout:fragment="content" class="content">
-    <div class="mrl20 mrr20 mrt20">
 
-        <div class="loginWrap">
-            <div class="radio-demo1-area mrt10">
-                <span class="radio demo1">
-                    <input type="radio" name="sRadio1" id="sRadio11" checked="">
-                    <label for="sRadio11"><span class="fs14">Korea</span></label>
-                </span>
-                <span class="radio demo1">
-                    <input type="radio" name="sRadio1" id="sRadio12">
-                    <label for="sRadio12"><span class="fs14">Global</span></label>
-                </span>
-            </div>
-            <input type="text" class="loginInput mrt10" v-model="id" placeholder="ID">
-            <input type="password" class="loginInput mrt10" v-model="pw" placeholder="PW">
-            <div class="loginBtn mrt10" @click="login()">로그인</div>
-            <div class="loginCntWrap flex f-evn mrt10 mrb10">
-                <div class="loginCntBtn">아이디 찾기</div>
-                <div class="hBar"></div>
-                <div class="loginCntBtn">비밀번호 찾기</div>
-                <div class="hBar"></div>
-                <div class="loginCntBtn">회원가입</div>
-            </div>
+    <div class="loginWrap mrl20 mrr20 mrt20" style="display: none">
+        <div class="radio-demo1-area mrt10">
+            <span class="radio demo1">
+                <input type="radio" name="sRadio1" id="sRadio11" checked="">
+                <label for="sRadio11"><span class="fs14">Korea</span></label>
+            </span>
+            <span class="radio demo1">
+                <input type="radio" name="sRadio1" id="sRadio12">
+                <label for="sRadio12"><span class="fs14">Global</span></label>
+            </span>
         </div>
+        <input type="text" class="loginInput mrt10" v-model="id" placeholder="ID">
+        <input type="password" class="loginInput mrt10" v-model="pw" placeholder="PW">
+        <div class="loginBtn mrt10" @click="login()">로그인</div>
+        <div class="loginCntWrap flex f-evn mrt10 mrb10">
+            <div class="loginCntBtn">아이디 찾기</div>
+            <div class="hBar"></div>
+            <div class="loginCntBtn">비밀번호 찾기</div>
+            <div class="hBar"></div>
+            <div class="loginCntBtn" @click="goSignUp">회원가입</div>
+        </div>
+    </div>
+    <div class="cardWrap">
+        <div class="pageTitle mrl20 mrr20 mrt20">
+            <div class="fs-14 fw-bold"><span class="fc-blue fs-14 fw-bold">셔틀카드</span>고객님!</div>
+            <div class="fs-14 mrt5 mrb10">안녕하십니까?</div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <swiper ref="swiperComponent" :options="swiperOption()">
+            <swiper-slide>
+                <div class="cardBox pd15">
+                    <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                    <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                    <div class="flex f-btw mrt25 mrb25">
+                        <div class="fc-white fs-14">사용 가능 금액</div>
+                        <div class="fc-white fs-14">5000 원</div>
+                    </div>
+                    <div class="bar-white"></div>
+                    <div class="cardHis flex f-btw mrt15">
+                        <div class="fc-white">7월에 <span>0 원 </span>사용</div>
+                        <div class="cardHisArrow">
+                            <img th:src="@{/card/img/arrow-down-white.png}">
+                        </div>
+                    </div>
+                </div>
+                <div class="cardHisAco">
+                    <div>asdasd</div>
+                </div>
+            </swiper-slide>
+            <swiper-slide>
+                <div class="cardBox pd15">
+                    <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                    <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                    <div class="flex f-btw mrt25 mrb25">
+                        <div class="fc-white fs-14">사용 가능 금액</div>
+                        <div class="fc-white fs-14">5000 원</div>
+                    </div>
+                    <div class="bar-white"></div>
+                    <div class="cardHis flex f-btw mrt15">
+                        <div class="fc-white">7월에 <span>0 원 </span>사용</div>
+                        <div class="cardHisArrow">
+                            <img th:src="@{/card/img/arrow-down-white.png}">
+                        </div>
+                    </div>
+                </div>
+                <div class="cardHisAco">
+                    <div>asdasd</div>
+                </div>
+            </swiper-slide>
 
+        </swiper>
+
+    </div>
+
+    <div class="mrl20 mrr20 mrt20">
         <div class="cardBtnWrap flex f-clm mrt20">
             <div class="flex f-evn">
                 <div class="flex f-clm align-center cardBtn">
@@ -57,7 +117,7 @@
                 </div>
             </div>
             <div class="flex f-evn mrt20">
-                <div class="flex f-clm align-center cardBtn">
+                <div class="flex f-clm align-center cardBtn" @click="goRegist()">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/regist.png}">
                     </div>
@@ -71,7 +131,7 @@
                     <div class="fs-10 mrt5">메인카드</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn">
+                <div class="flex f-clm align-center cardBtn" @click="test()">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/change.png}">
                     </div>
@@ -144,12 +204,30 @@
                 </div>
             </div>
         </div>
+
+        <div layout:fragment="popup">
+            <div id="popupDialog" class="popup-wrap type-basic">
+                <section class="popup demo1">
+                    <div class="popup-body">
+                        <div class="popup-content">
+                            {{alertText}}
+                        </div>
+                    </div>
+                    <div class="popup-foot">
+                        <div class="btn_wrap">
+                            <!--                        <button type="button" class="btn btn-close" onclick="popupClose('popupDialog')"><span>닫기</span></button>-->
+                            <button type="button" class="btn btn-succ" @click="popupClose('popupDialog')"><span>확인</span></button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
     </div>
 
 
 
 
-    card Main
     <div>
         <a href="/sample">sample</a>
     </div>
@@ -160,48 +238,95 @@
     </div>
     <br>
     <br>
-    <div>
-        <a href="/event/list">이벤트</a>
-    </div>
-
 </div>
 
 
 <th:block layout:fragment="script">
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    var app = new Vue({
-      el: "#app",
-      data: {
-          id : "pentas",
-          pw : "",
-      },
-      mounted: function () {
-      },
-      methods: {
-          login : function(){
-              if(this.id !== "pentas"){
 
-                  return;
-              }else if(this.pw !== "1234"){
-                  return;
-              }
-              alert("Asd");
-          },
+        var app = new Vue({
+            el: "#app",
+            data: {
+                id : "pentas",
+                pw : "",
+                alertText : "",
 
-          goEvent : function(val){
+                cardSeq : 0,
+            },
+            mounted: function () {
+                this.init();
+            },
+            methods: {
+                login : function(){
+                    if(this.id !== "pentas"){
+                        this.alertText = "아이디를 확인 해주세요!"
+                        popupOpen('popupDialog');
+                        return;
+                    }else if(this.pw !== "1234"){
+                        this.alertText = "비밀번호를 확인 해주세요!"
+                        popupOpen('popupDialog');
+                        return;
+                    }
+                    cf_call("/card/main/loginProc", {login : "succ"}, this.loginCB)
+                },
 
-              if(val == "list"){
-                  location.href="/event/list"
-              }else{
-                  location.href="/event/detail"
-              }
-          },
-      },
-      computed: {
-      }
-    })
-  </script>
+                loginCB : function(data){
+                    console.log(data)
+                },
+                swiperOption : function(){
+                    return {
+                        // 'allowTouchMove': value,
+                        'pagination': {
+                            'el': '.swiper-pagination',
+                            'type': 'fraction',
+                            // 'clickable' : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+                        },
+                        on: {
+                            'slideChangeTransitionEnd': function () {
+                                this.cardSeq = this.activeIndex;
+                            }
+                        },
+                        effect: 'coverflow',
+                        coverflowEffect: {
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 300,
+                            slideShadows: false,
+                        }
+                    };
+                },
+                goRegist : function(){
+                    location.href="/card/register"
+                },
+                goSignUp : function(){
+                    location.href="/member/signUp"
+                },
+                goEvent : function(val){
+                    if(val == "list"){
+                        location.href="/event/list"
+                    }else{
+                        location.href="/event/detail"
+                    }
+                },
+                sessionCheck : function(){
+                    cf_call("/card/main/sessionCheck", {}, this.loginCB)
+                },
+                init : function(){
+                    // $(".cardBox").click(function() {
+                    //     $(this).next(".cardHisAco").stop().slideToggle(300);
+                    //     $(this).toggleClass('on').siblings().removeClass('on');
+                    //     $(this).next(".cardHisAco").siblings(".cardHisAco").slideUp(300); // 1개씩 펼치기
+                    // });
+                    $(".cardBox").on("click", ".cardHisAco", function () {
+                        $(this).toggleClass("on").next().slideToggle(500);
+                    });
+                }
+            },
+            computed: {
+            }
+        })
+    </script>
 </th:block>
 
 </html>

@@ -17,4 +17,9 @@ public class CardViewCtl {
     public String cardHistory(){
         return "/page/card/history";
     }
+
+    @GetMapping("/register")
+    public String cardRegister(){
+        return "/page/card/register";
+    }
 }

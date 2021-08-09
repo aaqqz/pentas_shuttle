@@ -780,6 +780,10 @@ footer
 .bar-black {
     border: 1px solid #1a1a1a;
 }
+.bar-white {
+    border: 1px solid #fff;
+}
+
 
 
 

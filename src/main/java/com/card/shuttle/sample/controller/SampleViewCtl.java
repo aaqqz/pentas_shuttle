@@ -56,4 +56,14 @@ public class SampleViewCtl {
     public String androidTest(){
         return "sample/androidTest";
     }
+
+    @GetMapping("/swiperTest")
+    public String swiperTest(){
+        return "sample/swiperTest";
+    }
+
+    @GetMapping("/accordionTest")
+    public String accordionTest(){
+        return "sample/accordionTest";
+    }
 }

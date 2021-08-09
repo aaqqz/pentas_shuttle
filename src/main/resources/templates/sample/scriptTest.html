@@ -36,19 +36,23 @@
   <input onkeyup="telePhoneCheck(this)"> telePhoneCheck
   <br>
   <br>
+  <button onclick="test('asd')">test</button>
+
 <!--  <input onkeyup="limitByte()" class="limitByte" limitByte="10"> limitByte-->
 </div>
 
 
 <th:block layout:fragment="script">
   <script type="text/javascript">
-
+    function test(aaa){
+      app.testA(aaa);
+    }
     var app = new Vue({
       el: "#app",
       data: {
         number : 0,
         isEmpty : "",
-        whatIsIt : [1,2,3]
+        whatIsIt : [1,2,3],
       },
       mounted: function () {
 
@@ -56,6 +60,9 @@
       methods: {
         cf_genUUID_console : function(){
           console.log("MN"+cf_genUUID());
+        },
+        testA : function(val){
+          alert(val);
         }
       },
       computed: {

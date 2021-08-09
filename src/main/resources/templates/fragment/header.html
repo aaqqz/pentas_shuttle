@@ -5,8 +5,8 @@
             <header class="tenten_header header_main">
                 <div class="header_inner">
                     <button type="button" class="header_opener">
-                        <div class="headerIcon">
-                            <img th:src="@{/_common/img/arrow.png}">
+                        <div class="headerIcon" @click="goBack()">
+                            <img th:src="@{/_common/img/arrow.png}" style="background-color: #f1f5f8">
                         </div>
                         <span class="blind">메뉴 열기</span>
                     </button>

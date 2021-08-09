@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<head>
+  <link rel="stylesheet" th:href="@{/card/css/register.css}">
+</head>
+
+<div layout:fragment="content" class="content">
+  <div class="mrl20 mrr20 mrt20">
+    <div class="pageTitle">
+      <div class="fs-14 mrt5 mrb10 fw-bold">카드 정보를 입력해 주세요.</div>
+    </div>
+    <div class="mrt20">카드번호</div>
+    <div class="cardNumInput mrt10">
+      <input type="number"  class="inputs" @input="nextInput('card01')" pattern="\d*" ><div class="bar"></div>
+      <input type="number"   class="inputs" @input="nextInput('card02')" pattern="\d*"><div class="bar"></div>
+      <input type="number"   class="inputs" @input="nextInput('card_num_four')"  pattern="\d*"><div class="bar"></div>
+      <input type="number"  class="inputs" @input="nextInput('card_CVC')" pattern="\d*">
+    </div>
+
+    <div>
+      <div class="mrt10">유효기간</div>
+      <input type="text" id="cardDate" class="wh mrt10" @input="">
+    </div>
+    <div class="mrt10">
+      <div>cvc</div>
+      <input type="password" class="wh mrt10">
+    </div>
+    <div class="mrt10">카드 별칭</div>
+    <input type="text" class="wid100 mrt10">
+    <div class="fs-10 fc-gray mrt20">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
+  </div>
+</div>
+
+
+<th:block layout:fragment="script">
+  <script type="text/javascript">
+    var app = new Vue({
+      el: "#app",
+      data: {
+      },
+      mounted: function () {
+        this.onCardScanner();
+      },
+      methods: {
+        onCardScanner : function(){
+          window.Android.onCardScanner();
+        },
+        cardScanResult : function(rsltData){
+          alert("asdasdasd");
+          alert(rsltData);
+        }
+      },
+      computed: {
+      }
+    })
+  </script>
+</th:block>
+
+</html>

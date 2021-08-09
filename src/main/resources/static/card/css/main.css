@@ -61,3 +61,60 @@
     justify-content: center;
     height: 6vw;
 }
+.cardBox{
+    background-color: #2496ee;
+    width: 85%;
+    border-radius: 5.56vw;
+    margin: 0 auto;
+    position: relative;
+}
+.cardName{
+
+}
+.swiper-pagination{
+    display: flex;
+    top: 34vw;
+    height: 5vw;
+    margin-left: 75vw;
+    width: 14vw !important;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: rgba( 0, 0, 0, 0.3 );
+    font-size: 2.78vw;
+}
+.swiper-pagination-current{
+    margin-right: 1vw;
+    font-size: 2.78vw;
+}
+.swiper-pagination-total{
+    margin-left: 1vw;
+    font-size: 2.78vw;
+}
+.cardHisArrow {
+    width: 3.56vw;
+    display: flex;
+    align-items: center;
+}
+
+
+.cardHisAco {
+    display: none;
+    overflow: hidden;
+    font-size: 14px;
+    background-color: red;
+    padding: 27px 0;
+    width: 85%;
+    margin: -5vw auto;
+
+    height: 30vw;
+}
+
+.cardHisAco::before {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+    margin-right: 5px;
+}

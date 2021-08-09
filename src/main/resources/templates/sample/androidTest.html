@@ -15,7 +15,7 @@
     <br>
         <button @click="androidTest('test')">androidTest</button>
         <button @click="onQrScanner()">onQrScanner</button>
-        <button @click="onScanPress()">onScanPress</button>
+        <button @click="onCardScanner()">onScanPress</button>
     <br>
     <br>
 </div>
@@ -23,14 +23,14 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript">
-        function qrScanResult(rsltData){
-            alert(rsltData);
-        }
-        function cardScanResult(rsltData){
-            alert(rsltData);
-
-
-        }
+        // function qrScanResult(rsltData){
+        //     alert(rsltData);
+        //     alert("qr");
+        // }
+        // function cardScanResult(rsltData){
+        //     alert(rsltData);
+        //     alert("card");
+        // }
         var app = new Vue({
             el: "#app",
             data: {
@@ -52,12 +52,12 @@
                     alert(rsltData);
                 },
 
-                onScanPress : function(){
-                    return window.Android.onScanPress();
+                onCardScanner : function(){
+                    window.Android.onCardScanner();
                 },
-                // cardScanResult : function (rsltData){
-                //     alert(rsltData);
-                // }
+                cardScanResult : function (rsltData){
+                    alert(rsltData);
+                }
 
             },
             computed: {
