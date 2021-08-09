@@ -39,7 +39,7 @@
                                 <div class="search-list">
                                     <div class="search-detail">
                                         <article id="content1">
-                                            <div class="weekday" onclick="popupOpen('popupSelect')">
+                                            <div class="weekday">
                                                 <div class="items">
                                                     <div class="thumbnail_list">
                                                         <img src="https://webimage.10x10.co.kr/eventIMG/2021/today/Frontimage20210730140423.JPEG" alt="유니크 감성 소품, 무아스">
@@ -104,77 +104,6 @@
   <!-- contents -->
 </div>
 
-<div layout:fragment="slideFootPopup">
-    <div id="popupSelect" class="popup-wrap type-select" role="dialog" aria-modal="false">
-        <section class="popup slide">
-            <div class="popup-head">
-                <h3 class="popup-tit ">[인기메뉴] 디트로이트 피자</h3>
-            </div>
-    
-            <div class="popup-body">
-                <div class="popup-content">
-                    <!-- <div class="container"> -->
-                        <div class="popup-con-head">
-                            <p>가격</p>
-                            <p>24,500원</p>
-                        </div>
-    
-                        <div class="popup-con-body">
-                            <div class="option-selec">
-                                <h3 class="popup-head-tit">반반피자메뉴선택<span>필수선택</span></h3>
-                                <article class="silde-list">
-                                    <div class="option">
-                                        <span class="radio demo1">
-                                            <input type="radio" name="sRadio1" id="sRadio1" checked>
-                                            <label for="sRadio1"><span>Large</span></label>
-                                        </span>
-                                        <div class="option-price">
-                                            +4300원
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="option">
-                                        <span class="radio demo1">
-                                            <input type="radio" name="sRadio2" id="sRadio2">
-                                            <label for="sRadio2"><span>middle</span></label>
-                                        </span>
-                                        <div class="option-price">
-                                            +4300원
-                                        </div>
-                                    </div>
-    
-                                    <div class="option">
-                                        <span class="radio demo1">
-                                            <input type="radio" name="sRadio3" id="sRadio3">
-                                            <label for="sRadio3"><span>smoll</span></label>
-                                        </span>
-                                        <div class="option-price">
-                                            +4300원
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-    
-                        <div class="price-con">
-                            <div class="fot-price fs-16">총 가격</div>
-                            <div class="fot-num fs-16">27,200원</div>
-                        </div>
-                </div>
-                <!-- </div> -->
-            </div>
-            <div class="popup-foot">
-                <div class="btn_wrap">
-                    <button type="button" class="btn btn-exit" onclick="popupClose('popupDialog')"><span>닫기</span></button>
-                    <button type="button" class="btn btn-succ" ><span>주문담기</span></button>
-                </div>
-            </div>
-            <div class="popup-close">
-                <button type="button" class="btn btn-close" onclick="popupClose('popupSelect')"><span>닫기</span></button>
-            </div>
-        </section>
-    </div>
-</div>
 
 <th:block layout:fragment="script">
   <script type="text/javascript">
