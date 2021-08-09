@@ -75,16 +75,16 @@
 .footer .footer_inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     height: 13.89vw;
-    padding: 0 5.56vw;
+    /* padding: 0 5.56vw; */
     background: #fff;
     border-top: 0.56vw solid #e5e5e5;
 }
 .footer .footer_inner > li {
     display: flex;
-    width: 2.39rem;
-    height: 2.39rem;
+    width: 6.11vw;
+    height: 6.11vw;
     margin-right: .68rem;
     align-items: center;
     justify-content: center;

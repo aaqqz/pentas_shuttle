@@ -1361,7 +1361,12 @@ a.btn.btn-default.btn-black {padding-top:0.17rem; line-height:2.99rem;}
 .price-con .fot-price { text-align: left;  font-weight: bold; }
 .price-con .fot-num { text-align: right; color: #d3002e;  font-weight: bold;}
 
-
+/* 남은금액 */
+.price-con-cl {}
+.price-con-cl .fot-price-ll { text-align: left;  font-weight: bold; padding-bottom: 2.78vw;border-bottom: 0.56vw solid #1a1a1a;}
+.price-con-cl .fot-price-ll span{ font-size: 4.44vw; }
+.price-con-cl .fot-price { text-align: right;  font-weight: bold;margin-top:5.56vw;}
+.price-con-cl .fot-num { text-align: right; color: #d3002e;  font-weight: bold;}
 
 /* 공통 버튼 */
 .com-btn { }
