@@ -10,6 +10,7 @@
 .container .list-tit { margin-bottom: 2.78vw; font-weight: bold; }
 .multi-time-sale .container { padding: 5.56vw; }
 .multi-time-sale .container .list-head { border-bottom: 0.56vw solid #1a1a1a; padding-bottom: 5px; }
+.price-card { margin-right: 8.33vw; }
 
 .list-body { }
 .list-body .list-price { }

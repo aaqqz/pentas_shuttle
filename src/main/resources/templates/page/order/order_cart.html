@@ -106,18 +106,18 @@
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <div class="price-card" style="margin-right: 30px;">
-                                            <img src="/glocsy/resources/static/order/img/card01.png">
+                                        <div class="price-card">
+                                            <img th:src="@{/order/img/card01.png}">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
-                                        <div class="price-card" style="margin-right: 30px;">
-                                            <img src="/glocsy/resources/static/order/img/card02.png">
+                                        <div class="price-card">
+                                            <img th:src="@{/order/img/card02.png}">
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
-                                        <div class="price-card" style="margin-right: 30px;">
-                                            <img src="/glocsy/resources/static/order/img/card03.png">
+                                        <div class="price-card">
+                                            <img th:src="@{/order/img/card03.png}">
                                         </div>
                                     </div>
                                 </div>
@@ -154,6 +154,27 @@
       mounted: function () {
       },
       methods: {
+        swiperOption : function(){
+                    return {
+                        // 'allowTouchMove': value,
+                        'pagination': {
+                            'el': '.swiper-pagination',
+                            'type': 'fraction',
+                            // 'clickable' : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+                        },
+                        on: {
+                            'slideChangeTransitionEnd': function () {
+                                this.cardSeq = this.activeIndex;
+                            }
+                        },
+                        effect: 'coverflow',
+                        coverflowEffect: {
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 300,
+                            slideShadows: false,
+                        }
+                    };
       },
       computed: {
       }
