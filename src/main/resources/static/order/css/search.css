@@ -1,9 +1,10 @@
 .input.search {
     width: 100%;
+    border-radius: 5.56vw 0px 0px 5.56vw;
 }
 /* 리스트형식 */
 .tab-body .search-list {
-    padding-bottom: 20px;
+    padding-bottom: 5.56vw;
 }
 .search-detail .weekday {
     margin-top: 0px;
