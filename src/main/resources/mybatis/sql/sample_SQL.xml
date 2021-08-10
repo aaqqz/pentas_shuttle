@@ -60,4 +60,11 @@
         WHERE 1=1
             AND USR_NAME = #{usrName}
     </update>
+
+    <select id="test" resultType="DevMap" parameterType="DevMap">
+        /* shuttle.sample.test */
+        SELECT
+            to_char(MOD_DT, 'YYYY-MM-DD HH:MI:SS') MOD_DT
+        FROM TB_CARD
+    </select>
 </mapper>

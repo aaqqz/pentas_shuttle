@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 public class CardRestCtl {
@@ -32,5 +33,10 @@ public class CardRestCtl {
         rslt.put("loginStatus", loginStatus);
 
         return rslt;
+    }
+    
+    @PostMapping("/card/test")
+    public List<DevMap> test(@RequestBody DevMap param){
+        return cardSvc.test(param);
     }
 }
