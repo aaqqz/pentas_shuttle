@@ -4,8 +4,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
 <head>
-  <link rel="stylesheet" th:href="@{/order/css/order.css}">
-<link rel="stylesheet" th:href="@{/card/css/main.css}">
+    <link rel="stylesheet" th:href="@{/order/css/order.css}">
+    <link rel="stylesheet" th:href="@{/card/css/main.css}">
     <!-- Swiper library S -->
     <link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/swiper@5.3.6/js/swiper.min.js"></script>
@@ -23,8 +23,8 @@
                 <div class="items">
                     <div class="container">
                         <div class="list-head">
-                            <span class="check demo1">
-                                <input type="checkbox" name="sCheck0" id="sCheck0">
+                            <span class="check demo1" @click="allCheck()">
+                                <input type="checkbox" name="sCheck" id="sCheck0">
                                 <label for="sCheck0"><span class="fs-16">전체선택</span></label>
                             </span>
                         </div>
@@ -33,7 +33,7 @@
                             <div class="list-price">
                                 <div class="check-del">
                                     <span class="check demo1">
-                                        <input type="checkbox" name="sCheck1" id="sCheck1">
+                                        <input type="checkbox" name="sCheck" id="sCheck1">
                                         <label for="sCheck1"><span class="blind">숨김처리</span></label>
                                     </span>
                                     <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
@@ -42,17 +42,17 @@
                                 </div>
 
                                 <div class="menu-list">
-                                    <h3 class="contents">[인기메뉴]디트로이트 피자ssasdasdasdasdasdasdasdasd</h3>
+                                    <h3 class="contents fs-14">[인기메뉴]명란마요</h3>
                                     <div class="sub">Large</div>
                                     <div class="menu-fot">
                                         <div class="num">
-                                            <input type='button' class="plus" onclick='count("plus")' value='+'/>
+                                            <input type='button' class="plus" @click='count("plus", "totalA")' value='+'/>
 
-                                            <div id='result' class="num-cout fs-14" >0</div>
-                                            
-                                            <input type='button' class="miner" onclick='count("minus")'  value='-'/>
+                                            <div class="num-cout fs-14" >{{totalA}}</div>
+
+                                            <input type='button' class="miner" @click='count("minus", "totalA")'  value='-'/>
                                         </div>
-                                        <span class="price-num fs-num">3,60C<span>
+                                        <span class="price-num fs-num">3,600C<span>
                                     </div>
                                 </div>
                             </div>
@@ -60,8 +60,8 @@
                             <div class="list-price">
                                 <div class="check-del">
                                     <span class="check demo1">
-                                        <input type="checkbox" name="sCheck12" id="sCheck12">
-                                        <label for="sCheck12"><span class="blind">숨김처리</span></label>
+                                        <input type="checkbox" name="sCheck" id="sCheck2">
+                                        <label for="sCheck2"><span class="blind">숨김처리</span></label>
                                     </span>
                                     <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
                                         <button type="button" class="btn btn-close"><span class="fs-14">삭제</span></button>
@@ -69,15 +69,15 @@
                                 </div>
 
                                 <div class="menu-list">
-                                    <h3 class="contents">[인기메뉴]디트로이트 피자ssasdasdasdasdasdasdasdasd</h3>
+                                    <h3 class="contents fs-14">[인기메뉴]할라피뇨치킨</h3>
                                     <div class="sub">Large</div>
                                     <div class="menu-fot">
                                         <div class="num">
-                                            <input type='button' class="plus" onclick='count("plus")' value='+'/>
+                                            <input type='button' class="plus" @click='count("plus", "totalB")' value='+'/>
 
-                                            <div id='result' class="num-cout fs-14" >0</div>
-                                            
-                                            <input type='button' class="miner" onclick='count("minus")'  value='-'/>
+                                            <div class="num-cout fs-14" >{{totalB}}</div>
+
+                                            <input type='button' class="miner" @click='count("minus", "totalB")'  value='-'/>
                                         </div>
                                         <span class="price-num fs-num">3,600C<span>
                                     </div>
@@ -86,7 +86,7 @@
                         </div>
                         <div class="price-con">
                             <div class="fot-price fs-16">총 가격</div>
-                            <div class="fot-num fs-16">27,20C</div>
+                            <div class="fot-num fs-16">27,200C</div>
                         </div>
                     </div>
                 </div>
@@ -97,122 +97,144 @@
             <button type="button" class="btn btn-com" onclick="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
         </div>
     </div>
-<div layout:fragment="slideFootPopup">
-    <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
-        <section class="popup slide">
-            <div class="popup-head">
-                <h3 class="popup-tit">결제카드 선택</h3>
-            </div>
-    
-            <div class="popup-body">
-                <div class="popup-content">
-                    <!-- <div class="popup-con-head"></div> -->
-                    <div class="popup-con-body">
-                        <section class="card-option">
-                            <div class="cardWrap">
+    <div layout:fragment="slideFootPopup">
+        <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
+            <section class="popup slide">
+                <div class="popup-head">
+                    <h3 class="popup-tit">결제카드 선택</h3>
+                </div>
 
-                            <div class="swiper-pagination"></div>
-                            <swiper ref="swiperComponent" :options="swiperOption()">
-                                <swiper-slide>
-                                    <div class="cardBox pd15">
-                                        <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                                        <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
-                                        <div class="flex f-btw mrt25 mrb25">
-                                            <div class="fc-white fs-14">사용 가능 금액</div>
-                                            <div class="fc-white fs-14">5,000C</div>
-                                        </div>
-                                        <div class="bar-white"></div>
-                                        <div class="cardHis flex f-btw mrt15">
-                                            <div class="fc-white">7월에 <span>0C </span>사용</div>
-                                            <div class="cardHisArrow">
-                                                <img th:src="@{/card/img/arrow-down-white.png}">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <!-- <div class="popup-con-head"></div> -->
+                        <div class="popup-con-body">
+                            <section class="card-option">
+                                <div class="cardWrap">
+
+                                    <div class="swiper-pagination"></div>
+                                    <swiper ref="swiperComponent" :options="swiperOption()">
+                                        <swiper-slide>
+                                            <div class="cardBox pd15" style="height: 49vw;">
+                                                <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                                                <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                                                <div class="flex f-btw mrt75 mrb25">
+                                                    <div class="fc-white fs-14">사용 가능 금액</div>
+                                                    <div class="fc-white fs-14">5,000C</div>
+                                                </div>
+                                                <div class="bar-white"></div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="cardHisAco">
-                                        <div>asdasd</div>
-                                    </div>
-                                </swiper-slide>
-                                <swiper-slide>
-                                    <div class="cardBox pd15" style="background-color: #e80a4d;">
-                                        <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                                        <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
-                                        <div class="flex f-btw mrt25 mrb25">
-                                            <div class="fc-white fs-14">사용 가능 금액</div>
-                                            <div class="fc-white fs-14">5,000C</div>
-                                        </div>
-                                        <div class="bar-white"></div>
-                                        <div class="cardHis flex f-btw mrt15">
-                                            <div class="fc-white">7월에 <span>0C </span>사용</div>
-                                            <div class="cardHisArrow">
-                                                <img th:src="@{/card/img/arrow-down-white.png}">
+                                        </swiper-slide>
+                                        <swiper-slide>
+                                            <div class="cardBox pd15" style="background-color: #ff8030; height: 49vw;">
+                                                <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                                                <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                                                <div class="flex f-btw mrt75 mrb25">
+                                                    <div class="fc-white fs-14">사용 가능 금액</div>
+                                                    <div class="fc-white fs-14">5,000C</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="cardHisAco">
-                                        <div>asdasd</div>
-                                    </div>
-                                </swiper-slide>
-                    
-                            </swiper>
+                                        </swiper-slide>
+                                    </swiper>
+                                </div>
+                            </section>
+
+                            <div class="price-con-cl" style="border-top: 0.56vw solid #1a1a1a;">
+                                <div class="fot-price fs-16">총금액<span class="fot-num fs-16 mrl5">27,200C</span></div>
                             </div>
-                        </section>
-    
-                        <div class="price-con-cl">
-                            <div class="fot-price-ll fs-16">우리은행<span>(5210-03**-****-9447)</span></div>
-                            <div class="fot-price fs-16">남은잔액<span class="fot-num fs-16 mrl5">27,20C</span></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="popup-foot">
-                <div class="btn_wrap">
-                    <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-                    <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert')"><span>이카드로 결제하기</span></button>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+                        <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert')"><span>결제하기</span></button>
+                    </div>
                 </div>
-            </div>
-            <div class="popup-close">
-                <button type="button" class="btn btn-close" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-            </div>
-        </section>
+                <div class="popup-close">
+                    <button type="button" class="btn btn-close" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
 
-<!-- 카드로 결제했을시 완료 팝업 -->
-<div layout:fragment="popupAlert">
-    <div id="popupAlert" class="popup-wrap type-basic">
-        <section class="popup demo1">
-            <div class="popup-body">
-                <div class="popup-content fs-16">
-                    결제가 완료되었습니다.
+    <!-- 카드로 결제했을시 완료 팝업 -->
+    <div layout:fragment="popupAlert">
+        <div id="popupAlert" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content fs-16">
+                        결제가 완료되었습니다.
+                    </div>
                 </div>
-            </div>
-            <div class="popup-foot">
-                <div class="btn_wrap">
-                    <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('slideFootPopup')"><span>닫기</span></button> -->
-                    <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup')]"><span>확인</span></button>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('slideFootPopup')"><span>닫기</span></button> -->
+                        <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup'), goPage('/card/main')]"><span>확인</span></button>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
-</div>
 
 </div>
 
 
 <th:block layout:fragment="script">
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    var app = new Vue({
-      el: "#app",
-      data: {
-        cardSeq : 0
-      },
-      mounted: function () {
-        this.init();
-      },
-      methods: {
-        swiperOption : function(){
+        var app = new Vue({
+            el: "#app",
+            data: {
+                totalA : 1,
+                totalB : 1,
+                cardSeq : 0
+            },
+            mounted: function () {
+                this.init();
+            },
+            methods: {
+                init : function(){
+                    $("#sCheck0").click(function(){
+                        //만약 전체 선택 체크박스가 체크된상태일경우
+                        if($("#sCheck0").prop("checked")) {
+                            // 해당화면에 전체 checkbox들을 체크해준다
+                            $("input[type=checkbox]").prop("checked",true);
+                            // 전체선택 체크박스가 해제된 경우
+                        } else {
+                            //해당화면에 모든 checkbox들의 체크를해제시킨다.
+                            $("input[type=checkbox]").prop("checked",false); } })
+
+                },
+                count : function (type, totalVal)  {
+                    var num = 0
+                    if(totalVal == "totalA"){
+                        num = this.totalA;
+                    }else{
+                        num = this.totalB;
+                    }
+                    // 더하기/빼기
+                    if(type === 'plus') {
+                        num = parseInt(num) + 1;
+                    }else if(type === 'minus')  {
+                        num = parseInt(num) - 1;
+                    }
+
+                    if(num < 0 ){
+                        num = 0;
+                    }
+                    if(totalVal == "totalA"){
+                        this.totalA = num;
+                    }else{
+                        this.totalB = num;
+                    }
+                    // 결과 출력
+                    // resultElement.innerText = number;
+                },
+                allCheck : function(){
+
+                },
+
+                swiperOption : function(){
                     return {
                         // 'allowTouchMove': value,
                         'pagination': {
@@ -234,11 +256,11 @@
                         }
                     };
                 }
-      },
-      computed: {
-      }
-    })
-  </script>
+            },
+            computed: {
+            }
+        })
+    </script>
 </th:block>
 
 </html>
