@@ -4,11 +4,38 @@
     <div class="footer">
         <footer class="footer_main">
             <ul class="footer_inner">
-                <li onclick="goPage('/order/order')"><img th:src="@{/_common/img/ft_order.png}"></li>
-                <li onclick="goPage('/card/history')"><img th:src="@{/_common/img/ft_user.png}"></li>
-                <li onclick="goPage('/card/main')"><img th:src="@{/_common/img/ft_home.png}"></li>
-                <li onclick="goPage('/event/list')"><img th:src="@{/_common/img/ft_event.png}"></li>
-                <li onclick="goPage('/order/search')"><img th:src="@{/_common/img/ft_search.png}"></li>
+                <li onclick="goPage('/order/order')">
+                    <!-- <img th:src="@{/_common/img/ft_order.png}"> -->
+                    <div>
+                        <b-icon icon="
+                        minecart-loaded" font-scale="1.5"></b-icon>
+                    </div>
+                </li>
+                <li onclick="goPage('/card/history')">
+                    <!-- <img th:src="@{/_common/img/ft_user.png}"> -->
+                    <div>
+                        <b-icon icon="layout-text-sidebar-reverse" font-scale="1.5"></b-icon>
+                    </div>
+                </li>
+                <li onclick="goPage('/card/main')">
+                    <!-- <img th:src="@{/_common/img/ft_home.png}"> -->
+                    <div>
+                        <b-icon icon="hr" font-scale="1.9"></b-icon>
+                    </div>
+                </li>
+                <li onclick="goPage('/event/list')">
+                    <!-- <img th:src="@{/_common/img/ft_event.png}"> -->
+                    <div>
+                        <b-icon icon="gift" font-scale="1.5"></b-icon>
+                    </div>
+                </li>
+
+                <li onclick="goPage('/order/search')">
+                    <!-- <img th:src="@{/_common/img/ft_search.png}"> -->
+                    <div>
+                        <b-icon icon="search" font-scale="1.5"></b-icon>
+                    </div>
+                </li>
             </ul>
         </footer>
     </div>

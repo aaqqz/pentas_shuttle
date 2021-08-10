@@ -167,21 +167,32 @@
             <div class="flex f-evn">
                 <div class="flex f-clm align-center cardBtn" @click="popupOpen('popupTop')">
                     <div class="cardBtnImg">
-                        <img th:src="@{/card/img/pay.png}">
+                        <!-- <img th:src="@{/card/img/pay.png}"> -->
+                        <div>
+                            <b-icon icon="phone-landscape" font-scale="1.5"></b-icon>
+                        </div>
                     </div>
                     <div class="fs-10 mrt5">결제</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="onQrScanner()">
                     <div class="cardBtnImg">
-                        <img th:src="@{/card/img/charge.png}">
+                        <!-- <img th:src="@{/card/img/charge.png}"> -->
+                        <div>
+                            <!-- <b-icon icon="input-cursor" font-scale="1.5"></b-icon> -->
+                            <b-icon icon="input-cursor-text" font-scale="1.5"></b-icon>
+                        </div>
                     </div>
                     <div class="fs-10 mrt5">충전</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="Payment()">
                     <div class="cardBtnImg">
-                        <img th:src="@{/card/img/admin.png}">
+                        <!-- <img th:src="@{/card/img/admin.png}"> -->
+                        <div>
+                            <!-- <b-icon icon="input-cursor" font-scale="1.5"></b-icon> -->
+                            <b-icon icon="layout-text-window-reverse" font-scale="1.5"></b-icon>
+                        </div>
                     </div>
                     <div class="fs-10 mrt5">결제 관리</div>
                 </div>
@@ -189,21 +200,30 @@
             <div class="flex f-evn mrt20">
                 <div class="flex f-clm align-center cardBtn" @click="goRegist()">
                     <div class="cardBtnImg">
-                        <img th:src="@{/card/img/regist.png}">
+                        <!-- <img th:src="@{/card/img/regist.png}"> -->
+                        <div>
+                            <b-icon icon="credit-card" font-scale="1.5"></b-icon>
+                        </div>
                     </div>
                     <div class="fs-10 mrt5">등록</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn">
                     <div class="cardBtnImg">
-                        <img th:src="@{/card/img/mainOff.png}">
+                        <!-- <img th:src="@{/card/img/mainOff.png}"> -->
+                        <div>
+                            <b-icon icon="aspect-ratio" font-scale="1.5"></b-icon>
+                        </div>
                     </div>
                     <div class="fs-10 mrt5">메인카드</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="ready()">
                     <div class="cardBtnImg">
-                        <img th:src="@{/card/img/change.png}">
+                        <!-- <img th:src="@{/card/img/change.png}"> -->
+                        <div>
+                            <b-icon icon="app-indicator" font-scale="1.5"></b-icon>
+                        </div>
                     </div>
                     <div class="fs-10 mrt5">전환</div>
                 </div>
