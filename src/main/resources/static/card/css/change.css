@@ -1,0 +1,69 @@
+.tab-body .title h3 { padding: 0px 0px 3.78vw 0px; }
+
+.multi-time-sale .weekday {
+    margin-bottom: 5.56vw ;
+}
+.time-sale .weekday .thumbnail_list {
+    width: 20vw;
+    margin-left: 5vw;
+}
+.time-sale .weekday .thumbnail_list.ls, .time-sale .weekday .thumbnail_list.rs {
+    width: 20vw;
+    margin-left: 5vw;
+    margin-top: 4vw;
+    display: block;
+}
+.multi-time-sale .weekday .items{
+    height: 400px;
+    display: flex;
+    align-items: center;
+}
+.time-sale .weekday .desc {
+    margin: 0;
+    display: flex;
+    margin-left: 28vw;
+    align-items: center;
+    justify-content: center;
+}
+.time-sale .weekday .desc-ll {
+    margin: 0;
+}
+.time-sale .weekday .desc-ll .sum {
+    text-align: center;
+}
+.time-sale .weekday .desc .cardMag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.multi-time-sale .weekday .name {
+    text-align: left;
+    position: relative;
+    width: 66%;
+    margin-top: 0;
+}
+.time-sale .weekday .price {
+    text-align: right;
+}
+
+.input.search {
+    width: 100%;
+}
+
+
+
+.thumbnail_list-ch {
+    margin: 8vw;
+    margin-top: 11vw;
+}
+
+.btw {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mra {
+ margin-left: auto
+}

@@ -22,4 +22,12 @@ public class CardViewCtl {
     public String cardRegister(){
         return "/page/card/register";
     }
+    @GetMapping("/change")
+    public String cardChange(){
+        return "/page/card/change";
+    }
+    @GetMapping("/change_sw")
+    public String changeSw(){
+        return "/page/card/change_sw";
+    }
 }

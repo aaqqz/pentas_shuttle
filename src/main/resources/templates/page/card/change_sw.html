@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<head>
+    <link rel="stylesheet" th:href="@{/card/css/change.css}">
+    <link rel="stylesheet" th:href="@{/order/css/order.css}">
+    <link rel="stylesheet" th:href="@{/card/css/main.css}">
+</head>
+
+<div layout:fragment="content" class="content">
+    <div class="main-container">
+        <div class="content-body">
+          <!-- Section -->
+          <div class="grid demo1">
+              <div class="col col-12">
+                  <!-- Tab Change -->
+                 
+                  <div class="tab-body">
+                    <div class="title">
+                        <h3 class="fs-14">카드의정석 UNTACT AIR에서 2,000원을 요기요 신한카드로 전환할 수 있습니다.</h3>
+                    </div>
+                    <div class="form-controls" style="padding: 0;">
+                        <span class="file-add demo2">
+                            <input type="text" id="sFilesName11" class="input search fs-14" placeholder="전환금액">
+                        </span>
+                        <span class="check demo1" @click="allCheck()" style="padding-bottom: 5.53vw;">
+                            <input type="checkbox" name="sCheck" id="sCheck0">
+                            <label for="sCheck0"><span class="fs-14">전환금액 모두사용</span></label>
+                        </span>
+                    </div>
+                    <!-- 탭내용1 -->
+                    <div  id="tabpanel21" role="tabpanel" aria-labelledby="tabItem21" class="tab-cont is-active">
+                        <div class="multi-time-sale time-sale" onclick="goPage('/order/search')">
+                            <div class="weekday" onclick="popupOpen('slideFootPopup')" style="height: 400px;">
+                                <div class="items">
+                                    <div class="thumbnail_list-ch">
+                                        <div class="cardBox pd15" style="height: 27vw; width: 85%; border-radius: 3.56vw;">
+                                            <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                                        </div>
+                                        <div class="desc-ll">
+                                            <div class="cardMag" style="">
+                                                <!-- <p class="name fs-14">카드의 정석 UNTACT AIR</p> -->
+                                                <div class="price"><p class="sum fs-num">24,000C</b></div>
+                                                <!-- <p class="list-content">
+                                                    단호박, 두부, 칙피, 옥수수 *이탈리안허브
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="thumbnail_list-ch mra">
+                                        <div class="cardBox pd15" style="height: 27vw; width: 85%; border-radius: 3.56vw;">
+                                            <div class="cardName fc-white fs-14 fw-bold">2번 카드</div>
+                                        </div>
+                                        <div class="desc-ll">
+                                            <div class="cardMag" style="">
+                                                <!-- <p class="name fs-14">카드의 정석 UNTACT AIR</p> -->
+                                                <div class="price"><p class="sum fs-num">24,000C</b></div>
+                                                <!-- <p class="list-content">
+                                                    단호박, 두부, 칙피, 옥수수 *이탈리안허브
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="com-btn">
+                            <button type="button" class="btn btn-com" onclick="popupOpen('popupAlert')"><span class="fs-14">전환하기</span></button>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- //Tab Change -->
+              </div>
+          </div>
+          <!-- //Section -->
+        </div>        
+      </div>
+      <div layout:fragment="popupAlert">
+        <div id="popupAlert" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        전환이 완료되었습니다.
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('popupAlert')"><span>닫기</span></button> -->
+                        <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), goPage('/card/main')]"><span>확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                pay : 1,
+                date : 1,
+                hisCheckVal : true
+            },
+            mounted: function () {
+            },
+            methods: {
+            },
+            computed: {
+            }
+        })
+    </script>
+</th:block>
+
+</html>

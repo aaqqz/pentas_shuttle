@@ -179,7 +179,7 @@
                     <div class="fs-10 mrt5">충전</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn" @click="ready()">
+                <div class="flex f-clm align-center cardBtn" @click="Payment()">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/admin.png}">
                     </div>
@@ -457,6 +457,9 @@
 
                 goHistory : function(){
                     location.href="/card/history"
+                },
+                Payment : function(){
+                    location.href="/card/change"
                 },
                 goRegist : function(){
                     location.href="/card/register"
