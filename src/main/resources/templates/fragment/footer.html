@@ -4,7 +4,8 @@
     <div class="footer">
         <footer class="footer_main">
             <ul class="footer_inner">
-                <li onclick="goPage('/order/order')">
+                <!-- <li onclick="goPage('/order/order')"> -->
+                <li @click="onQrScanner_order()">
                     <!-- <img th:src="@{/_common/img/ft_order.png}"> -->
                     <div>
                         <b-icon icon="
@@ -40,5 +41,30 @@
         </footer>
     </div>
 </div>
+<th:block layout:fragment="script">
+    <script type="text/javascript">
 
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            mounted: function () {
+                this.init();
+            },
+            methods: {
+                init : function(){
+                    
+                },
+               
+                onQrScanner_order : function(){
+                    window.Android.onQrScanner_order();
+                },
+            },
+            computed: {
+            }
+        })
+    </script>
+</th:block>
 </html>

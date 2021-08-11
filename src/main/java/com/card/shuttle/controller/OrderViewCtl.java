@@ -12,6 +12,10 @@ public class OrderViewCtl {
     public String order(){
         return "/page/order/order";
     }
+    @GetMapping("/order_de")
+    public String orderDetail(){
+        return "/page/order/order_de";
+    }
     @GetMapping("/order_cart")
     public String orderCart(){
         return "/page/order/order_cart";

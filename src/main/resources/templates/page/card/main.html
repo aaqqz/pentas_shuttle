@@ -48,9 +48,9 @@
         <div class="swiper-pagination"></div>
         <swiper ref="swiperComponent" :options="swiperOption()">
             <swiper-slide>
-                <div class="cardBox pdt25 pdr15 pdl15 pdb15">
-                    <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                    <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #2b78a2;">
+                    <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
+                    <div class="fc-white mrt5 fs-16 fw-bold">1234-1234-1234-1234</div>
                     <div class="flex f-btw mrt25 mrb25">
                         <div class="fc-white fs-14">사용 가능 금액</div>
                         <div class="fc-white fs-14">5,000 C</div>
@@ -103,9 +103,64 @@
                 </div>
             </swiper-slide>
             <swiper-slide>
-                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #ff8030;">
-                    <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                    <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
+                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #fa6690;">
+                    <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
+                    <div class="fc-white fs-16 mrt5 fw-bold">1234-1234-1234-1234</div>
+                    <div class="flex f-btw mrt25 mrb25">
+                        <div class="fc-white fs-14">사용 가능 금액</div>
+                        <div class="fc-white fs-14">5,000 C</div>
+                    </div>
+                    <div class="bar-white mrt30"></div>
+                    <div class="cardHis flex f-btw mrt15">
+                        <div class="fc-white">7월에 <span>9,900 C </span>사용</div>
+                        <div class="cardHisArrow">
+                            <img th:src="@{/card/img/arrow-down-white.png}">
+                        </div>
+                    </div>
+                </div>
+                <div class="cardHisAco">
+                    <div class="hisCont mrb15 pdb15">
+                        <div class="flex f-btw">
+                            <div class="">아웃백 사당점</div>
+                            <div class="fc-blue fw-bold">3,300 C</div>
+                        </div>
+                        <div class="flex f-btw mrt5">
+                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                            <div class="fc-gray fs-10">잔액 25,000 C</div>
+                        </div>
+                    </div>
+                    <div class="hisCont mrb15 pdb15">
+                        <div class="flex f-btw">
+                            <div class="">아웃백 사당점</div>
+                            <div class="fc-blue fw-bold">3,300 C</div>
+                        </div>
+                        <div class="flex f-btw mrt5">
+                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                            <div class="fc-gray fs-10">잔액 25,000 C</div>
+                        </div>
+                    </div>
+                    <div class="hisCont mrb15 pdb15">
+                        <div class="flex f-btw">
+                            <div class="">아웃백 사당점</div>
+                            <div class="fc-blue fw-bold">3,300 C</div>
+                        </div>
+                        <div class="flex f-btw mrt5">
+                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>
+                            <div class="fc-gray fs-10">잔액 25,000 C</div>
+                        </div>
+                    </div>
+                    <div class="flex f-center" @click="goHistory()">
+                        <div class="fs-10 mrr10">더보기</div>
+                        <div class="cardHisDetailArrow">
+                            <img th:src="@{/card/img/arrow-right-gray.png}">
+                        </div>
+                    </div>
+                </div>
+            </swiper-slide>
+            <swiper-slide>
+                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #60aba8;">
+                    <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
+                    <div class="fc-white fs-16 mrt5 fw-bold">1234-1234-1234-1234</div>
                     <div class="flex f-btw mrt25 mrb25">
                         <div class="fc-white fs-14">사용 가능 금액</div>
                         <div class="fc-white fs-14">5,000 C</div>
@@ -186,7 +241,8 @@
                     <div class="fs-10 mrt5">충전</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn" @click="Payment()">
+                <!-- <div class="flex f-clm align-center cardBtn" @click="Payment()"> -->
+                <div class="flex f-clm align-center cardBtn" @click="ready()">
                     <div class="cardBtnImg">
                         <!-- <img th:src="@{/card/img/admin.png}"> -->
                         <div>
