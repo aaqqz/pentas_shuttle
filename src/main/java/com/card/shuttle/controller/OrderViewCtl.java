@@ -20,8 +20,8 @@ public class OrderViewCtl {
     public String orderCart(){
         return "/page/order/order_cart";
     }
-    @GetMapping("/search")
-    public String orderMain(){
-        return "/page/order/search";
+    @GetMapping("/order_visit")
+    public String orderVisit(){
+        return "/page/order/order_visit";
     }
 }

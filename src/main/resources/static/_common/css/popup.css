@@ -51,12 +51,19 @@
 /* 얼럿버튼 [s] */
 .popup .btn-close-al {border-right:1px solid #ddd; }
 .popup .btn-succ-all {width: 100%; border-radius: 0px; height: 13.89vw;border-top: 1px solid #ddd;}
+.popup .btn-char {    
+    /* height: 40px; */
+    height: 13.11vw;
+    /* font-size: 3.89vw; */
+    margin-top: 5vw;
+    border: 1px solid #ddd;}
 .popup .btn-close-al, .btn-succ-al {width: 50%; height: 13.89vw; border-radius: 0px; border-top:1px solid #ddd;}
 .popup .btn-close-al span, .btn-succ-al span, .btn-succ-all span {font-size: 3.89vw;}
 .btn_wrap-top{
     height: 13.89vw;
     border-top: 1px solid #ddd;
 }
+
 /* 얼럿버튼 [e] */
 .popup .btn-exit {width:50%; border-radius: 0px; color: #fff; height: 13.89vw; background: #1a1a1a; }
 /* .popup .btn-exit {width:50%; border-radius: 0px; color: #fff; height: 13.89vw; background: #1a1a1a; } */
@@ -95,6 +102,7 @@
 .popup.slide .popup-body .popup-content .popup-con-head{display: flex; justify-content: space-between; padding: 0px 0 5.56vw 0; border-bottom:1px solid #e5e5e5;}
 .popup.slide .popup-body .popup-content .popup-con-head p { font-size: 3.89vw; }
 .popup.slide .popup-body .popup-content .popup-con-body{}
+.popup.slide .popup-body .popup-content .popup-con-body .price-con-cl{display: flex; justify-content: space-between;border-top: 0.56vw solid #1a1a1a;}
 .popup.slide .popup-body .popup-content .popup-con-body .option-selec{padding: 5.56vw 0;}
 .popup.slide .popup-body .popup-content .popup-con-body .popup-head-tit{font-weight: bold; font-size: 4.44vw; text-align: left;}
 .popup.slide .popup-body .popup-content .popup-con-body .popup-head-tit span{color: #d3002e; margin-left: 2.78vw;}

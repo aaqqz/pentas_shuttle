@@ -17,85 +17,54 @@
 
 <div layout:fragment="content" class="content">
     <div class="container">
-        <h1 class="list-tit fs-14">장바구니 목록</h1>
+        <h1 class="list-tit fs-14">매장방문 내역</h1>
         <div class="multi-time-sale time-sale">
             <div class="weekday">
                 <div class="items">
                     <div class="container">
-                        <div class="list-head">
-                            <span class="check demo1" @click="allCheck()">
-                                <input type="checkbox" name="sCheck" id="sCheck0">
-                                <label for="sCheck0"><span class="fs-14">전체선택</span></label>
-                            </span>
+                        <div class="list-head" style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 class="tit fs-14">셀러디</h3>
+                            <div class="btn_wrap" @click="goPage('/order/order_de')">
+                                <div style="display: flex; justify-content: center;">
+                                    <span style="margin-right: 1.33vw; color: #b3b3b3;">매장 바로가기</span>
+                                    <b-icon icon="chevron-right" font-scale="1" style="color: #b3b3b3;"></b-icon>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="list-body">
                             <div class="list-price">
-                                <div class="check-del">
-                                    <span class="check demo1">
-                                        <input type="checkbox" name="sCheck" id="sCheck1">
-                                        <label for="sCheck1"><span class="blind">숨김처리</span></label>
-                                    </span>
-                                    <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span class="fs-14">삭제</span></button>
-                                    </div>
-                                </div>
-
                                 <div class="menu-list">
                                     <h3 class="contents fs-14">할라피뇨치킨 JALAPENO CHICKEN</h3>
                                     <div class="sub">할라피뇨추가</div>
-                                    <div class="menu-fot">
-                                        <div class="num">
-                                            <input type='button' class="plus" @click='count("plus", "totalA")' value='+'/>
-
-                                            <div class="num-cout fs-14" >{{totalA}}</div>
-
-                                            <input type='button' class="miner" @click='count("minus", "totalA")'  value='-'/>
-                                        </div>
-                                        <span class="price-num fs-num">3,600C<span>
+                                    <div class="menu-fot"  style="display: flex; justify-content: flex-end;">
+                                        <span class="price-num fs-num">2021.08.11<span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="list-price">
-                                <div class="check-del">
-                                    <span class="check demo1">
-                                        <input type="checkbox" name="sCheck" id="sCheck2">
-                                        <label for="sCheck2"><span class="blind">숨김처리</span></label>
-                                    </span>
-                                    <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span class="fs-14">삭제</span></button>
-                                    </div>
-                                </div>
-
                                 <div class="menu-list">
                                     <h3 class="contents fs-14">명란마요 쉬림프 포케볼 Pollack Roe Mayo Shrimp Poke Bowl</h3>
                                     <div class="sub">야채추가</div>
-                                    <div class="menu-fot">
-                                        <div class="num">
-                                            <input type='button' class="plus" @click='count("plus", "totalB")' value='+'/>
-
-                                            <div class="num-cout fs-14" >{{totalB}}</div>
-
-                                            <input type='button' class="miner" @click='count("minus", "totalB")'  value='-'/>
-                                        </div>
-                                        <span class="price-num fs-num">3,600C<span>
+                                    <div class="menu-fot"  style="display: flex; justify-content: flex-end;">
+                                        <span class="price-num fs-num">2021.08.11<span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="price-con">
+                        <!-- <div class="price-con">
                             <div class="fot-price fs-16">총 가격</div>
                             <div class="fot-num fs-16">27,200C</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="com-btn">
+        <!-- <div class="com-btn">
             <button type="button" class="btn btn-com" onclick="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
-        </div>
+        </div> -->
     </div>
     <div layout:fragment="slideFootPopup">
         <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
@@ -138,8 +107,7 @@
                                 </div>
                             </section>
 
-                            <div class="price-con-cl">
-                                <button type="button" class="btn btn-char" onclick="goPage('/card/change')"><span class="fs-14">전환하기</span></button>
+                            <div class="price-con-cl" style="border-top: 0.56vw solid #1a1a1a;">
                                 <div class="fot-price fs-16">총금액<span class="fot-num fs-16 mrl5">27,200C</span></div>
                             </div>
                         </div>

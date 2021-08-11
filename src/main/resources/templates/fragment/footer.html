@@ -5,7 +5,7 @@
         <footer class="footer_main">
             <ul class="footer_inner">
                 <!-- <li onclick="goPage('/order/order')"> -->
-                <li @click="onQrScanner_order()">
+                <li onclick="goPage('/order/order')">
                     <!-- <img th:src="@{/_common/img/ft_order.png}"> -->
                     <div>
                         <b-icon icon="
@@ -31,10 +31,10 @@
                     </div>
                 </li>
 
-                <li onclick="goPage('/order/search')">
+                <li onclick="goPage('/order/order_visit')">
                     <!-- <img th:src="@{/_common/img/ft_search.png}"> -->
                     <div>
-                        <b-icon icon="search" font-scale="1.5"></b-icon>
+                        <b-icon icon="clipboard-check" font-scale="1.5"></b-icon>
                     </div>
                 </li>
             </ul>
