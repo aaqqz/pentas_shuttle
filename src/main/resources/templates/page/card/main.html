@@ -43,7 +43,7 @@
     <div class="cardWrap">
         <div class="pageTitle mrl20 mrr20 mrt20">
             <div class="fs-14 fw-bold"><span class="fc-blue fs-14 fw-bold">셔틀카드</span>고객님!</div>
-            <div class="fs-14 mrt5 mrb10">안녕하십니까?</div>
+            <div class="fs-14 mrt5 mrb10" @click="dbTest()">안녕하십니까?</div>
         </div>
         <div class="swiper-pagination"></div>
         <swiper ref="swiperComponent" :options="swiperOption()">
@@ -440,6 +440,12 @@
                 this.init();
             },
             methods: {
+                dbTest : function(){
+                    cf_call("/card/test", {}, this.testCB)
+                },
+                testCB : function(data){
+                    console.log(data)
+                },
                 init : function(){
                     $(".cardBox").click(function() {
                         $(this).next(".cardHisAco").stop().slideToggle(300);
