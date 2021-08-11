@@ -3,12 +3,12 @@
     border-radius: 5.56vw 0px 0px 5.56vw;
 }
 /* 리스트형식 */
-.tab-body .search-list {
-    padding-bottom: 5.56vw;
-}
-.search-detail .weekday {
-    margin-top: 0px;
-}
+.tab-body {border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;}
+.tab-body .search-list { padding-bottom: 5.56vw; }
+
+.tab-body .search-list .storeNo, .tab-body .search-list .storeSer { text-align: center; }
+
+.search-detail .weekday { margin-top: 0px; }
 
 .search-detail .weekday .items {
     display: block;
@@ -50,7 +50,7 @@
     line-height: 1.3;
     height: 16.67vw;
     color: #777980;
-    font-size: 4.17vw;
+    /* font-size: 4.17vw; */
     /* display: inline-block; */
     /* width: 200px; */
     white-space: nowrap;
