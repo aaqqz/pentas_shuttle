@@ -62,3 +62,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.containers {
+    margin-bottom: 20vw;
+}
