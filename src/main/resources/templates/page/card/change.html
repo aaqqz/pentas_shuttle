@@ -9,242 +9,94 @@
     <link rel="stylesheet" th:href="@{/order/css/order.css}">
     <link rel="stylesheet" th:href="@{/card/css/main.css}">
 
-    <!-- <style>
-        .itemBox {
-            border:solid 1px black;
-            width:400px;
-            height:50px;
-            padding:10px;
-            margin-bottom:10px;
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script> -->
+    <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
+    <script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+    <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+    <style>
+        .multi-time-sale {
+            padding-bottom: 0;
         }
-        .itemBoxHighlight {
-            border:solid 1px black;
-            width:400px;
-            height:50px;
-            padding:10px;
-            margin-bottom:10px;
-            background-color:yellow;
-        }
-        .deleteBox {
-            float:right;
-            display:none;
-            cursor:pointer;
-        }
-        </style>
-        <style>
-        #sortable { list-style-type: none; margin: 0; padding: 0; width: 400px; }
-        #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-        #sortable li span { position: absolute; margin-left: -1.3em; }
-        </style> -->
-
-    <!-- <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script> -->
-    
+    </style>
 </head>
 
 <div layout:fragment="content" class="content">
-    <div class="main-container">
-        <div class="content-body">
-          <!-- Section -->
-          <div class="grid demo1">
-              <div class="col col-12">
-                  <!-- Tab Change -->
-                  <div class="tab-nav demo1 ">
-                      <ul role="tablist" class="tab-list">
-                          <li id="tabItem21" role="tab" aria-controls="tabpanel21" aria-selected="true" class="js-tab is-active">
-                              <button type="button" class="btn"><span class="fs-14">가져오기</span></button>
-                          </li>
-                          <li id="tabItem22" role="tab" aria-controls="tabpanel22" aria-selected="false" class="js-tab">
-                              <button type="button" class="btn"><span class="fs-14">내보내기</span></button>
-                          </li>
-                      </ul>
-                  </div>
+    <div class="content-body">
+        <!-- Section -->
+        <div class="grid demo1">
+            <div class="col col-12 containers">
+                <!-- Tab Change -->
+                <div class="tab-nav demo1 ">
+                    <ul role="tablist" class="tab-list">
+                        <li id="tabItem21" role="tab" aria-controls="tabpanel21" aria-selected="true" class="js-tab is-active">
+                            <button type="button" class="btn"><span class="fs-14">가져오기</span></button>
+                        </li>
+                        <li id="tabItem22" role="tab" aria-controls="tabpanel22" aria-selected="false" class="js-tab">
+                            <button type="button" class="btn"><span class="fs-14">내보내기</span></button>
+                        </li>
+                    </ul>
+                </div>
                   
-                  <div class="tab-body">
+                <div class="tab-body">
                     <div class="title">
                         <h3 class="fs-14">밑에 배치 되어 있는 서비카드의 금액을 메인카드로 전환해보세요. 카드에 따라 전환할 수 있는 금액이 다를 수 있습니다.</h3>
                     </div>
-                    <!-- 탭내용1 -->
+
                     <div id="tabpanel21" role="tabpanel" aria-labelledby="tabItem21" class="tab-cont is-active">
-                        <!-- <div id="sortable"> -->
-                            <!-- <div id="itemBoxWrap"></div> -->
-                        <!-- <div class="container"> -->
-                            <!-- <h1 class="list-tit fs-14">장바구니 목록</h1> -->
-                            <div class="multi-time-sale time-sale" onclick="goPage('/card/change_sw')">
+                        <draggable group="people" @start="drag=true" @end="drag=false">
+                            <div class="item multi-time-sale time-sale" v-for="(data, index) in cardList">
                                 <div class="weekday">
                                     <div class="items">
-                                        <div class="thumbnail_list">
-                                            <div class="cardBox pd15" style="  
-                                            height: 27vw;
-                                            width: 85%;
-                                        
-                                                            border-radius: 3.56vw;">
-                                                <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                                                <!-- <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
-                                                <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
-                                                </div>
-                                                <div class="bar-white"></div> -->
+                                        <div style="position: absolute;
+                                                        right: 61px;
+                                                        top: 61px;
+                                                        display: block;
+                                                        width: 100px;
+                                                        height: 100px;
+                                                        text-align: right;">
+                                            <div @click="isHidden = !isHidden">
+                                                <b-icon icon="star" font-scale="1.5" v-if="isHidden"></b-icon>
+                                                <b-icon icon="star-fill" font-scale="1.5" v-else></b-icon>
                                             </div>
                                         </div>
-                                        <div style="position: absolute;
-                                        right: 61px;
-                                        top: 61px;">
-                                            ★
-                                        </div>
-                                        <div class="desc">
-                                            <div class="cardMag" style="">
-                                                <p class="name fs-14">카드의 정석 UNTACT AIR</p>
-                                                <div class="price"><p class="sum fs-num">24,000C</b></div>
+                                        <div @click="goPage('/card/change_sw')">
+                                            <div class="thumbnail_list">
+                                                <div class="cardBox pd15" style="height: 27vw; width: 85%; border-radius: 3.56vw;">
+                                                    <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="desc">
+                                                <!-- <div style="width: 30%;">
+                                                    <div style="    
+                                                    display: flex;
+                                                    align-items: center;
+                                                    height: 6.99vw;
+                                                    justify-content: center;
+                                                    border: 1px solid rgb(36, 150, 238);
+                                                    border-radius: 100px;
+                                                    /* width: 30%; */
+                                                    /* height: 6.99vw; */
+                                                    /* text-align: center; */">메인카드</div>
+                                                    </div> -->
+                                                <div class="cardMag">
+                                                    <p class="name fs-14">{{data.cardName}}</p>
+                                                    <div class="price"><p class="sum fs-num">{{data.cardBalance}}C</b></div>
+                                                </div>
                                             </div>
                                         </div>
                                     <!-- </div> -->
-                                </div>
-                                </div>
-                                <div class="weekday">
-                                    <div class="items">
-                                        <div class="thumbnail_list">
-                                            <div class="cardBox pd15" style="    height: 30vw;
-                                                            width: 90%;
-                                                            border-radius: 3.56vw;">
-                                                <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                                                <!-- <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
-                                                <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
-                                                </div>
-                                                <div class="bar-white"></div> -->
-                                            </div>
-                                        </div>
-                                        <div class="desc">
-                                            <div class="cardMag" style="">
-                                                <p class="name fs-14">카드의 정석 UNTACT AIR</p>
-                                                <div class="price"><p class="sum fs-num">24,000C</b></div>
-                                                <!-- <p class="list-content">
-                                                    단호박, 두부, 칙피, 옥수수 *이탈리안허브
-                                                </p> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="weekday">
-                                    <div class="items">
-                                        <div class="thumbnail_list">
-                                            <div class="cardBox pd15" style="    height: 30vw;
-                                                            width: 90%;
-                                                            border-radius: 3.56vw;">
-                                                <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                                                <!-- <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
-                                                <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
-                                                </div>
-                                                <div class="bar-white"></div> -->
-                                            </div>
-                                        </div>
-                                        <div class="desc">
-                                            <div class="cardMag" style="">
-                                                <p class="name fs-14">카드의 정석 UNTACT AIR</p>
-                                                <div class="price"><p class="sum fs-num">24,000C</b></div>
-                                                <!-- <p class="list-content">
-                                                    단호박, 두부, 칙피, 옥수수 *이탈리안허브
-                                                </p> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="weekday">
-                                    <div class="items">
-                                        <div class="thumbnail_list">
-                                            <div class="cardBox pd15" style="    height: 30vw;
-                                                            width: 90%;
-                                                            border-radius: 3.56vw;">
-                                                <div class="cardName fc-white fs-14 fw-bold">1번 카드</div>
-                                                <!-- <div class="fc-white fs-10 mrt5">1234-1234-1234-1234</div>
-                                                <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
-                                                </div>
-                                                <div class="bar-white"></div> -->
-                                            </div>
-                                        </div>
-                                        <div class="desc">
-                                            <div class="cardMag" style="">
-                                                <p class="name fs-14">카드의 정석 UNTACT AIR</p>
-                                                <div class="price"><p class="sum fs-num">24,000C</b></div>
-                                                <!-- <p class="list-content">
-                                                    단호박, 두부, 칙피, 옥수수 *이탈리안허브
-                                                </p> -->
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
-                    <!-- </div> -->
-                    <!-- //탭내용1 -->
-    
-                    <!-- 탭내용2 -->
-                    <div  id="tabpanel22" role="tabpanel" aria-labelledby="tabItem22" class="tab-cont">
-                    <div class="multi-time-sale time-sale">
-                            <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                                <div class="items">
-                                    <div class="thumbnail_list">
-                                        <img th:src="@{/order/img/product_03.png}">
-                                    </div>
-                                    <div class="desc">
-                                        <div class="">
-                                            <p class="name fs-14">
-                                                단호박두부 SWEET PUMPKIN TOFU
-                                            </p>
-                                            <p class="list-content">
-                                                단호박, 두부, 칙피, 옥수수 *이탈리안허브
-                                            </p>
-                                            <div class="price">
-                                                <p class="sum fs-num">24,000C</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- </article> -->
+                        </draggable>
                     </div>
-    
-                    <div class="multi-time-sale time-sale">
-                            <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                                <div class="items">
-                                    <div class="thumbnail_list">
-                                        <img th:src="@{/order/img/product_04.png}">
-                                    </div>
-                                    <div class="desc">
-                                        <div class="">
-                                            <p class="name fs-14">
-                                                치킨소시지 CHICKEN SAUSAGE
-                                            </p>
-                                            <p class="list-content">
-                                                치킨소시지, 에그, 옥수수 *허니머스타드
-                                            </p>
-                                            <div class="price">
-                                                <p class="sum fs-num">9,207C</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- </article> -->
-                    </div>
-                    </div>
-                    <!-- //탭내용2 -->
-                  </div>
-                  <!-- //Tab Change -->
-              </div>
-          </div>
-          <!-- //Section -->
-        </div>        
-      </div>
+                </div>
+            </div>
+        </div>
+        <!-- //Section -->
+      </div>      
 </div>
 
 <th:block layout:fragment="script">
@@ -253,16 +105,32 @@
         var app = new Vue({
             el: "#app",
             data: {
-                pay : 1,
-                date : 1,
-                hisCheckVal : true
+                isHidden: true,
+                cardList : {},
             },
             mounted: function () {
+                this.init();
+                this.getCardList();
             },
             methods: {
-
+                init : function(){
+                },
+                clickedButton: function() {
+                    this.isStatusOn = !this.isStatusOn;
+                },
+                getCardList : function(){
+                    param = {
+                    }
+                    console.log(param)
+                    cf_call("/card/main/getCardList", param, this.getCardListCB);
+                },
+                getCardListCB : function(data){
+                    console.log(data.cardList)
+                    this.cardList = data.cardList;
+                },
             },
             computed: {
+
             }
         })
     </script>
