@@ -1,15 +1,23 @@
 package com.card.shuttle.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RequestMapping("/card")
 @Controller
 public class CardViewCtl {
 
+    @Autowired
+    CommonCtl commonCtl;
+
     @GetMapping("/main")
-    public String cardMain(){
+    public String cardMain(HttpSession session, HttpServletRequest request){
+        session.setAttribute("lang", commonCtl.langSet(request));
         return "/page/card/main";
     }
 

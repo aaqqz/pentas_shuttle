@@ -16,4 +16,8 @@ public class CardSvc {
     public List<DevMap> test(DevMap param){
         return cmmnDao.selectList("shuttle.sample.test", param);
     }
+
+    public List<DevMap> getCardList(DevMap param){
+        return cmmnDao.selectList("shuttle.card.getCardList", param);
+    }
 }

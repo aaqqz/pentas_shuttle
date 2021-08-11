@@ -5,28 +5,117 @@
       layout:decorator="~{layout/default}">
 
 <head>
+    <link rel="stylesheet" th:href="@{/card/css/register.css}">
 </head>
 
 <div layout:fragment="content" class="content">
+    <div class="mrl20 mrr20 mrt20">
+        <div class="pageTitle">
+            <div class="fs-14 mrt5 mrb10 fw-bold">회원 정보를 입력해 주세요.</div>
+        </div>
+        <div class="mrt20">ID</div>
+        <input type="text"  class="wid100 mrt10" placeholder="shuttle@shuttle.com">
 
+        <div class="mrt20">PW</div>
+        <input type="password"  class="wid100 mrt10">
+
+        <div class="mrt20">PW Check</div>
+        <input type="password"  class="wid100 mrt10">
+        <div class="flex f-btw">
+            <div>
+                <div class="mrt20">Name</div>
+                <input type="text"  class="wh mrt10" placeholder="Name">
+            </div>
+            <div>
+                <div class="mrt20">Phone Number</div>
+                <input type="text"  class="wh mrt10" placeholder="010-5346-1234" onkeyup="telePhoneCheck(this)">
+            </div>
+        </div>
+        <div class="com-btn mrt20">
+            <button type="button" @click="onQrScanner()" class="btn btn-com">
+                <span class="fs-14">CARD QR SCAN</span>
+            </button>
+        </div>
+
+        <div class="mrt20">Card No</div>
+        <div class="cardNumInput mrt10">
+            <input type="number" class="inputs text-c" @input="nextInput('card02')" pattern="\d*" id="card01" maxlength="4"><div class="bar-black"></div>
+            <input type="number" class="inputs text-c" @input="nextInput('card03')" pattern="\d*" id="card02" maxlength="4"><div class="bar-black"></div>
+            <input type="number" class="inputs text-c" @input="nextInput('card04')" pattern="\d*" id="card03" maxlength="4"><div class="bar-black"></div>
+            <input type="number" class="inputs text-c" @input="nextInput('cardPw')" pattern="\d*" id="card04" maxlength="4">
+        </div>
+        <div class="mrt10">Card PW</div>
+        <input type="password" class="wid100 mrt10" id="cardPw">
+        <div class="fs-10 fc-gray mrt20">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
+        <div class="com-btn mrt20">
+            <button type="button" @click="signUp" class="btn btn-com">
+                <span class="fs-14">Sign Up</span>
+            </button>
+        </div>
+    </div>
+
+    <div layout:fragment="popup">
+        <div id="popupDialog" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        {{alertText}}
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <!--                        <button type="button" class="btn btn-close" onclick="popupClose('popupDialog')"><span>닫기</span></button>-->
+                        <button type="button" class="btn btn btn-succ-all" @click="popupCloseMain()"><span>확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
 
 
 <th:block layout:fragment="script">
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    var app = new Vue({
-      el: "#app",
-      data: {
-      },
-      mounted: function () {
-      },
-      methods: {
-      },
-      computed: {
-      }
-    })
-  </script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            mounted: function () {
+            },
+            methods: {
+                onQrScanner : function(){
+                    window.Android.onQrScanner();
+                },
+                qrScanResult : function (rsltData){
+                    this.setCardNO(rsltData);
+                },
+                setCardNo : function(rsltData){
+                    val = 909505492091;
+                    $("#card01").val(val.toString().substring(0,4));
+                    $("#card02").val(val.toString().substring(4,8));
+                    $("#card03").val(val.toString().substring(8,12));
+                    $("#card04").val(val.toString().substring(12,16));
+                },
+                nextInput : function (nextId){
+                    event.target.value=event.target.value.replace(/[^0-9]/g,'');
+                    var limit = event.target.value.length;
+                    if(4 < limit){
+                        $('#'+event.target.id).val(event.target.value.substring(0,4));
+                    } else if(5 === limit || 4 === limit){
+                        $('#'+nextId).focus();
+                    }
+                },
+
+                signUp : function(){
+
+                }
+            },
+            computed: {
+            }
+        })
+    </script>
 </th:block>
 
 </html>

@@ -194,6 +194,10 @@ function goBack(){
 function goPage(url){
     window.location.href=url;
 }
-
+function comma(x) {
+    if(typeof x === "undefined" || x == null )
+        return x;
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 

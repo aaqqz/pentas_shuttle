@@ -16,22 +16,46 @@ public class CardRestCtl {
     @Autowired
     CardSvc cardSvc;
 
+    @Autowired
+    CommonCtl commonCtl;
+
     @PostMapping("/card/main/loginProc")
     public DevMap loginProc(@RequestBody DevMap param, HttpSession session){
         DevMap rslt = new DevMap();
-        session.setAttribute("loginStatus", "LoginSucc");
-
-        rslt.put("succ", "succ");
+        session.setAttribute("userId", "shuttle@shuttle.com");
+        rslt.put("rsltData", "succ");
 
         return rslt;
     }
+
+    @PostMapping("/card/main/getCardList")
+    public DevMap getCardLIst(@RequestBody DevMap param){
+        DevMap rslt = new DevMap();
+        List<DevMap> rsltList = cardSvc.getCardList(param);
+
+        rslt.put("cardList", rsltList);
+        return rslt;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @PostMapping("/card/main/sessionCheck")
     public DevMap sessionCheck(@RequestBody DevMap param, HttpSession session){
         DevMap rslt = new DevMap();
         String loginStatus = session.getAttribute("loginStatus").toString();
         rslt.put("loginStatus", loginStatus);
-
         return rslt;
     }
     

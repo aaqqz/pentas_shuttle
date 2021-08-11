@@ -78,7 +78,6 @@ public class SampleRestCtl {
         return rslt;
     }
 
-
     @PostMapping("/sample/crudTest/updateTest")
     public List<DevMap> updateTest(@RequestBody DevMap param){
         sampleSvc.updateTest(param);

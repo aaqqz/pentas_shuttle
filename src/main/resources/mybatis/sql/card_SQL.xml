@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper namespace="shuttle.card">
+
+    <select id="getCardList" parameterType="DevMap" resultType="DevMap">
+        /* shuttle.card.getCardList */
+        SELECT
+            CARD_NO
+            ,CARD_NAME
+            ,CARD_BALANCE
+        FROM
+            TB_CARD
+        WHERE 1=1
+        AND CARD_STATE = '01'
+        <if test='usrId != null and usrId != ""'>
+        </if>
+    </select>
+</mapper>
