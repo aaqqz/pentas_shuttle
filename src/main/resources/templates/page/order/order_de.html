@@ -4,217 +4,216 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
 <head>
-  <link rel="stylesheet" th:href="@{/order/css/order.css}">
+    <link rel="stylesheet" th:href="@{/order/css/order.css}">
 </head>
-
 <div layout:fragment="content" class="content" role="main">
-  <!-- contents -->
-  <div class="text-bnr main-bnr">
-      <div class="main-banner">
-          <div class="desc" >
-              <!-- <span class="label label-speech"><b class="discount">~50%</b></span> -->
-              <h2 class="headline">샐러디</h2>
-              <p class="subcopy">SALADY</p>
-          </div>
-          <div class="thumbnail">
-            <img th:src="@{/order/img/store.png}">
-          </div>
-      </div>
-  </div>
-
-  <div class="main-container">
-    <div class="content-body">
-      <!-- Section -->
-      <div class="grid demo1">
-          <div class="col col-12">
-              <!-- Tab Change -->
-              <div class="tab-nav demo1 ">
-                  <ul role="tablist" class="tab-list">
-                      <li id="tabItem21" role="tab" aria-controls="tabpanel21" aria-selected="true" class="js-tab is-active">
-                          <button type="button" class="btn"><span class="fs-14">인기메뉴</span></button>
-                      </li>
-                      <li id="tabItem22" role="tab" aria-controls="tabpanel22" aria-selected="false" class="js-tab">
-                          <button type="button" class="btn"><span class="fs-14">웜볼</span></button>
-                      </li>
-                      <li id="tabItem23" role="tab" aria-controls="tabpanel23" aria-selected="false" class="js-tab">
-                          <button type="button" class="btn"><span class="fs-14">샐러디</span></button>
-                      </li>
-                  </ul>
-              </div>
-              
-              <div class="tab-body">
-                <!-- 탭내용1 -->
-                <div  id="tabpanel21" role="tabpanel" aria-labelledby="tabItem21" class="tab-cont is-active">
-                <div class="multi-time-sale time-sale">
-                    <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                        <div class="items">
-                            <div class="thumbnail_list">
-                                <img th:src="@{/order/img/product_01.png}">
-                            </div>
-                            <div class="desc">
-                                <p class="name fs-14">명란마요 쉬림프 포케볼 Pollack Roe Mayo Shrimp Poke Bowl</p> 
-                                <p class="list-content">쉬림프, 명란마요, 단무지, 양파, 옥수수, 칙피 *이탈리안허브</p> 
-                                <div class="price">
-                                    <p class="sum fs-num">6,000C
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- </article> -->
-                </div>
-
-                    <div class="multi-time-sale time-sale">
-                        <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                            <div class="items">
-                                <div class="thumbnail_list">
-                                    <img th:src="@{/order/img/product_02.png}">
-                                </div>
-                                <div class="desc">
-                                    <div class="">
-                                        <p class="name fs-14">
-                                            할라피뇨치킨 JALAPENO CHICKEN
-                                        </p>
-                                        <p class="list-content">
-                                            치킨, 할라피뇨, 칠리빈, 옥수수, 양파, 사워크림, *크리미칠리
-                                        </p>
-                                        <div class="price">
-                                            <p class="sum fs-num">6,000C</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- </article> -->
-                </div>
-                </div>
-                <!-- //탭내용1 -->
-
-                <!-- 탭내용2 -->
-                <div  id="tabpanel22" role="tabpanel" aria-labelledby="tabItem22" class="tab-cont">
-                <div class="multi-time-sale time-sale">
-                        <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                            <div class="items">
-                                <div class="thumbnail_list">
-                                    <img th:src="@{/order/img/product_03.png}">
-                                </div>
-                                <div class="desc">
-                                    <div class="">
-                                        <p class="name fs-14">
-                                            단호박두부 SWEET PUMPKIN TOFU
-                                        </p>
-                                        <p class="list-content">
-                                            단호박, 두부, 칙피, 옥수수 *이탈리안허브
-                                        </p>
-                                        <div class="price">
-                                            <p class="sum fs-num">24,000C</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- </article> -->
-                </div>
-
-                <div class="multi-time-sale time-sale">
-                        <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                            <div class="items">
-                                <div class="thumbnail_list">
-                                    <img th:src="@{/order/img/product_04.png}">
-                                </div>
-                                <div class="desc">
-                                    <div class="">
-                                        <p class="name fs-14">
-                                            치킨소시지 CHICKEN SAUSAGE
-                                        </p>
-                                        <p class="list-content">
-                                            치킨소시지, 에그, 옥수수 *허니머스타드
-                                        </p>
-                                        <div class="price">
-                                            <p class="sum fs-num">9,207C</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- </article> -->
-                </div>
-                </div>
-                <!-- //탭내용2 -->
-
-                <!-- 탭내용2 -->
-                <div  id="tabpanel23" role="tabpanel" aria-labelledby="tabItem23" class="tab-cont">
-                <div class="multi-time-sale time-sale">
-                        <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                            <div class="items">
-                                <div class="thumbnail_list">
-                                    <img th:src="@{/order/img/product_01_01.png}">
-                                </div>
-                                <div class="desc">
-                                    <div class="">
-                                        <p class="name fs-14">
-                                            시저치킨 CAESAR CHICKEN
-                                        </p>
-                                        <p class="list-content">
-                                            치킨, 크랜베리 *시저
-                                        </p>
-                                        <div class="price">
-                                            <p class="sum fs-num">24,000C</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- </article> -->
-                </div>
-
-                <div class="multi-time-sale time-sale">
-                        <div class="weekday" onclick="popupOpen('slideFootPopup')">
-                            <div class="items">
-                                <div class="thumbnail_list">
-                                    <img th:src="@{/order/img/product_01-2.png}">
-                                </div>
-                                <div class="desc">
-                                    <div class="">
-                                        <p class="name fs-14">
-                                            리코타치즈 RICOTTA CHEESE 
-                                        </p>
-                                        <p class="list-content">
-                                            리코타치즈, 크랜베리, 견과류, 통밀빵 *발사믹
-                                        </p>
-                                        <div class="price">
-                                            <p class="sum fs-num">9,207C</b>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- </article> -->
-                </div>
-                </div>
-                <!-- //탭내용2 -->
-              </div>
-              <!-- //Tab Change -->
-          </div>
-      </div>
-      <!-- //Section -->
-    </div>        
-  </div>
-  <div layout:fragment="slideFootPopup">
-    <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
-        <section class="popup slide">
-            <div class="popup-head">
-                <h3 class="popup-tit ">[인기메뉴] 디트로이트 피자</h3>
+    <!-- contents -->
+    <div class="text-bnr main-bnr">
+        <div class="main-banner">
+            <div class="desc">
+                <!-- <span class="label label-speech"><b class="discount">~50%</b></span> -->
+                <h2 class="headline">샐러디</h2>
+                <p class="subcopy">SALADY</p>
             </div>
-    
-            <div class="popup-body">
-                <div class="popup-content">
-                    <!-- <div class="container"> -->
+            <div class="thumbnail">
+                <img th:src="@{/order/img/store.png}">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="content-body">
+            <!-- Section -->
+            <div class="grid demo1">
+                <div class="col col-12">
+                    <!-- Tab Change -->
+                    <div class="tab-nav demo1 ">
+                        <ul role="tablist" class="tab-list">
+                            <li id="tabItem21" role="tab" aria-controls="tabpanel21" aria-selected="true" class="js-tab is-active">
+                                <button type="button" class="btn"><span class="fs-14">인기메뉴</span></button>
+                            </li>
+                            <li id="tabItem22" role="tab" aria-controls="tabpanel22" aria-selected="false" class="js-tab">
+                                <button type="button" class="btn"><span class="fs-14">웜볼</span></button>
+                            </li>
+                            <li id="tabItem23" role="tab" aria-controls="tabpanel23" aria-selected="false" class="js-tab">
+                                <button type="button" class="btn"><span class="fs-14">샐러디</span></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-body">
+                        <!-- 탭내용1 -->
+                        <div id="tabpanel21" role="tabpanel" aria-labelledby="tabItem21" class="tab-cont is-active">
+                            <div class="multi-time-sale time-sale">
+                                <div class="weekday" onclick="popupOpen('slideFootPopup')">
+                                    <div class="items">
+                                        <div class="thumbnail_list">
+                                            <img th:src="@{/order/img/product_01.png}">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="name fs-14">명란마요 쉬림프 포케볼 Pollack Roe Mayo Shrimp Poke Bowl</p>
+                                            <p class="list-content">쉬림프, 명란마요, 단무지, 양파, 옥수수, 칙피 *이탈리안허브</p>
+                                            <div class="price">
+                                                <p class="sum fs-num">6,000C
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- </article> -->
+                            </div>
+
+                            <div class="multi-time-sale time-sale">
+                                <div class="weekday" onclick="popupOpen('slideFootPopup')">
+                                    <div class="items">
+                                        <div class="thumbnail_list">
+                                            <img th:src="@{/order/img/product_02.png}">
+                                        </div>
+                                        <div class="desc">
+                                            <div class="">
+                                                <p class="name fs-14">
+                                                    할라피뇨치킨 JALAPENO CHICKEN
+                                                </p>
+                                                <p class="list-content">
+                                                    치킨, 할라피뇨, 칠리빈, 옥수수, 양파, 사워크림, *크리미칠리
+                                                </p>
+                                                <div class="price">
+                                                    <p class="sum fs-num">6,000C</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- </article> -->
+                            </div>
+                        </div>
+                        <!-- //탭내용1 -->
+
+                        <!-- 탭내용2 -->
+                        <div id="tabpanel22" role="tabpanel" aria-labelledby="tabItem22" class="tab-cont">
+                            <div class="multi-time-sale time-sale">
+                                <div class="weekday" onclick="popupOpen('slideFootPopup')">
+                                    <div class="items">
+                                        <div class="thumbnail_list">
+                                            <img th:src="@{/order/img/product_03.png}">
+                                        </div>
+                                        <div class="desc">
+                                            <div class="">
+                                                <p class="name fs-14">
+                                                    단호박두부 SWEET PUMPKIN TOFU
+                                                </p>
+                                                <p class="list-content">
+                                                    단호박, 두부, 칙피, 옥수수 *이탈리안허브
+                                                </p>
+                                                <div class="price">
+                                                    <p class="sum fs-num">24,000C</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- </article> -->
+                            </div>
+
+                            <div class="multi-time-sale time-sale">
+                                <div class="weekday" onclick="popupOpen('slideFootPopup')">
+                                    <div class="items">
+                                        <div class="thumbnail_list">
+                                            <img th:src="@{/order/img/product_04.png}">
+                                        </div>
+                                        <div class="desc">
+                                            <div class="">
+                                                <p class="name fs-14">
+                                                    치킨소시지 CHICKEN SAUSAGE
+                                                </p>
+                                                <p class="list-content">
+                                                    치킨소시지, 에그, 옥수수 *허니머스타드
+                                                </p>
+                                                <div class="price">
+                                                    <p class="sum fs-num">9,207C</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- </article> -->
+                            </div>
+                        </div>
+                        <!-- //탭내용2 -->
+
+                        <!-- 탭내용2 -->
+                        <div id="tabpanel23" role="tabpanel" aria-labelledby="tabItem23" class="tab-cont">
+                            <div class="multi-time-sale time-sale">
+                                <div class="weekday" onclick="popupOpen('slideFootPopup')">
+                                    <div class="items">
+                                        <div class="thumbnail_list">
+                                            <img th:src="@{/order/img/product_01_01.png}">
+                                        </div>
+                                        <div class="desc">
+                                            <div class="">
+                                                <p class="name fs-14">
+                                                    시저치킨 CAESAR CHICKEN
+                                                </p>
+                                                <p class="list-content">
+                                                    치킨, 크랜베리 *시저
+                                                </p>
+                                                <div class="price">
+                                                    <p class="sum fs-num">24,000C</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- </article> -->
+                            </div>
+
+                            <div class="multi-time-sale time-sale">
+                                <div class="weekday" onclick="popupOpen('slideFootPopup')">
+                                    <div class="items">
+                                        <div class="thumbnail_list">
+                                            <img th:src="@{/order/img/product_01-2.png}">
+                                        </div>
+                                        <div class="desc">
+                                            <div class="">
+                                                <p class="name fs-14">
+                                                    리코타치즈 RICOTTA CHEESE
+                                                </p>
+                                                <p class="list-content">
+                                                    리코타치즈, 크랜베리, 견과류, 통밀빵 *발사믹
+                                                </p>
+                                                <div class="price">
+                                                    <p class="sum fs-num">9,207C</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- </article> -->
+                            </div>
+                        </div>
+                        <!-- //탭내용2 -->
+                    </div>
+                    <!-- //Tab Change -->
+                </div>
+            </div>
+            <!-- //Section -->
+        </div>
+    </div>
+    <div layout:fragment="slideFootPopup">
+        <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
+            <section class="popup slide">
+                <div class="popup-head">
+                    <h3 class="popup-tit ">[인기메뉴] 디트로이트 피자</h3>
+                </div>
+
+                <div class="popup-body">
+                    <div class="popup-content">
+                        <!-- <div class="container"> -->
                         <div class="popup-con-head">
                             <p>가격</p>
                             <p>6,000C</p>
                         </div>
-    
+
                         <div class="popup-con-body">
                             <div class="option-selec">
                                 <h3 class="popup-head-tit">메뉴 사이즈<span>필수선택</span></h3>
@@ -228,7 +227,7 @@
                                             +4300C
                                         </div>
                                     </div>
-                                    
+
                                     <div class="option">
                                         <span class="radio demo1">
                                             <input type="radio" name="sRadio1" id="sRadio2">
@@ -238,7 +237,7 @@
                                             +4300C
                                         </div>
                                     </div>
-    
+
                                     <div class="option">
                                         <span class="radio demo1">
                                             <input type="radio" name="sRadio1" id="sRadio3">
@@ -251,45 +250,44 @@
                                 </article>
                             </div>
                         </div>
-    
                         <div class="price-con">
                             <div class="fot-price fs-16">총 가격</div>
                             <div class="fot-num fs-16">10,300C</div>
                         </div>
+                    </div>
+                    <!-- </div> -->
                 </div>
-                <!-- </div> -->
-            </div>
-            <div class="popup-foot">
-                <div class="btn_wrap">
-                    <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-                    <button type="button" class="btn btn-succ" onclick="popupOpen('popupAlert')"><span>주문담기</span></button>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+                        <button type="button" class="btn btn-succ" onclick="popupOpen('popupAlert')"><span>주문담기</span></button>
+                    </div>
                 </div>
-            </div>
-            <div class="popup-close">
-                <button type="button" class="btn btn-close" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-            </div>
-        </section>
+                <div class="popup-close">
+                    <button type="button" class="btn btn-close" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
 
-<div layout:fragment="popupAlert">
-    <div id="popupAlert" class="popup-wrap type-basic">
-        <section class="popup demo1">
-            <div class="popup-body">
-                <div class="popup-content">
-                    주문을 담았습니다. <br>
-                    상단 장바구니 아이콘을 확인하세요.
+    <div layout:fragment="popupAlert">
+        <div id="popupAlert" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        주문을 담았습니다. <br>
+                        상단 장바구니 아이콘을 확인하세요.
+                    </div>
                 </div>
-            </div>
-            <div class="popup-foot">
-                <div class="btn_wrap">
-                    <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('popupAlert')"><span>닫기</span></button> -->
-                    <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup')]"><span>확인</span></button>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('popupAlert')"><span>닫기</span></button> -->
+                        <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup')]"><span>확인</span></button>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -297,23 +295,19 @@
 
 
 <th:block layout:fragment="script">
-  <script type="text/javascript">
-
-    var app = new Vue({
-      el: "#app",
-      data: {
-          
-      },
-        mounted: function () {
-      },
-      methods: {
-
-     },
-      computed: {
-        }
-    })
-    
-  </script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+            },
+            mounted: function () {
+            },
+            methods: {
+            },
+            computed: {
+            }
+        })
+    </script>
 </th:block>
 
 </html>

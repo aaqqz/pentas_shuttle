@@ -46,13 +46,13 @@
                                     <div class="sub">할라피뇨추가</div>
                                     <div class="menu-fot">
                                         <div class="num">
-                                            <input type='button' class="plus" @click='count("plus", "totalA")' value='+'/>
+                                            <input type='button' class="miner" @click='count("minus", "totalA")'  value='-'/>
 
                                             <div class="num-cout fs-14" >{{totalA}}</div>
 
-                                            <input type='button' class="miner" @click='count("minus", "totalA")'  value='-'/>
+                                            <input type='button' class="plus" @click='count("plus", "totalA")' value='+'/>
                                         </div>
-                                        <span class="price-num fs-num">3,600C<span>
+                                        <span class="price-num fs-num">3,600C</span>
                                     </div>
                                 </div>
                             </div>
@@ -73,13 +73,13 @@
                                     <div class="sub">야채추가</div>
                                     <div class="menu-fot">
                                         <div class="num">
-                                            <input type='button' class="plus" @click='count("plus", "totalB")' value='+'/>
+                                            <input type='button' class="miner" @click='count("minus", "totalB")'  value='-'/>
 
                                             <div class="num-cout fs-14" >{{totalB}}</div>
 
-                                            <input type='button' class="miner" @click='count("minus", "totalB")'  value='-'/>
+                                            <input type='button' class="plus" @click='count("plus", "totalB")' value='+'/>
                                         </div>
-                                        <span class="price-num fs-num">3,600C<span>
+                                        <span class="price-num fs-num">3,600C</span>
                                     </div>
                                 </div>
                             </div>
@@ -95,65 +95,53 @@
         </div>
 
         <div class="com-btn">
-            <button type="button" class="btn btn-com" onclick="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
+            <button type="button" class="btn btn-com" @click="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
         </div>
     </div>
+
+
     <div layout:fragment="slideFootPopup">
         <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
             <section class="popup slide">
                 <div class="popup-head">
                     <h3 class="popup-tit">결제카드 선택</h3>
                 </div>
-
                 <div class="popup-body">
-                    <div class="popup-content">
+                    <div class="popup-content pdPop">
                         <!-- <div class="popup-con-head"></div> -->
                         <div class="popup-con-body">
                             <section class="card-option">
                                 <div class="cardWrap">
-
                                     <div class="swiper-pagination"></div>
-                                    <swiper ref="swiperComponent" :options="swiperOption()">
-                                        <swiper-slide>
+                                    <swiper ref="swiperComponent" :options="swiperOption()" class="swiper">
+                                        <swiper-slide class="cardList" v-for="item in cardList">
                                             <div class="cardBox pd15" style="height: 49vw;">
-                                                <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
-                                                <div class="fc-white fs-16 mrt25 fw-bold">1234-1234-1234-1234</div>
+                                                <div class="fc-white fs-16 mrt25 fw-bold">{{item.cardNoFormat}}</div>
                                                 <div class="flex f-btw mrt75 mrb25">
                                                     <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
+                                                    <div class="fc-white fs-14">{{comma(item.cardBalance)}} C</div>
                                                 </div>
                                                 <div class="bar-white"></div>
-                                            </div>
-                                        </swiper-slide>
-                                        <swiper-slide>
-                                            <div class="cardBox pd15" style="background-color: #ff8030; height: 49vw;">
-                                                <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
-                                                <div class="fc-white fs-16 mrt25 fw-bold">1234-1234-1234-1234</div>
-                                                <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
-                                                </div>
                                             </div>
                                         </swiper-slide>
                                     </swiper>
                                 </div>
                             </section>
-
                             <div class="price-con-cl">
                                 <!-- <button type="button" class="btn btn-char" onclick="goPage('/card/change')"><span class="fs-14">전환하기</span></button> -->
-                                <div class="fot-price fs-16">총금액<span class="fot-num fs-16 mrl5">27,200C</span></div>
+                                <div class="fot-price fs-16">총금액<span class="fot-num fs-16 mrl5 mrr15">27,200C</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="popup-foot">
-                    <div class="btn_wrap">
-                        <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-                        <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert')"><span>결제하기</span></button>
+                    <div class="btn_wrap"><!--popupOpen('popupAlert01')-->
+                        <button type="button" class="btn btn-exit" @click="popupClose('slideFootPopup')"><span>닫기</span></button>
+                        <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert02')"><span>결제하기</span></button>
                     </div>
                 </div>
                 <div class="popup-close">
-                    <button type="button" class="btn btn-close" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
+                    <button type="button" class="btn btn-close" @click="popupClose('slideFootPopup')"><span>닫기</span></button>
                 </div>
             </section>
         </div>
@@ -161,23 +149,43 @@
 
     <!-- 카드로 결제했을시 완료 팝업 -->
     <div layout:fragment="popupAlert">
-        <div id="popupAlert" class="popup-wrap type-basic">
+        <div id="popupAlert01" class="popup-wrap type-basic">
             <section class="popup demo1">
                 <div class="popup-body">
-                    <div class="popup-content fs-16">
-                        결제가 완료되었습니다.
+                    <div class="popup-content">
+                        {{alertText}}
                     </div>
                 </div>
                 <div class="popup-foot">
-                    <div class="btn_wrap">
-                        <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('slideFootPopup')"><span>닫기</span></button> -->
-                        <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup'), goPage('/card/main')]"><span>확인</span></button>
+                    <div class="btn_wrap" v-if="succ == false">
+                        <button type="button" class="btn btn-succ-all" @click="popupClose('popupAlert01'), popupClose('popupAlert02')"><span>확인</span></button>
+                    </div>
+                    <div class="btn_wrap" v-else>
+                        <button type="button" class="btn btn-succ-all" @click="goMain"><span>확인</span></button>
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
+    <!-- 카드로 결제했을시 완료 팝업 -->
+    <div layout:fragment="popupAlert">
+        <div id="popupAlert02" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content fs-16">
+                        결제하시겠습니까?
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn btn-succ-al" @click="popupClose('popupAlert02')"><span>닫기</span></button>
+                        <button type="button" class="btn btn-succ-al" @click="goPayment()"><span>확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
 
 
@@ -187,12 +195,24 @@
         var app = new Vue({
             el: "#app",
             data: {
+                cardList : {},
+
+                currSeq : 0,
+                currentItem : {},
+
+                totalPriceAmount : 27200,   // 제품 총가격
+                totalCardBalance : 0,
+
+                alertText : "",
+
+                succ : false,
                 totalA : 1,
                 totalB : 1,
                 cardSeq : 0
             },
             mounted: function () {
                 this.init();
+                this.getCardList();
             },
             methods: {
                 init : function(){
@@ -204,9 +224,89 @@
                             // 전체선택 체크박스가 해제된 경우
                         } else {
                             //해당화면에 모든 checkbox들의 체크를해제시킨다.
-                            $("input[type=checkbox]").prop("checked",false); } })
-
+                            $("input[type=checkbox]").prop("checked",false); }
+                    })
                 },
+
+                getCardList : function(){
+                    param = {
+                        userId : this.userId
+                    }
+                    cf_call("/card/main/getCardList", param, this.getCardListCB);
+                },
+                getCardListCB : function(data){
+                    for(var i in data.cardList) {
+                        var cardNoForMat = data.cardList[i].cardNo.replace(/(.{4})/g,"$1-").slice(0, -1);
+                        data.cardList[i].cardNoFormat = cardNoForMat;
+                    }
+                    this.cardList = data.cardList;
+                    this.currentItem = data.cardList[0];
+                    console.log(this.cardList);
+                },
+                swiperOption : function(){
+                    return {
+                        // 'allowTouchMove': value,
+                        'pagination': {
+                            'el': '.swiper-pagination',
+                            'type': 'fraction',
+                            // 'clickable' : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+                        },
+                        on: {
+                            'slideChangeTransitionEnd': function () {
+                                app.currSeq = this.activeIndex;
+                                app.currentItem = app.cardList[app.currSeq];
+                                $(".cardBox").next(".cardHisAco").stop().slideUp(300);
+                            }
+                        },
+                        effect: 'coverflow',
+                        coverflowEffect: {
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 300,
+                            slideShadows: false,
+                        }
+                    };
+                },
+                validate : function(){
+                    this.totalCardBalance = this.currentItem.cardBalance - this.totalPriceAmount;
+                    console.log(this.totalCardBalance)
+                    if(this.totalCardBalance < 0){
+                        this.alertText = "결제가능 금액을 초과하였습니다."
+                        popupOpen('popupAlert01');
+                        return false;
+                    }
+
+                    return true;
+                },
+                goPayment : function(){
+                    if(!this.validate())
+                        return
+
+                    param = {
+                        cardNo : this.currentItem.cardNo,
+                        cardBalance : this.totalCardBalance.toString(),
+                    }
+                    console.log(param)
+                    console.log(222)
+                    cf_call("/order/order_card/payment", param, this.goPaymentCB);
+                },
+                goPaymentCB : function(){
+                    this.alertText = "결제가 완료되었습니다.";
+                    popupOpen('popupAlert01');
+                    this.succ = true;
+                },
+
+
+
+
+
+                goMain : function(){
+                    location.href = "/card/main"
+                },
+
+
+
+
                 count : function (type, totalVal)  {
                     var num = 0
                     if(totalVal == "totalA"){
@@ -236,33 +336,11 @@
 
                 },
 
-                swiperOption : function(){
-                    return {
-                        // 'allowTouchMove': value,
-                        'pagination': {
-                            'el': '.swiper-pagination',
-                            'type': 'fraction',
-                            // 'clickable' : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
-                        },
-                        on: {
-                            'slideChangeTransitionEnd': function () {
-                                this.cardSeq = this.activeIndex;
-                            }
-                        },
-                        effect: 'coverflow',
-                        coverflowEffect: {
-                            rotate: 0,
-                            stretch: 0,
-                            depth: 300,
-                            slideShadows: false,
-                        }
-                    };
-                }
+
             },
             computed: {
             }
         })
     </script>
 </th:block>
-
 </html>

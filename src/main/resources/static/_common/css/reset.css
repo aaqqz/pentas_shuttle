@@ -743,6 +743,9 @@ footer
 #app{
     background-color: #f1f5f8; min-height: 100vh;
 }
+.pdPop {
+    padding: 5.56vw 0 !important;
+}
 /* 폰트컬러 */
 .fc-gray{
     color: #aaaeb3;

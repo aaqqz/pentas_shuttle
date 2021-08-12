@@ -8,11 +8,7 @@
     <link rel="stylesheet" th:href="@{/card/css/main.css}">
 
     <!-- Swiper library S -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-    <link rel="stylesheet" type="text/css" href="path/to/xeicon/xeicon.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@5.3.6/js/swiper.min.js"></script>
     <!-- vue-awesome-swiper -->
     <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper"></script>
@@ -60,11 +56,11 @@
                     <div class="fc-white mrt5 fs-16 fw-bold">{{item.cardNoFormat}}</div>
                     <div class="flex f-btw mrt25 mrb25">
                         <div class="fc-white fs-14">사용 가능 금액</div>
-                        <div class="fc-white fs-14">{{comma(item.cardBalance)}} </div>
+                        <div class="fc-white fs-14">{{comma(item.cardBalance)}} &#169;</div>
                     </div>
                     <div class="bar-white mrt30"></div>
                     <div class="cardHis flex f-btw mrt25">
-                        <div class="fc-white">7월에 <span>9,900 C </span>사용</div>
+                        <div class="fc-white">7월에 <span>9,900 &#169; </span>사용</div>
                         <div class="cardHisArrow">
                             <img th:src="@{/card/img/arrow-down-white.png}">
                         </div>
@@ -74,11 +70,11 @@
                     <div class="hisCont mrb15 pdb15">
                         <div class="flex f-btw">
                             <div class="">아웃백 사당점</div>
-                            <div class="fc-blue fw-bold">3,300 C</div>
+                            <div class="fc-blue fw-bold">3,300 &#169;</div>
                         </div>
                         <div class="flex f-btw mrt5">
                             <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                            <div class="fc-gray fs-10">잔액 25,000 C</div>
+                            <div class="fc-gray fs-10">잔액 25,000 &#169;</div>
                         </div>
                     </div>
                     <div class="hisCont mrb15 pdb15">
@@ -118,6 +114,7 @@
             <div class="flex f-evn">
                 <div class="flex f-clm align-center cardBtn" @click="popupOpenMain('popupTop')">
                     <div class="cardBtnImg">
+<<<<<<< HEAD
                         <!-- <div>
                             <b-icon icon="credit-card"  font-scale="1.5"></b-icon>
                             <b-icon icon="slash-circle" variant="danger"  style="position: absolute; left: 200px; top: 900px;"></b-icon>
@@ -129,6 +126,9 @@
                           </b-iconstack> -->
                           <!-- <i class="xi-xpressengine"></i> -->
                           <img th:src="@{/card/img/icon/price_cash.png}" style="width: 100%;">
+=======
+                        <img th:src="@{/card/img/icon/cash.svg}" style="width: 100%;">
+>>>>>>> f45ddbab73f2a7051eada99cb02fbb9aa4f22b70
                     </div>
                     <div class="fs-10 mrt5">결제</div>
                 </div>
@@ -143,9 +143,9 @@
                     <div class="fs-10 mrt5">충전</div>
                 </div>
                 <div class="hBar"></div>
-                <!-- <div class="flex f-clm align-center cardBtn" @click="Payment()"> -->
                 <div class="flex f-clm align-center cardBtn" @click="goRegist()">
                     <div class="cardBtnImg">
+<<<<<<< HEAD
                         <!-- <div>
                             <b-icon icon="credit-card" font-scale="1.5"></b-icon>
                         </div> -->
@@ -171,6 +171,9 @@
                             <image id="레이어_3" data-name="레이어 3" x="57" y="183" width="413" height="44" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZ0AAAAsCAYAAAC+PmXGAAABHUlEQVR4nO3YMUsDQRSF0bsm//+3pbMNYiUIqRRCkpXoK1KaYm91DgxTbDEwU3y8XZKc8mef5CXJLck1yRoA+J97T3az3zvyleQzyTHJIcl75qO4ALCFyww2r0neMtMNAGzlNvE5Z36nAUCF6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1OxdNQAbWmbA2WWis85Zy8OZqxcA4EmPHbkm+U5ySvLxu5L8AK+sGB1+3QcXAAAAAElFTkSuQmCC"/>
                             <image id="레이어_2" data-name="레이어 2" x="370" y="108" width="109" height="135" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACHCAYAAAAcJ9eyAAADDElEQVR4nO3dzYtNYQDH8e9hpGbBig0lLxsvKUXJVknKlIWwsRU7Fspu/gPJipW8rKxYsZqNbLylRKRQQkRN3vKSq9GZGo0Z984d9zw/9/upZ32ee7895zmdc+ZO1Wq1SFVV1alZnPp74CPwAXgHPAUeAs9L+3oqILdab4xFfATcAkbq8arJCRltZu4DV4DzwJ1eH9xo3bsHnK0DvuzVQVuOWRmfgRPAcqPlje/ABWCN0fLGF2AYGDRa3ngG7DRa5rgILJyNYF499tZjYA9wu5ujzgn84MlWAdeBQ91+hn4/bTU1huszndHCxmlgbqfB3NOadxnYDXxtdybuac0bAs500sJoZdgHHO9kJv2+r5Q0jrUTzD2tLD+AHcDV6WZltPK8BjYAL6aamXtaeRbXz+embGO0Mm0Fjk41M0+P5foErK1fMPqNK61cg/WT8EmMVrahPz2L8/RYvrEXh9ZP7ORKK986YNfEWbrSMtwENo3P1JWWYSOwfXymRstxcHymnh5zfAOWAG8GgAP9/m3UFgArgS311Vpp5gF7gZMFzq0IK4DD9d2Ikh7d3Oj3MO2YDxwB3hYUbmn5X1sZlgF3C4m2v+M3gfrUKHAOWF2PJo32e4xOjZ0urzW80ibd9dffLQKeNBxOM7DNaJlGjJZns9EyNbK3ecO4O5eaOKjRujPtS6X/itG686CJg874j9r0y2D9e1o9ZbTuVPX79z0/qLrT80tw97RARgtktEBGC2S0QEYLZLRARgtktEBGC2S0QEYLZLRARgtktEADyf/VqV1V9X89NnSlBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWhrgJ66LPLBWZByQAAAAAElFTkSuQmCC"/>
                         </svg> -->
+=======
+                        <img th:src="@{/card/img/icon/pric.svg}" style="width: 100%;">
+>>>>>>> f45ddbab73f2a7051eada99cb02fbb9aa4f22b70
                     </div>
                     <div class="fs-10 mrt5">등록</div>
                 </div>
@@ -330,7 +333,7 @@
                         </div>
                     </div>
                     <div class="payTab" :class="{'on':payTabVal == 3}" >
-                        <div style="height: 85vw;">
+                        <div style="height: 70vw;">
                             <div class="fs-14 popCardNo mrb15">{{currentItem.cardNoFormat}}</div>
                             <div class="qrImg02 output" v-if="qrcodeInput">
                                 <img :src="newQRCode" alt="QRCode" />
@@ -467,6 +470,12 @@
                 },
 
                 popupOpenMain : function(val){
+                    if(this.userId == ""){
+                        this.alertText = "로그인 후 이용가능합니다."
+                        popupOpen('popupDialog');
+                        return;
+                    }
+                    console.log(1111)
                     popupOpen(val);
                 },
 

@@ -142,9 +142,10 @@
     margin: 0 auto;
 }
 .qrImg02{
-    width: 80vw;
-    margin: 0 auto;
+    width: 43vw;
+    margin: 10vw auto 0;
 }
+
 .payTab{
     display: none;
 }
