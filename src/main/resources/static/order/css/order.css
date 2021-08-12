@@ -16,7 +16,7 @@
     position: relative !important;
     top: 9.89vw;
     right: 27.78vw;
-    margin-left: 64vw;
+    margin-left: 74vw;
 }
 .list-body { }
 .list-body .list-price { }
@@ -35,3 +35,14 @@
 .list-body .list-price .menu-list .menu-fot .price-num { display: flex; justify-content: center; align-items: center;}
 
 .price-con-cl .fot-price {display: flex; align-items: center;}
+
+
+.swiper .cardList:nth-child(1) .cardBox{
+    background-color: #2b78a2;
+}
+.swiper .cardList:nth-child(2) .cardBox{
+    background-color: #fa6690;
+}
+.swiper .cardList:nth-child(3) .cardBox{
+    background-color: #60aba8;
+}

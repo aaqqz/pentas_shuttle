@@ -5,57 +5,58 @@
       layout:decorator="layout/default">
       
 <head>
-  <link rel="stylesheet" th:href="@{/order/css/search.css}">
-  <link rel="stylesheet" th:href="@{/_common/css/popup.css}">
-  <link rel="stylesheet" th:href="@{/card/css/main.css}">
+    <link rel="stylesheet" th:href="@{/order/css/search.css}">
+    <link rel="stylesheet" th:href="@{/_common/css/popup.css}">
+    <link rel="stylesheet" th:href="@{/card/css/main.css}">
 
 </head>
 
 <div layout:fragment="content" class="content">
-  <!-- contents -->
-  <div class="main-container">
-      <div class="content-body">
-        <!-- Section -->
-        <div class="content panel panel-default" style="padding-bottom: 0;">
-            <div class="search-container">
-                <div class="form-controls pdt20 pdb20 pdr20 pdl20">
-                    <span class="file-add demo2 search-wrapper panel-heading col-sm-12">
-                        <input type="text" class="input search form-control" v-model="searchQuery" placeholder="찾고싶은 매장을 입력해주세요.">
-                        <label class="btn demo3 type-attach">
-                            <span style="height: 11.11vw; display: flex; font-size: 3.89vw; align-items: center;"><input type="button" name="sFiles1" id="sFiles1">검색</span>       
-                        </label>
-                    </span>
-                </div>
-                <div class="containers">
-                    <div class="btn_wrap">
-                        <button type="button" class="btn btn-succ-all" style="
-                        border-radius: 5.56vw;
-                        margin: 0 auto;
-                        background-color: rgb(36, 150, 238);
-                        width: 60%;
-                        color: #fff;" @click="onQrScanner()"><span>매장 QR코드로 인증하기</span></button>
+    <!-- contents -->
+    <div class="main-container">
+        <div class="content-body">
+            <!-- Section -->
+            <div class="content panel panel-default" style="padding-bottom: 0;">
+                <div class="search-container">
+                    <div class="form-controls pdt20 pdb20 pdr20 pdl20">
+                        <span class="file-add demo2 search-wrapper panel-heading col-sm-12">
+                            <input type="text" class="input search form-control" v-model="searchQuery" placeholder="찾고싶은 매장을 입력해주세요."/>
+                            <div class="searBtn" @click="search">
+                                <b-icon icon="search" font-scale="1.5"></b-icon>
+                            </div>
+                        </span>
                     </div>
-                    <h3 style="text-align: center; margin-top: 2vw;">매장 진입시 QR로 인증하세요.</h3>
-                </div>
-                <!-- //Section -->
-                <div class="search-container" v-if="resources.length">    
-                    <div class="grid demo1" style="margin-top: 6vw;">
-                        <div class="col col-12">    
-                            <div class="tab-body">
-                                <!-- <div class="search-list" v-if="resultQuery.length > 0">
-                                    <h3 class="storeSer fs-14" style="padding: 38vw 0;">검색어를 입력해주세요.</h3>
-                                </div> -->
-                                <div class="search-list" @click="goPage('/order/order_de')">
-                                    <div class="search-detail" >
-                                        <div class="weekday mrb20" v-for="item in resultQuery" >
-                                            <div class="items">
-                                                <div class="thumbnail_list">
-                                                    <img :src="item.uri" />
-                                                </div>
-                                                <div class="desc">
-                                                    <div class="">
-                                                        <p class="name"><a v-bind:href="item.uri" target="_blank">{{item.title}}</a></p>
-                                                        <p class="list-content">현대인의 건강을 책임지는 감성 셀러드 전문전 셀러디입니다.</p>
+                    <div class="containers">
+                        <div class="btn_wrap">
+                            <button type="button" class="btn btn-succ-all" style="
+                            border-radius: 5.56vw;
+                            margin: 0 auto;
+                            background-color: rgb(36, 150, 238);
+                            width: 60%;
+                            color: #fff;" @click="onQrScanner()"><span>매장 QR코드로 인증하기</span></button>
+                        </div>
+<!--                        <h3 style="text-align: center; margin-top: 2vw;">매장 진입시 QR로 인증하세요.</h3>-->
+                    </div>
+                    <!-- //Section -->
+                    <div class="search-container" v-if="resources.length">
+                        <div class="grid demo1" style="margin-top: 6vw;">
+                            <div class="col col-12">
+                                <div class="tab-body">
+                                    <!-- <div class="search-list" v-if="resultQuery.length > 0">
+                                        <h3 class="storeSer fs-14" style="padding: 38vw 0;">검색어를 입력해주세요.</h3>
+                                    </div> -->
+                                    <div class="search-list" @click="goPage('/order/order_de')">
+                                        <div class="search-detail" >
+                                            <div class="weekday mrb20" v-for="item in resultQuery" >
+                                                <div class="items">
+                                                    <div class="thumbnail_list">
+                                                        <img :src="item.uri" />
+                                                    </div>
+                                                    <div class="desc">
+                                                        <div class="">
+                                                            <p class="name"><a v-bind:href="item.uri" target="_blank">{{item.title}}</a></p>
+                                                            <p class="list-content">현대인의 건강을 책임지는 감성 셀러드 전문전 셀러디입니다.</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -67,62 +68,58 @@
                     </div>
                 </div>
             </div>
+            <!-- //Section -->
         </div>
-        <!-- //Section -->
-      </div>        
-  </div>
-  <!-- contents -->
+    </div>
+      <!-- contents -->
 </div>
 
 
 <th:block layout:fragment="script">
-  <script type="text/javascript">
-    var app = new Vue({
-      el: "#app",
-      data: {
-        searchQuery: null,
-        resources:[
-            {title:"셀러디", uri: "../../order/img/store.png" ,category:"a",icon:null},
-            {title:"Accounting Services",uri: "../../order/img/store.png",category:"a",icon:null},
-            {title:"Administration",uri: "../../order/img/store.png",category:"a",icon:null},
-            {title:"Advanced Student Lookup",uri: "../../order/img/store.png",category:"b",icon:null},
-            {title:"Art & Sciences",uri: "../../order/img/store.png",category:"b",icon:null},
-            {title:"Auxiliares Services",uri: "../../order/img/store.png",category:"b",icon:null},
-            {title:"Basic Skills",uri: "../../order/img/store.png",category:"c",icon:null},
-            {title:"Board of Trustees",uri: "../../order/img/store.png",category:"d",icon:null}
-        ],          
-        fullName: '',
-        verifyTime : 0,
-        verifyTimeText : "01:00",
-        timerInterval : null,
-      },
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                searchQuery: null,
+                resources:[
+                    {title:"셀러디", uri: "../../order/img/store.png" ,category:"a",icon:null},
+                    {title:"Accounting Services",uri: "../../order/img/store.png",category:"a",icon:null},
+                    {title:"Administration",uri: "../../order/img/store.png",category:"a",icon:null},
+                    {title:"Advanced Student Lookup",uri: "../../order/img/store.png",category:"b",icon:null},
+                    {title:"Art & Sciences",uri: "../../order/img/store.png",category:"b",icon:null},
+                    {title:"Auxiliares Services",uri: "../../order/img/store.png",category:"b",icon:null},
+                    {title:"Basic Skills",uri: "../../order/img/store.png",category:"c",icon:null},
+                    {title:"Board of Trustees",uri: "../../order/img/store.png",category:"d",icon:null}
+                ],
+            },
+            mounted: function () {
+            },
+            methods: {
+                onQrScanner : function(){
+                    window.Android.onQrScanner();
+                },
+                qrScanResult : function (rsltData){
+                    location.href="/order/order_de"
+                },
 
-      mounted: function () {
-      },
-      methods: {
-        onQrScanner : function(){
-            window.Android.onQrScanner();
-        },
-        reCount : function(){
-            this.verifyTimeText = "01:00";//60000
-            this.verifyTime = new Date(Date.now() + 60000);
-            this.timerInterval = setInterval(this.countDown, 1000);
-        },
-      },
+                search : function(){
+                    console.log(111)
+                },
 
-      computed: {
-        resultQuery(){
-            if(this.searchQuery){
-                return this.resources.filter((item)=>{
-                    return this.searchQuery.toLowerCase().split(' ').every(v => item.title.toLowerCase().includes(v))
-                })
-            }else{
-                return this.resources;
+            },
+            computed: {
+                resultQuery(){
+                    if(this.searchQuery){
+                        return this.resources.filter((item)=>{
+                            return this.searchQuery.toLowerCase().split(' ').every(v => item.title.toLowerCase().includes(v))
+                        })
+                    }else{
+                        return this.resources;
+                    }
+                }
             }
-        }
-      }
-    })
-  </script>
+        })
+    </script>
 </th:block>
 
 </html>

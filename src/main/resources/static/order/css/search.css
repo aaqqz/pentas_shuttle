@@ -1,6 +1,6 @@
 .input.search {
     width: 100%;
-    border-radius: 5.56vw 0px 0px 5.56vw;
+    border-radius: 5.56vw;
 }
 /* 리스트형식 */
 .tab-body {border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;}
@@ -65,4 +65,12 @@
 
 .containers {
     margin-bottom: 20vw;
+}
+
+.searBtn{
+    position: absolute;
+    right: 0;
+    margin-top: 3vw;
+    margin-right: 4vw;
+    height: 8vw;
 }
