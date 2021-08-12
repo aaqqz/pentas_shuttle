@@ -50,8 +50,7 @@
           window.Android.onQrScanner();
         },
         qrScanResult : function (rsltData){
-          this.alertText = "충전이 완료되었습니다."
-          popupOpen('popupDialog');
+          alert(rsltData)
         },
       },
 

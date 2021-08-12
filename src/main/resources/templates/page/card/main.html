@@ -14,9 +14,13 @@
     <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper"></script>
     <script type="text/javascript">Vue.use(window.VueAwesomeSwiper)</script>
     <!-- Swiper library E -->
+
+    <!-- vue barcode -->
+    <script type="text/javascript" th:src="@{/js/lib/vue-qr/qrious.min.js}"></script>
 </head>
 
 <div layout:fragment="content" class="content">
+
     <div class="loginWrap mrl20 mrr20 mrt20" v-if="userId == ''">
         <div class="radio-demo1-area mrt10">
             <span class="radio demo1">
@@ -276,8 +280,8 @@
                     <div class="payTab" :class="{'on':payTabVal == 2}" >
                         <div style="height: 85vw;">
                             <div class="fs-14 popCardNo mrb15">{{currentItem.cardNoFormat}}</div>
-                            <div class="qrImg01">
-                                <img th:src="@{/card/img/qr_on.png}">
+                            <div class="qrImg01 output" v-if="qrcodeInput">
+                                <img :src="newQRCode" alt="QRCode" />
                             </div>
                             <div class="payText fs-14 fw-bold mrt10">결제예정 금액</div>
                             <div class="fs-14 mrt10 mrb10">{{comma(amount)}} C</div>
@@ -292,8 +296,8 @@
                     <div class="payTab" :class="{'on':payTabVal == 3}" >
                         <div style="height: 85vw;">
                             <div class="fs-14 popCardNo mrb15">{{currentItem.cardNoFormat}}</div>
-                            <div class="qrImg02">
-                                <img th:src="@{/card/img/qr_on.png}">
+                            <div class="qrImg02 output" v-if="qrcodeInput">
+                                <img :src="newQRCode" alt="QRCode" />
                             </div>
                         </div>
                     </div>
@@ -330,6 +334,9 @@
                 timerInterval : null,
 
                 alertText : "",
+
+                qrcodeInput: "",
+                qrcode: new QRious({ size: 300 }),
             },
             mounted: function () {
                 this.init();
@@ -417,7 +424,6 @@
                         this.amount = "";
                         this.alertText = "사용가능 금액을 초과하였습니다!"
                         this.popupOpenMain('popupDialog');
-
                     }
                     this.amount = comma(this.amount.replace(/,/g, ""))
                 },
@@ -435,6 +441,15 @@
 
                 payTab : function(val){
                     this.payTabVal = val;
+                    this.qrCodeSet(val);
+                },
+
+                qrCodeSet : function(val){
+                    if(val == 2){
+                        this.qrcodeInput = "cardNo : "  + this.currentItem.cardNo + ", amount : " + this.amount;
+                    }else if(val == 3){
+                        this.qrcodeInput = "cardNo : "  + this.currentItem.cardNo;
+                    }
                 },
 
                 reCount : function(){
@@ -482,11 +497,6 @@
 
 
 
-                // popupCloseMain : function(){
-                //     this.payment(1);
-                //     popupClose('popupDialog');
-                //     popupClose('popupTop');
-                // },
 
                 goHistory : function(){
                     location.href="/card/history"
@@ -512,6 +522,11 @@
                 },
             },
             computed: {
+                newQRCode () {
+                    this.qrcode.value = this.qrcodeInput;
+                    console.log(this.qrcodeInput)
+                    return this.qrcode.toDataURL();
+                },
             },
         })
     </script>
