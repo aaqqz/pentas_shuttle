@@ -18,6 +18,7 @@ public class CardViewCtl {
     @GetMapping("/main")
     public String cardMain(HttpSession session, HttpServletRequest request){
         session.setAttribute("lang", commonCtl.langSet(request));
+        System.out.println(commonCtl.langSet(request));
         return "/page/card/main";
     }
 

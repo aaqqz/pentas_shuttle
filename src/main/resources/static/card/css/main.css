@@ -69,6 +69,15 @@
     position: relative;
     height: 49vw;
 }
+.cardWrap .cardBox:nth-child(1){
+    background-color: #2b78a2;
+}
+.cardWrap .cardBox:nth-child(2){
+    background-color: #fa6690;
+}
+.cardWrap .cardBox:nth-child(3){
+    background-color: #60aba8;
+}
 .cardName{
 
 }
@@ -128,8 +137,12 @@
     border-bottom: 1px solid #2496ee;
     border-radius:  0 !important;
 }
-.qrImg{
-    width: 40vw;
+.qrImg01{
+    width: 43vw;
+    margin: 0 auto;
+}
+.qrImg02{
+    width: 80vw;
     margin: 0 auto;
 }
 .payTab{
@@ -138,3 +151,8 @@
 .on{
     display: block;
 }
+.popCardNo{
+    text-align: right;
+    margin-right: 6vw;
+}
+

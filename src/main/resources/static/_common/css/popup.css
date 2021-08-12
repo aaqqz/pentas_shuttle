@@ -92,7 +92,7 @@
 
 /* 슬라이드 팝업 [커스터마이징] - 아래에서 위로 */
 /* .popup-foot .btn_wrap {display: flex;} */
-.popup-wrap-top .popup.slide {width:100%; height: 106vw; border:1px solid #ddd; background-color:#fff; border-radius: 0 0 5.56vw 5.56vw;}
+.popup-wrap-top .popup.slide {width:100%; height: 116vw; border:1px solid #ddd; background-color:#fff; border-radius: 0 0 5.56vw 5.56vw;}
 .popup-wrap-top .popup.slide .popup-head{display:flex; align-items:center; flex:none; padding:8.33vw 5.56vw; height:13.89vw; border:none;}
 
 .popup.slide {width:41.67vw; border:1px solid #ddd; background-color:#fff; border-radius: 5.56vw 5.56vw 0 0;}

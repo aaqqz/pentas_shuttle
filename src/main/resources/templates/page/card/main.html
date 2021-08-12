@@ -17,11 +17,10 @@
 </head>
 
 <div layout:fragment="content" class="content">
-
     <div class="loginWrap mrl20 mrr20 mrt20" v-if="userId == ''">
         <div class="radio-demo1-area mrt10">
             <span class="radio demo1">
-                <input type="radio" name="sRadio1" id="sRadio11" v-model="lang" value="kr" @change="langChange">
+                <input type="radio" name="sRadio1" id="sRadio11" v-model="lang" value="ko" @change="langChange">
                 <label for="sRadio11"><span class="fs14">Korea</span></label>
             </span>
             <span class="radio demo1">
@@ -43,17 +42,17 @@
     <div class="cardWrap" v-else="">
         <div class="pageTitle mrl20 mrr20 mrt20">
             <div class="fs-14 fw-bold"><span class="fc-blue fs-14 fw-bold">셔틀카드</span>고객님!</div>
-            <div class="fs-14 mrt5 mrb10">안녕하십니까?</div>
+            <div class="fs-14 mrt5 mrb10" @click="dbTest()">안녕하십니까?</div>
         </div>
         <div class="swiper-pagination"></div>
         <swiper ref="swiperComponent" :options="swiperOption()">
-            <swiper-slide v-for="item in cardList" >
-                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #2b78a2;" @click="hisAco()">
+            <swiper-slide v-for="(item, index) in cardList">
+                <div class="cardBox pdt25 pdr15 pdl15 pdb15" :class="item.cardNo" @click="cardHisAco(item.cardNo)">
                     <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
-                    <div class="fc-white mrt5 fs-16 fw-bold">{{item.cardNo}}</div>
+                    <div class="fc-white mrt5 fs-16 fw-bold">{{item.cardNoFormat}}</div>
                     <div class="flex f-btw mrt25 mrb25">
                         <div class="fc-white fs-14">사용 가능 금액</div>
-                        <div class="fc-white fs-14">{{item.cardBalance}} C</div>
+                        <div class="fc-white fs-14">{{comma(item.cardBalance)}} C</div>
                     </div>
                     <div class="bar-white mrt30"></div>
                     <div class="cardHis flex f-btw mrt25">
@@ -102,127 +101,14 @@
                     </div>
                 </div>
             </swiper-slide>
-<!--            <swiper-slide>-->
-<!--                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #fa6690;">-->
-<!--                    &lt;!&ndash; <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> &ndash;&gt;-->
-<!--                    <div class="fc-white fs-16 mrt5 fw-bold">1234-1234-1234-1234</div>-->
-<!--                    <div class="flex f-btw mrt25 mrb25">-->
-<!--                        <div class="fc-white fs-14">사용 가능 금액</div>-->
-<!--                        <div class="fc-white fs-14">5,000 C</div>-->
-<!--                    </div>-->
-<!--                    <div class="bar-white mrt30"></div>-->
-<!--                    <div class="cardHis flex f-btw mrt15">-->
-<!--                        <div class="fc-white">7월에 <span>9,900 C </span>사용</div>-->
-<!--                        <div class="cardHisArrow">-->
-<!--                            <img th:src="@{/card/img/arrow-down-white.png}">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="cardHisAco">-->
-<!--                    <div class="hisCont mrb15 pdb15">-->
-<!--                        <div class="flex f-btw">-->
-<!--                            <div class="">아웃백 사당점</div>-->
-<!--                            <div class="fc-blue fw-bold">3,300 C</div>-->
-<!--                        </div>-->
-<!--                        <div class="flex f-btw mrt5">-->
-<!--                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>-->
-<!--                            <div class="fc-gray fs-10">잔액 25,000 C</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="hisCont mrb15 pdb15">-->
-<!--                        <div class="flex f-btw">-->
-<!--                            <div class="">아웃백 사당점</div>-->
-<!--                            <div class="fc-blue fw-bold">3,300 C</div>-->
-<!--                        </div>-->
-<!--                        <div class="flex f-btw mrt5">-->
-<!--                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>-->
-<!--                            <div class="fc-gray fs-10">잔액 25,000 C</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="hisCont mrb15 pdb15">-->
-<!--                        <div class="flex f-btw">-->
-<!--                            <div class="">아웃백 사당점</div>-->
-<!--                            <div class="fc-blue fw-bold">3,300 C</div>-->
-<!--                        </div>-->
-<!--                        <div class="flex f-btw mrt5">-->
-<!--                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>-->
-<!--                            <div class="fc-gray fs-10">잔액 25,000 C</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="flex f-center" @click="goHistory()">-->
-<!--                        <div class="fs-10 mrr10">더보기</div>-->
-<!--                        <div class="cardHisDetailArrow">-->
-<!--                            <img th:src="@{/card/img/arrow-right-gray.png}">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </swiper-slide>-->
-<!--            <swiper-slide>-->
-<!--                <div class="cardBox pdt25 pdr15 pdl15 pdb15" style="background-color: #60aba8;">-->
-<!--                    &lt;!&ndash; <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> &ndash;&gt;-->
-<!--                    <div class="fc-white fs-16 mrt5 fw-bold">1234-1234-1234-1234</div>-->
-<!--                    <div class="flex f-btw mrt25 mrb25">-->
-<!--                        <div class="fc-white fs-14">사용 가능 금액</div>-->
-<!--                        <div class="fc-white fs-14">5,000 C</div>-->
-<!--                    </div>-->
-<!--                    <div class="bar-white mrt30"></div>-->
-<!--                    <div class="cardHis flex f-btw mrt15">-->
-<!--                        <div class="fc-white">7월에 <span>9,900 C </span>사용</div>-->
-<!--                        <div class="cardHisArrow">-->
-<!--                            <img th:src="@{/card/img/arrow-down-white.png}">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="cardHisAco">-->
-<!--                    <div class="hisCont mrb15 pdb15">-->
-<!--                        <div class="flex f-btw">-->
-<!--                            <div class="">아웃백 사당점</div>-->
-<!--                            <div class="fc-blue fw-bold">3,300 C</div>-->
-<!--                        </div>-->
-<!--                        <div class="flex f-btw mrt5">-->
-<!--                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>-->
-<!--                            <div class="fc-gray fs-10">잔액 25,000 C</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="hisCont mrb15 pdb15">-->
-<!--                        <div class="flex f-btw">-->
-<!--                            <div class="">아웃백 사당점</div>-->
-<!--                            <div class="fc-blue fw-bold">3,300 C</div>-->
-<!--                        </div>-->
-<!--                        <div class="flex f-btw mrt5">-->
-<!--                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>-->
-<!--                            <div class="fc-gray fs-10">잔액 25,000 C</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="hisCont mrb15 pdb15">-->
-<!--                        <div class="flex f-btw">-->
-<!--                            <div class="">아웃백 사당점</div>-->
-<!--                            <div class="fc-blue fw-bold">3,300 C</div>-->
-<!--                        </div>-->
-<!--                        <div class="flex f-btw mrt5">-->
-<!--                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>-->
-<!--                            <div class="fc-gray fs-10">잔액 25,000 C</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="flex f-center" @click="goHistory()">-->
-<!--                        <div class="fs-10 mrr10">더보기</div>-->
-<!--                        <div class="cardHisDetailArrow">-->
-<!--                            <img th:src="@{/card/img/arrow-right-gray.png}">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </swiper-slide>-->
-
         </swiper>
-
     </div>
 
     <div class="mrl20 mrr20 mrt20">
         <div class="cardBtnWrap flex f-clm mrt20">
             <div class="flex f-evn">
-                <div class="flex f-clm align-center cardBtn" @click="popupOpen('popupTop')">
+                <div class="flex f-clm align-center cardBtn" @click="popupOpenMain('popupTop')">
                     <div class="cardBtnImg">
-                        <!-- <img th:src="@{/card/img/pay.png}"> -->
                         <div>
                             <b-icon icon="phone-landscape" font-scale="1.5"></b-icon>
                         </div>
@@ -230,11 +116,9 @@
                     <div class="fs-10 mrt5">결제</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn" @click="onQrScanner()">
+                <div class="flex f-clm align-center cardBtn" @click="payTab(3), popupOpenMain('popupTop')">
                     <div class="cardBtnImg">
-                        <!-- <img th:src="@{/card/img/charge.png}"> -->
                         <div>
-                            <!-- <b-icon icon="input-cursor" font-scale="1.5"></b-icon> -->
                             <b-icon icon="input-cursor-text" font-scale="1.5"></b-icon>
                         </div>
                     </div>
@@ -244,9 +128,7 @@
                 <!-- <div class="flex f-clm align-center cardBtn" @click="Payment()"> -->
                 <div class="flex f-clm align-center cardBtn" @click="ready()">
                     <div class="cardBtnImg">
-                        <!-- <img th:src="@{/card/img/admin.png}"> -->
                         <div>
-                            <!-- <b-icon icon="input-cursor" font-scale="1.5"></b-icon> -->
                             <b-icon icon="layout-text-window-reverse" font-scale="1.5"></b-icon>
                         </div>
                     </div>
@@ -256,7 +138,6 @@
             <div class="flex f-evn mrt20">
                 <div class="flex f-clm align-center cardBtn" @click="goRegist()">
                     <div class="cardBtnImg">
-                        <!-- <img th:src="@{/card/img/regist.png}"> -->
                         <div>
                             <b-icon icon="credit-card" font-scale="1.5"></b-icon>
                         </div>
@@ -266,7 +147,6 @@
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn">
                     <div class="cardBtnImg">
-                        <!-- <img th:src="@{/card/img/mainOff.png}"> -->
                         <div>
                             <b-icon icon="aspect-ratio" font-scale="1.5"></b-icon>
                         </div>
@@ -276,7 +156,6 @@
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="ready()">
                     <div class="cardBtnImg">
-                        <!-- <img th:src="@{/card/img/change.png}"> -->
                         <div>
                             <b-icon icon="app-indicator" font-scale="1.5"></b-icon>
                         </div>
@@ -351,66 +230,76 @@
             </div>
         </div>
 
-        <div layout:fragment="popup">
-            <div id="popupDialog" class="popup-wrap type-basic">
-                <section class="popup demo1">
-                    <div class="popup-body">
-                        <div class="popup-content">
-                            {{alertText}}
-                        </div>
-                    </div>
-                    <div class="popup-foot">
-                        <div class="btn_wrap">
-                            <!--                        <button type="button" class="btn btn-close" onclick="popupClose('popupDialog')"><span>닫기</span></button>-->
-                            <button type="button" class="btn btn btn-succ-all" @click="popupCloseMain()"><span>확인</span></button>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
     </div>
+
+    <div layout:fragment="popup">
+        <div id="popupDialog" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        {{alertText}}
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn btn-succ-all" @click="popupCloseMain('popupDialog')"><span>확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
     <div layout:fragment="slideTopPopup">
         <div id="popupTop" class="popup-wrap-top type-select" role="dialog" aria-modal="false">
             <section class="popup slide">
                 <div class="popup-head">
-                    <h3 class="popup-tit ">결제하기</h3>
+                    <h3 class="popup-tit" v-if="payTabVal != 3">결제하기</h3>
+                    <h3 class="popup-tit" v-else>충전하기</h3>
                 </div>
-
                 <div class="popup-body flex f-clm">
-                    <div class="payTab" :class="{'on':payTab == 1}">
-                        <div style="height: 75vw;">
-                            <div class="qrImg">
+                    <div class="payTab" :class="{'on':payTabVal == 1}">
+                        <div style="height: 85vw;">
+                            <div class="fs-14 popCardNo mrb15">{{currentItem.cardNoFormat}}</div>
+                            <div class="qrImg01">
                                 <img th:src="@{/card/img/qr_off.png}">
                             </div>
                             <div class="payText fs-14 fw-bold mrt10">사용가능 금액</div>
-                            <div class="fs-14 mrt10 mrb10">5,000 C</div>
+                            <div class="fs-14 mrt10">{{comma(currentItem.cardBalance)}} C</div>
                             <div class="mrb20">
-                                <input class="payInput fs-14 text-c fc-blue" type="number"> C
+                                <input class="payInput fs-14 text-c fc-blue" type="text" v-model="amount" @input="inputBalance"> C
                             </div>
                         </div>
                         <div class="btn_wrap-top flex f-center align-center">
-                            <div class="fw-bold fc-blue" @click="payment(2), reCount()">결제하기</div>
+                            <div class="fw-bold fc-blue" @click="payTab(2), reCount()">결제하기</div>
                         </div>
                     </div>
-                    <div class="payTab" :class="{'on':payTab == 2}" >
-                        <div style="height: 75vw;">
-                            <div class="qrImg">
+                    <div class="payTab" :class="{'on':payTabVal == 2}" >
+                        <div style="height: 85vw;">
+                            <div class="fs-14 popCardNo mrb15">{{currentItem.cardNoFormat}}</div>
+                            <div class="qrImg01">
                                 <img th:src="@{/card/img/qr_on.png}">
                             </div>
                             <div class="payText fs-14 fw-bold mrt10">결제예정 금액</div>
-                            <div class="fs-14 mrt10 mrb10">2,000 C</div>
+                            <div class="fs-14 mrt10 mrb10">{{comma(amount)}} C</div>
                             <div class="mrb20">
                                 <div class="fs-16 fc-blue mrt20">{{verifyTimeText}}</div>
                             </div>
                         </div>
-                        <div class="btn_wrap-top flex f-center align-center">
+                        <div class="btn_wrap-top flex f-center align-center" >
                             <div class="fw-bold fc-blue" @click="reCount()">재요청</div>
+                        </div>
+                    </div>
+                    <div class="payTab" :class="{'on':payTabVal == 3}" >
+                        <div style="height: 85vw;">
+                            <div class="fs-14 popCardNo mrb15">{{currentItem.cardNoFormat}}</div>
+                            <div class="qrImg02">
+                                <img th:src="@{/card/img/qr_on.png}">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="popup-close">
-                    <button type="button" class="btn btn-close" @click="[popupClose('popupTop'), payment(1)]"><span>닫기</span></button>
+                    <button type="button" class="btn btn-close" @click="popupCloseMain('popupTop')"><span>닫기</span></button>
                 </div>
             </section>
         </div>
@@ -419,7 +308,6 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript">
-
 
         var app = new Vue({
             el: "#app",
@@ -431,15 +319,17 @@
 
                 cardList : {},
 
+                currSeq : 0,
+                currentItem : {},
 
-                alertText : "",
+                amount : "",
+                payTabVal : 1, // 1 = 결제 가격 입력창, 2 = 결제 QR 창, 3 = 충전
 
-                cardSeq : 0,
-
-                payTab : 1,
                 verifyTime : 0,
                 verifyTimeText : "01:00",
-                timerInterval : null
+                timerInterval : null,
+
+                alertText : "",
             },
             mounted: function () {
                 this.init();
@@ -453,8 +343,8 @@
                 init : function(){
                 },
                 langChange : function(){
-                    if(this.lang == "kr"){
-                        location.href = "/card/main?lang=kr";
+                    if(this.lang == "ko"){
+                        location.href = "/card/main?lang=ko";
                     }else{
                         location.href = "/card/main?lang=en";
                     }
@@ -479,28 +369,23 @@
                     param = {
                         userId : this.userId
                     }
-                    console.log(param)
                     cf_call("/card/main/getCardList", param, this.getCardListCB);
                 },
                 getCardListCB : function(data){
-                    console.log(data.cardList)
+                    for(var i in data.cardList) {
+                        var cardNoForMat = data.cardList[i].cardNo.replace(/(.{4})/g,"$1-").slice(0, -1);
+                        data.cardList[i].cardNoFormat = cardNoForMat;
+                    }
                     this.cardList = data.cardList;
+                    this.currentItem = data.cardList[0];
+                    console.log(this.cardList);
                 },
-                hisAco : function(){
-                    var asd = $(event.target).parents(".cardBox")
-                    console.log(asd)
-                    $(asd).next(".cardHisAco").stop().slideToggle(300);
-                    $(asd).toggleClass('on').siblings().removeClass('on');
-                    $(asd).next(".cardHisAco").siblings(".cardHisAco").slideUp(300); // 1개씩 펼치기
+                cardHisAco : function(val){
+                    $($(".cardBox." + val)).next(".cardHisAco").stop().slideToggle(300);
+                    $($(".cardBox." + val)).toggleClass('on').siblings().removeClass('on');
+                    $($(".cardBox." + val)).next(".cardHisAco").siblings(".cardHisAco").slideUp(300); // 1개씩 펼치기
                 },
 
-
-
-
-                ready : function(){
-                    this.alertText = "준비중입니다."
-                    popupOpen('popupDialog');
-                },
                 swiperOption : function(){
                     return {
                         // 'allowTouchMove': value,
@@ -511,7 +396,8 @@
                         },
                         on: {
                             'slideChangeTransitionEnd': function () {
-                                this.cardSeq = this.activeIndex;
+                                app.currSeq = this.activeIndex;
+                                app.currentItem = app.cardList[app.currSeq];
                                 $(".cardBox").next(".cardHisAco").stop().slideUp(300);
                             }
                         },
@@ -525,23 +411,35 @@
                     };
                 },
 
-                onQrScanner : function(){
-                    window.Android.onQrScanner();
-                },
-                qrScanResult : function (rsltData){
-                    this.alertText = "충전이 완료되었습니다."
-                    popupOpen('popupDialog');
+                inputBalance : function(){
+                    if(parseInt(this.currentItem.cardBalance) < parseInt(this.amount.replace(/,/g, ""))){
+                        this.closePopStatus = 0;
+                        this.amount = "";
+                        this.alertText = "사용가능 금액을 초과하였습니다!"
+                        this.popupOpenMain('popupDialog');
+
+                    }
+                    this.amount = comma(this.amount.replace(/,/g, ""))
                 },
 
-                payment : function(val){
-                    if(val === 1){
-                        clearInterval(this.timerInterval);
-                    }
-                    this.payTab = val;
+                popupOpenMain : function(val){
+                    popupOpen(val);
                 },
+
+                popupCloseMain : function(val){
+                    clearInterval(this.timerInterval);
+                    popupClose(val);
+                    this.amount = "";
+                    this.payTab(1);
+                },
+
+                payTab : function(val){
+                    this.payTabVal = val;
+                },
+
                 reCount : function(){
                     this.verifyTimeText = "01:00";//60000
-                    this.verifyTime = new Date(Date.now() + 60000);
+                    this.verifyTime = new Date(Date.now() + 6000);
                     this.timerInterval = setInterval(this.countDown, 1000);
                 },
                 countDown : function(){
@@ -550,7 +448,7 @@
                     if(seconds <= 0 && min <= 0) {
                         clearInterval(this.timerInterval);
                         this.alertText = "시간이 지났습니다!"
-                        popupOpen('popupDialog');
+                        this.popupOpenMain('popupDialog');
                         return;
                     }
                     this.verifyTimeText = "0" + min + ":" + this.pad(seconds - (min * 60), 2);
@@ -559,11 +457,36 @@
                     n = n + '';
                     return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
                 },
-                popupCloseMain : function(){
-                    this.payment(1);
-                    popupClose('popupDialog');
-                    popupClose('popupTop');
+
+
+
+
+
+
+                ready : function(){
+                    this.alertText = "준비중입니다."
+                    popupOpen('popupDialog');
                 },
+
+                onQrScanner : function(){
+                    window.Android.onQrScanner();
+                },
+                qrScanResult : function (rsltData){
+                    this.alertText = "충전이 완료되었습니다."
+                    popupOpen('popupDialog');
+                },
+
+
+
+
+
+
+
+                // popupCloseMain : function(){
+                //     this.payment(1);
+                //     popupClose('popupDialog');
+                //     popupClose('popupTop');
+                // },
 
                 goHistory : function(){
                     location.href="/card/history"
@@ -589,7 +512,7 @@
                 },
             },
             computed: {
-            }
+            },
         })
     </script>
 </th:block>
