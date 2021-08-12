@@ -149,7 +149,7 @@
                     <div class="fs-10 mrt5">등록</div>
                 </div>
                 <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn">
+                <div class="flex f-clm align-center cardBtn" @click="logout">
                     <div class="cardBtnImg">
                         <div>
                             <b-icon icon="aspect-ratio" font-scale="1.5"></b-icon>
@@ -337,6 +337,8 @@
 
                 qrcodeInput: "",
                 qrcode: new QRious({ size: 300 }),
+
+                logoutVal : 0,
             },
             mounted: function () {
                 this.init();
@@ -515,6 +517,14 @@
                         location.href="/event/list"
                     }else{
                         location.href="/event/detail"
+                    }
+                },
+
+                logout : function(){
+                    this.logoutVal ++;
+                    console.log(this.logoutVal)
+                    if(3 <=this.logoutVal){
+                        cf_call("/card/main/logout", {}, this.loginCB);
                     }
                 },
                 sessionCheck : function(){

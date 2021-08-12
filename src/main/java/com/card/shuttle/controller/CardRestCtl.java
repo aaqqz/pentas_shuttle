@@ -50,17 +50,18 @@ public class CardRestCtl {
 
 
 
-
+    @PostMapping("/card/main/logout")
+    public DevMap logout(@RequestBody DevMap param, HttpSession session){
+        DevMap rslt = new DevMap();
+        session.setAttribute("userId", null);
+        rslt.put("rsltData", "succ");
+        return rslt;
+    }
     @PostMapping("/card/main/sessionCheck")
     public DevMap sessionCheck(@RequestBody DevMap param, HttpSession session){
         DevMap rslt = new DevMap();
         String loginStatus = session.getAttribute("loginStatus").toString();
         rslt.put("loginStatus", loginStatus);
         return rslt;
-    }
-    
-    @PostMapping("/card/test")
-    public List<DevMap> test(@RequestBody DevMap param){
-        return cardSvc.test(param);
     }
 }

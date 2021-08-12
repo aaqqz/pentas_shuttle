@@ -80,7 +80,7 @@
         var app = new Vue({
             el: "#app",
             data: {
-
+                alertText : ""
             },
             mounted: function () {
             },
@@ -89,10 +89,11 @@
                     window.Android.onQrScanner();
                 },
                 qrScanResult : function (rsltData){
-                    this.setCardNO(rsltData);
+                    this.setCardNo(rsltData);
                 },
                 setCardNo : function(rsltData){
-                    val = 909505492091;
+                    alert(rsltData);
+                    val = rsltData;
                     $("#card01").val(val.toString().substring(0,4));
                     $("#card02").val(val.toString().substring(4,8));
                     $("#card03").val(val.toString().substring(8,12));
@@ -100,11 +101,22 @@
                 },
                 nextInput : function (nextId){
                     event.target.value=event.target.value.replace(/[^0-9]/g,'');
-                    var limit = event.target.value.length;
-                    if(4 < limit){
-                        $('#'+event.target.id).val(event.target.value.substring(0,4));
-                    } else if(5 === limit || 4 === limit){
+                    var charLimit = event.target.value.length;
+                    //console.log(event.target.value);
+                    //console.log(event.target.value.length);
+
+                    if (4 == charLimit) {
                         $('#'+nextId).focus();
+                    }
+                    else if(4 < charLimit){
+                        var a = event.target.value.substring(0,4);
+                        var b = event.target.value.substring(4,8);
+                        var c = event.target.value.substring(8,12);
+                        var d = event.target.value.substring(12,16);
+                        $('#card01').val(a);
+                        $('#card02').val(b);
+                        $('#card03').val(c);
+                        $('#card04').val(d);
                     }
                 },
 
