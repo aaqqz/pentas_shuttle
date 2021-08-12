@@ -49,8 +49,8 @@
             <div class="fs-14 mrt5 mrb10" @click="dbTest()">안녕하십니까?</div>
         </div>
         <div class="swiper-pagination"></div>
-        <swiper ref="swiperComponent" :options="swiperOption()">
-            <swiper-slide v-for="(item, index) in cardList">
+        <swiper ref="swiperComponent" :options="swiperOption()" class="swiper">
+            <swiper-slide v-for="(item, index) in cardList" class="cardList">
                 <div class="cardBox pdt25 pdr15 pdl15 pdb15" :class="item.cardNo" @click="cardHisAco(item.cardNo)">
                     <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
                     <div class="fc-white mrt5 fs-16 fw-bold">{{item.cardNoFormat}}</div>

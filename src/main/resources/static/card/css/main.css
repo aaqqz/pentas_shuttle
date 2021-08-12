@@ -69,13 +69,13 @@
     position: relative;
     height: 49vw;
 }
-.cardBox:nth-child(1){
+.swiper .cardList:nth-child(1) .cardBox{
     background-color: #2b78a2;
 }
-.cardBox:nth-child(2){
+.swiper .cardList:nth-child(2) .cardBox{
     background-color: #fa6690;
 }
-.cardBox:nth-child(3){
+.swiper .cardList:nth-child(3) .cardBox{
     background-color: #60aba8;
 }
 .cardName{
