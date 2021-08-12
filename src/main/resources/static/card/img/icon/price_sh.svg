@@ -1,0 +1,27 @@
+<svg id="등록_복사" data-name="등록 복사" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-width: 25px;
+      }
+
+      .cls-1, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #2496ee;
+      }
+    </style>
+  </defs>
+  <g id="그룹_3" data-name="그룹 3">
+    <path id="사각형_2" data-name="사각형 2" class="cls-1" d="M299,420H472a30,30,0,0,0,30-30V176a30,30,0,0,0-30-30H128a30,30,0,0,0-30,30V351.906"/>
+    <rect id="사각형_1_복사" data-name="사각형 1 복사" class="cls-2" x="86" y="408" width="186" height="25" rx="12.5" ry="12.5"/>
+    <rect id="사각형_1_복사_5" data-name="사각형 1 복사 5" x="98" y="217" width="404" height="25" rx="12.5" ry="12.5"/>
+    <rect id="사각형_1_복사_6" data-name="사각형 1 복사 6" x="130" y="271" width="120" height="25" rx="12.5" ry="12.5"/>
+    <path id="사각형_1_복사_3" data-name="사각형 1 복사 3" class="cls-3" d="M229.906,377.476l37.675,32.871a12.5,12.5,0,1,1-16.436,18.838L213.47,396.313A12.5,12.5,0,1,1,229.906,377.476Z"/>
+    <path id="사각형_1_복사_4" data-name="사각형 1 복사 4" class="cls-3" d="M229.832,462.922l37.882-32.96a12.549,12.549,0,1,0-16.526-18.889l-37.882,32.961A12.549,12.549,0,1,0,229.832,462.922Z"/>
+  </g>
+</svg>

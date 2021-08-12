@@ -128,16 +128,17 @@
                             <b-icon stacked icon="chevron-right" shift-h="4" variant="primary"></b-icon>
                           </b-iconstack> -->
                           <!-- <i class="xi-xpressengine"></i> -->
-                          <embed th:src="@{/card/img/icon/cash.svg}" style="width: 100%;">
+                          <img th:src="@{/card/img/icon/price_cash.png}" style="width: 100%;">
                     </div>
                     <div class="fs-10 mrt5">결제</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="payTab(3), popupOpenMain('popupTop')">
                     <div class="cardBtnImg">
-                        <div>
+                        <!-- <div>
                             <b-icon icon="input-cursor-text" font-scale="1.5"></b-icon>
-                        </div>
+                        </div> -->
+                        <img th:src="@{/card/img/icon/price_chs.png}" style="width: 100%;">
                     </div>
                     <div class="fs-10 mrt5">충전</div>
                 </div>
@@ -148,7 +149,7 @@
                         <!-- <div>
                             <b-icon icon="credit-card" font-scale="1.5"></b-icon>
                         </div> -->
-                        <embed th:src="@{/card/img/icon/pric.svg}" style="width: 100%;">
+                        <img th:src="@{/card/img/icon/price_plus.png}" style="width: 100%;">
                         <!-- <svg id="그룹_1" data-name="그룹 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" viewBox="0 0 600 600">
                             <defs>
                               <style>
