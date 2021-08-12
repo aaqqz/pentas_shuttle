@@ -13,26 +13,45 @@
     <div class="pageTitle">
       <div class="fs-14 mrt5 mrb10 fw-bold">카드 정보를 입력해 주세요.</div>
     </div>
-    <div class="mrt20">카드번호</div>
+    <div class="mrt20">Card No</div>
     <div class="cardNumInput mrt10">
-      <input type="number"  class="inputs" @input="nextInput('card01')" pattern="\d*" ><div class="bar"></div>
-      <input type="number"   class="inputs" @input="nextInput('card02')" pattern="\d*"><div class="bar"></div>
-      <input type="number"   class="inputs" @input="nextInput('card_num_four')"  pattern="\d*"><div class="bar"></div>
-      <input type="number"  class="inputs" @input="nextInput('card_CVC')" pattern="\d*">
+      <input type="number" class="inputs text-c" @input="nextInput('card02')" pattern="\d*" id="card01" maxlength="4"><div class="bar-black"></div>
+      <input type="number" class="inputs text-c" @input="nextInput('card03')" pattern="\d*" id="card02" maxlength="4"><div class="bar-black"></div>
+      <input type="number" class="inputs text-c" @input="nextInput('card04')" pattern="\d*" id="card03" maxlength="4"><div class="bar-black"></div>
+      <input type="number" class="inputs text-c" @input="nextInput('cardPw')" pattern="\d*" id="card04" maxlength="4">
     </div>
-
-    <div>
-      <div class="mrt10">유효기간</div>
-      <input type="text" id="cardDate" class="wh mrt10" @input="">
+    <div class="mrt10">Card PW</div>
+    <input type="password" class="wid100 mrt10" id="cardPw">
+    <div class="com-btn mrt20">
+      <button type="button" @click="onQrScanner()" class="btn btn-com">
+        <span class="fs-14">CARD QR SCAN</span>
+      </button>
     </div>
-    <div class="mrt10">
-      <div>cvc</div>
-      <input type="password" class="wh mrt10">
+    <div class="fs-10 fc-gray mrt20 text-c">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
+    <div class="com-btn registBtn">
+      <button type="button" @click="regist" class="btn btn-com">
+        <span class="fs-14">Register Card</span>
+      </button>
     </div>
-    <div class="mrt10">카드 별칭</div>
-    <input type="text" class="wid100 mrt10">
-    <div class="fs-10 fc-gray mrt20">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
   </div>
+
+  <div layout:fragment="popup">
+    <div id="popupDialog" class="popup-wrap type-basic">
+      <section class="popup demo1">
+        <div class="popup-body">
+          <div class="popup-content">
+            {{alertText}}
+          </div>
+        </div>
+        <div class="popup-foot">
+          <div class="btn_wrap">
+            <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialog')"><span>확인</span></button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
 </div>
 
 
@@ -41,19 +60,54 @@
     var app = new Vue({
       el: "#app",
       data: {
+        alertText : "",
       },
       mounted: function () {
-        this.onCardScanner();
+        //this.onCardScanner();
       },
       methods: {
-        onCardScanner : function(){
+        onQrScanner : function(){
           window.Android.onQrScanner();
         },
         qrScanResult : function (rsltData){
-          alert(rsltData)
+          this.setCardNo(rsltData);
         },
-      },
+        setCardNo : function(rsltData){
+          $("#card01").val(rsltData.toString().substring(0,4));
+          $("#card02").val(rsltData.toString().substring(4,8));
+          $("#card03").val(rsltData.toString().substring(8,12));
+          $("#card04").val(rsltData.toString().substring(12,16));
+        },
+        nextInput : function (nextId){
+          event.target.value=event.target.value.replace(/[^0-9]/g,'');
+          var charLimit = event.target.value.length;
+          //console.log(event.target.value);
+          //console.log(event.target.value.length);
 
+          if (4 == charLimit) {
+            $('#'+nextId).focus();
+          }
+          else if(4 < charLimit){
+            var a = event.target.value.substring(0,4);
+            var b = event.target.value.substring(4,8);
+            var c = event.target.value.substring(8,12);
+            var d = event.target.value.substring(12,16);
+            $('#card01').val(a);
+            $('#card02').val(b);
+            $('#card03').val(c);
+            $('#card04').val(d);
+          }
+        },
+        regist : function(){
+          this.registerCardCB();
+        },
+        registerCardCB : function(){
+          console.log(111)
+          this.alertText = "카드가 등록되었습니다."
+          popupOpen('popupDialog');
+        }
+
+      },
       computed: {
       }
     })

@@ -130,16 +130,6 @@
                 </div>
                 <div class="hBar"></div>
                 <!-- <div class="flex f-clm align-center cardBtn" @click="Payment()"> -->
-                <div class="flex f-clm align-center cardBtn" @click="ready()">
-                    <div class="cardBtnImg">
-                        <div>
-                            <b-icon icon="layout-text-window-reverse" font-scale="1.5"></b-icon>
-                        </div>
-                    </div>
-                    <div class="fs-10 mrt5">결제 관리</div>
-                </div>
-            </div>
-            <div class="flex f-evn mrt20">
                 <div class="flex f-clm align-center cardBtn" @click="goRegist()">
                     <div class="cardBtnImg">
                         <div>
@@ -148,25 +138,35 @@
                     </div>
                     <div class="fs-10 mrt5">등록</div>
                 </div>
-                <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn" @click="logout">
-                    <div class="cardBtnImg">
-                        <div>
-                            <b-icon icon="aspect-ratio" font-scale="1.5"></b-icon>
-                        </div>
-                    </div>
-                    <div class="fs-10 mrt5">메인카드</div>
-                </div>
-                <div class="hBar"></div>
-                <div class="flex f-clm align-center cardBtn" @click="ready()">
-                    <div class="cardBtnImg">
-                        <div>
-                            <b-icon icon="app-indicator" font-scale="1.5"></b-icon>
-                        </div>
-                    </div>
-                    <div class="fs-10 mrt5">전환</div>
-                </div>
             </div>
+<!--            <div class="flex f-evn mrt20">-->
+<!--                <div class="flex f-clm align-center cardBtn" @click="ready()">-->
+<!--                    <div class="cardBtnImg">-->
+<!--                        <div>-->
+<!--                            <b-icon icon="layout-text-window-reverse" font-scale="1.5"></b-icon>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="fs-10 mrt5">결제 관리</div>-->
+<!--                </div>-->
+<!--                <div class="hBar"></div>-->
+<!--                <div class="flex f-clm align-center cardBtn" @click="logout">-->
+<!--                    <div class="cardBtnImg">-->
+<!--                        <div>-->
+<!--                            <b-icon icon="aspect-ratio" font-scale="1.5"></b-icon>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="fs-10 mrt5">메인카드</div>-->
+<!--                </div>-->
+<!--                <div class="hBar"></div>-->
+<!--                <div class="flex f-clm align-center cardBtn" @click="ready()">-->
+<!--                    <div class="cardBtnImg">-->
+<!--                        <div>-->
+<!--                            <b-icon icon="app-indicator" font-scale="1.5"></b-icon>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="fs-10 mrt5">전환</div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
 
         <div class="eventWrap mrt20">
@@ -455,6 +455,7 @@
                 },
 
                 reCount : function(){
+                    clearInterval(this.timerInterval);
                     this.verifyTimeText = "01:00";//60000
                     this.verifyTime = new Date(Date.now() + 6000);
                     this.timerInterval = setInterval(this.countDown, 1000);

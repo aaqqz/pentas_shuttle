@@ -31,12 +31,10 @@
                 <input type="text"  class="wh mrt10" placeholder="010-5346-1234" onkeyup="telePhoneCheck(this)">
             </div>
         </div>
-        <div class="com-btn mrt20">
-            <button type="button" @click="onQrScanner()" class="btn btn-com">
-                <span class="fs-14">CARD QR SCAN</span>
-            </button>
-        </div>
 
+        <div class="pageTitle">
+            <div class="fs-14 mrt40 mrb10 fw-bold">카드 정보를 입력해 주세요.</div>
+        </div>
         <div class="mrt20">Card No</div>
         <div class="cardNumInput mrt10">
             <input type="number" class="inputs text-c" @input="nextInput('card02')" pattern="\d*" id="card01" maxlength="4"><div class="bar-black"></div>
@@ -46,8 +44,13 @@
         </div>
         <div class="mrt10">Card PW</div>
         <input type="password" class="wid100 mrt10" id="cardPw">
-        <div class="fs-10 fc-gray mrt20">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
         <div class="com-btn mrt20">
+            <button type="button" @click="onQrScanner()" class="btn btn-com">
+                <span class="fs-14">CARD QR SCAN</span>
+            </button>
+        </div>
+        <div class="fs-10 fc-gray mrt20 text-c">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
+        <div class="com-btn registBtn mrt60" style="">
             <button type="button" @click="signUp" class="btn btn-com">
                 <span class="fs-14">Sign Up</span>
             </button>
@@ -64,8 +67,7 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <!--                        <button type="button" class="btn btn-close" onclick="popupClose('popupDialog')"><span>닫기</span></button>-->
-                        <button type="button" class="btn btn btn-succ-all" @click="popupCloseMain()"><span>확인</span></button>
+                        <button type="button" class="btn btn btn-succ-all" @click="goMain()"><span>확인</span></button>
                     </div>
                 </div>
             </section>
@@ -92,12 +94,10 @@
                     this.setCardNo(rsltData);
                 },
                 setCardNo : function(rsltData){
-                    alert(rsltData);
-                    val = rsltData;
-                    $("#card01").val(val.toString().substring(0,4));
-                    $("#card02").val(val.toString().substring(4,8));
-                    $("#card03").val(val.toString().substring(8,12));
-                    $("#card04").val(val.toString().substring(12,16));
+                    $("#card01").val(rsltData.toString().substring(0,4));
+                    $("#card02").val(rsltData.toString().substring(4,8));
+                    $("#card03").val(rsltData.toString().substring(8,12));
+                    $("#card04").val(rsltData.toString().substring(12,16));
                 },
                 nextInput : function (nextId){
                     event.target.value=event.target.value.replace(/[^0-9]/g,'');
@@ -121,8 +121,13 @@
                 },
 
                 signUp : function(){
-
+                    this.alertText = "회원가입이 완료되었습니다.";
+                    popupOpen("popupDialog");
+                },
+                goMain : function(){
+                    location.href = "/card/main"
                 }
+
             },
             computed: {
             }
