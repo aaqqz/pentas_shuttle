@@ -48,11 +48,29 @@
     background: url(../../_common/img/arrow-bot.png) no-repeat 97% white;
     background-size: 3vw;
     border: none;
-
 }
 .select.demo2:before {
 width: 0;
 height: 0;
+}
+.select.demo3{
+    text-align-last: center;
+    height: 9.72vw;
+    font-size: 3.33vw;
+    width: 20vw;
+    -webkit-appearance: none !important; /* 화살표 없애기 for chrome*/
+    -moz-appearance: none !important;    /* 화살표 없애기 for firefox*/
+    appearance: none !important;         /* 화살표 없애기 공통*/
+    border-bottom: 2px solid #1a1a1a;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: none !important;
+    -webkit-border-radius: 0 !important;
+}
+.select.demo3:before {
+    width: 0;
+    height: 0;
 }
 .noneImg{
 width: 19.44vw;

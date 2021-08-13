@@ -114,26 +114,13 @@
             <div class="flex f-evn">
                 <div class="flex f-clm align-center cardBtn" @click="popupOpenMain('popupTop')">
                     <div class="cardBtnImg">
-                        <!-- <div>
-                            <b-icon icon="credit-card"  font-scale="1.5"></b-icon>
-                            <b-icon icon="slash-circle" variant="danger"  style="position: absolute; left: 200px; top: 900px;"></b-icon>
-                        </div> -->
-                        <!-- <b-iconstack font-scale="5" rotate="90">
-                            <b-icon stacked icon="chevron-right" shift-h="-4" variant="danger"></b-icon>
-                            <b-icon stacked icon="chevron-right" shift-h="0" variant="success"></b-icon>
-                            <b-icon stacked icon="chevron-right" shift-h="4" variant="primary"></b-icon>
-                          </b-iconstack> -->
-                          <!-- <i class="xi-xpressengine"></i> -->
-                          <img th:src="@{/card/img/icon/price_cash.png}" style="width: 100%;">
+                        <img th:src="@{/card/img/icon/price_cash.png}" style="width: 100%;">
                     </div>
                     <div class="fs-10 mrt5">결제</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="payTab(3), popupOpenMain('popupTop')">
                     <div class="cardBtnImg">
-                        <!-- <div>
-                            <b-icon icon="input-cursor-text" font-scale="1.5"></b-icon>
-                        </div> -->
                         <img th:src="@{/card/img/icon/price_chs.png}" style="width: 100%;">
                     </div>
                     <div class="fs-10 mrt5">충전</div>
@@ -141,31 +128,7 @@
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="goRegist()">
                     <div class="cardBtnImg">
-                        <!-- <div>
-                            <b-icon icon="credit-card" font-scale="1.5"></b-icon>
-                        </div> -->
                         <img th:src="@{/card/img/icon/price_plus.png}" style="width: 100%;">
-                        <!-- <svg id="그룹_1" data-name="그룹 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="600" viewBox="0 0 600 600">
-                            <defs>
-                              <style>
-                                .cls-1 {
-                                  fill: #2496ee;
-                                }
-                          
-                                .cls-2 {
-                                  fill: none;
-                                  stroke: #000;
-                                  stroke-width: 32.29px;
-                                }
-                              </style>
-                            </defs>
-                            <image id="레이어_1" data-name="레이어 1" x="45" y="108" width="434" height="307" xlink:href="data:img/png;base64,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"/>
-                            <rect id="사각형_1_복사" data-name="사각형 1 복사" class="cls-1" x="382" y="357" width="112" height="30" rx="15" ry="15"/>
-                            <rect id="사각형_1_복사_2" data-name="사각형 1 복사 2" class="cls-1" x="423" y="316" width="30" height="112" rx="15" ry="15"/>
-                            <circle id="타원_1" data-name="타원 1" class="cls-2" cx="438" cy="375" r="101.5"/>
-                            <image id="레이어_3" data-name="레이어 3" x="57" y="183" width="413" height="44" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZ0AAAAsCAYAAAC+PmXGAAABHUlEQVR4nO3YMUsDQRSF0bsm//+3pbMNYiUIqRRCkpXoK1KaYm91DgxTbDEwU3y8XZKc8mef5CXJLck1yRoA+J97T3az3zvyleQzyTHJIcl75qO4ALCFyww2r0neMtMNAGzlNvE5Z36nAUCF6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1IgOADWiA0CN6ABQIzoA1OxdNQAbWmbA2WWis85Zy8OZqxcA4EmPHbkm+U5ySvLxu5L8AK+sGB1+3QcXAAAAAElFTkSuQmCC"/>
-                            <image id="레이어_2" data-name="레이어 2" x="370" y="108" width="109" height="135" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG0AAACHCAYAAAAcJ9eyAAADDElEQVR4nO3dzYtNYQDH8e9hpGbBig0lLxsvKUXJVknKlIWwsRU7Fspu/gPJipW8rKxYsZqNbLylRKRQQkRN3vKSq9GZGo0Z984d9zw/9/upZ32ee7895zmdc+ZO1Wq1SFVV1alZnPp74CPwAXgHPAUeAs9L+3oqILdab4xFfATcAkbq8arJCRltZu4DV4DzwJ1eH9xo3bsHnK0DvuzVQVuOWRmfgRPAcqPlje/ABWCN0fLGF2AYGDRa3ngG7DRa5rgILJyNYF499tZjYA9wu5ujzgn84MlWAdeBQ91+hn4/bTU1huszndHCxmlgbqfB3NOadxnYDXxtdybuac0bAs500sJoZdgHHO9kJv2+r5Q0jrUTzD2tLD+AHcDV6WZltPK8BjYAL6aamXtaeRbXz+embGO0Mm0Fjk41M0+P5foErK1fMPqNK61cg/WT8EmMVrahPz2L8/RYvrEXh9ZP7ORKK986YNfEWbrSMtwENo3P1JWWYSOwfXymRstxcHymnh5zfAOWAG8GgAP9/m3UFgArgS311Vpp5gF7gZMFzq0IK4DD9d2Ikh7d3Oj3MO2YDxwB3hYUbmn5X1sZlgF3C4m2v+M3gfrUKHAOWF2PJo32e4xOjZ0urzW80ibd9dffLQKeNBxOM7DNaJlGjJZns9EyNbK3ecO4O5eaOKjRujPtS6X/itG686CJg874j9r0y2D9e1o9ZbTuVPX79z0/qLrT80tw97RARgtktEBGC2S0QEYLZLRARgtktEBGC2S0QEYLZLRARgtktEADyf/VqV1V9X89NnSlBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWiCjBTJaIKMFMlogowUyWhrgJ66LPLBWZByQAAAAAElFTkSuQmCC"/>
-                        </svg> -->
                     </div>
                     <div class="fs-10 mrt5">등록</div>
                 </div>
@@ -539,7 +502,7 @@
 
 
                 goHistory : function(){
-                    location.href="/card/history"
+                    location.href="/card/history?cardNo=" + this.currentItem.cardNo;
                 },
                 Payment : function(){
                     location.href="/card/change"

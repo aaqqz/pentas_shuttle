@@ -37,7 +37,14 @@ public class CardRestCtl {
         return rslt;
     }
 
+    @PostMapping("/card/history/getHisInfo")
+    public DevMap getHisInfo(@RequestBody DevMap param){
+        DevMap rslt = new DevMap();
+        List<DevMap> cardHisList = cardSvc.getHisInfo(param);
 
+        rslt.put("cardHisList", cardHisList);
+        return rslt;
+    }
 
 
 

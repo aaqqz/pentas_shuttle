@@ -15,4 +15,23 @@
         <if test='usrId != null and usrId != ""'>
         </if>
     </select>
+
+    <select id="getHisInfo" parameterType="DevMap" resultType="DevMap">
+        /* shuttle.card.getHisInfo */
+        SELECT
+            USE_STATEMENT_ID
+            ,AMOUNT
+            ,AMOUNT_TARGET
+            ,MERCHANT_ID
+            ,APPR_NO
+            ,USE_TYPE
+            ,to_char(USE_DT, 'YYYY-MM-DD HH:MI:SS') AS USR_DT
+        FROM TB_CARD_USE_STATEMENT
+        WHERE 1=1
+            AND CARD_NO = #{cardNo}
+            <if test='useType != "00"'>
+                AND USE_TYPE = #{useType}
+            </if>
+            AND USE_DT BETWEEN TO_DATE(#{sDate}, 'YYYY-MM-DD') AND TO_DATE(#{eDate}, 'YYYY-MM-DD')
+    </select>
 </mapper>

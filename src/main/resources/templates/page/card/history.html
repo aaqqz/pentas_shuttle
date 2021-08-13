@@ -11,38 +11,37 @@
 <div layout:fragment="content" class="content">
     <div class="mrl20 mrr20 mrt20">
         <div class="tabMenu flex">
-            <div class="tabBtn mrr10 fs-14" :class="{'onPay':pay == 1}" @click="changePay(1)">결제</div>
-            <div class="tabBtn fs-14" :class="{'onPay':pay == 2}" @click="changePay(2)">충전</div>
+            <div class="tabBtn mrr10 fs-14" :class="{'onPay':pay == 1}" @click="changePay(1)" th:text="#{payment}">결제</div>
+            <div class="tabBtn fs-14" :class="{'onPay':pay == 2}" @click="changePay(2)" th:text="#{charge}">충전</div>
         </div>
 
         <div class="flex f-btw mrt20">
             <div class="flex">
-                <div class="dateBtn mrr10 fc-gray" :class="{'onDate':date == 1}" @click="changeDate(1)">1주일</div>
-                <div class="dateBtn mrr10 fc-gray" :class="{'onDate':date == 2}" @click="changeDate(2)">1개월</div>
-                <div class="dateBtn mrr10 fc-gray" :class="{'onDate':date == 3}" @click="changeDate(3)">3개월</div>
+                <div class="dateBtn mrr10 fc-gray" :class="{'onDate':date == 7}" @click="dateSet(7)" th:text="#{week}">1주일</div>
+                <div class="dateBtn mrr10 fc-gray" :class="{'onDate':date == 1}" @click="dateSet(1)" th:text="#{oneMonth}">1개월</div>
+                <div class="dateBtn mrr10 fc-gray" :class="{'onDate':date == 3}" @click="dateSet(3)" th:text="#{threeMonth}">3개월</div>
             </div>
         </div>
         <div class="flex f-btw align-center mrt10">
-            <input type="text" class="wh text-c" value="2021-04-06" readonly @click="popupOpen('popupDialog')">
+            <input type="text" class="wh text-c" v-model="sDate.date" @click="popupOpenDate('sDatePop')" readonly>
             <span>-</span>
-            <input type="text" class="wh text-c" value="2021-04-06" readonly>
+            <input type="text" class="wh text-c" v-model="eDate.date" @click="popupOpenDate('eDatePop')" readonly>
         </div>
         <div class="flex f-btw align-center mrt10">
-            <select class="select demo2 wh fs-14 text-c">
-                <option class="" selected>전체</option>
-                <option class="" v-if="pay == 1">결제완료</option>
-                <option class="" v-if="pay == 1">결제취소</option>
-                <option class="" v-if="pay == 2">충전완료</option>
-                <option class="" v-if="pay == 2">충전취소</option>
+            <select class="select demo2 wh fs-14 text-c" v-model="useType">
+                <option class="" selected value="00">전체</option>
+                <option class="" v-if="pay == 1" value="01">결제완료</option>
+                <option class="" v-if="pay == 1" value="02">결제취소</option>
+                <option class="" v-if="pay == 2" value="03">충전완료</option>
+                <option class="" v-if="pay == 2" value="04">충전취소</option>
             </select>
-            <div class="searchBtn fc-white" @click="hisCheck()">조회</div>
+            <div class="searchBtn fc-white" @click="getHisInfo()" th:text="#{search}">검색</div>
         </div>
-
         <div class="cardInfo mrt15 flex f-btw align-center">
             <div class="fs-10" v-if="hisCheckVal == true">총 0건</div>
             <div class="fs-10" v-else>총 6건</div>
             <div class="text-r">
-                <div class="fs-10 fc-gray">2021.07.29 ~ 2021.08.05</div>
+                <div class="fs-10 fc-gray">{{sDate.date + ' ~ ' + eDate.date}}</div>
                 <div class="fs-10 fc-blue mrt5" v-if="hisCheckVal == true">0 C</div>
                 <div class="fs-10 fc-blue mrt5" v-else>29.700 C</div>
             </div>
@@ -50,93 +49,77 @@
     </div>
 
     <!--  이용내역 없을때  -->
-    <div class="cardHisIInfoNone" v-if="hisCheckVal == true">
+    <div class="cardHisIInfoNone" v-if="cardHisList <= 0">
         <div class="noneImg">
             <img th:src="@{/card/img/none.png}">
         </div>
-            <div class="mrt20 fc-gray fs-10">이용 내역이 없습니다.</div>
+        <div class="mrt20 fc-gray fs-10">이용 내역이 없습니다.</div>
     </div>
     <div class="cardHisIInfo" v-else>
         <div style="overflow:scroll;">
-            <div class="hisCont mrb15 pdb15" @click="popupOpen('popupDialogA')">
+            <div class="hisCont mrb15 pdb15" @click="popupOpen('popupDialogA')" v-for="(item, index) in cardHisList">
                 <div class="flex f-btw">
                     <div class="">아웃백 사당점</div>
-                    <div class="fc-blue fw-bold">3,300 C</div>
+                    <div class="fc-blue fw-bold">{{comma(item.amount)}} C</div>
                 </div>
                 <div class="flex f-btw mrt5">
-                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                    <div class="fc-gray fs-10">잔액 25,000 C</div>
-                </div>
-            </div>
-            <div class="hisCont mrb15 pdb15">
-                <div class="flex f-btw">
-                    <div class="">아웃백 사당점</div>
-                    <div class="fc-blue fw-bold">3,300 C</div>
-                </div>
-                <div class="flex f-btw mrt5">
-                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                    <div class="fc-gray fs-10">잔액 25,000 C</div>
-                </div>
-            </div>
-            <div class="hisCont mrb15 pdb15">
-                <div class="flex f-btw">
-                    <div class="">아웃백 사당점</div>
-                    <div class="fc-blue fw-bold">3,300 C</div>
-                </div>
-                <div class="flex f-btw mrt5">
-                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                    <div class="fc-gray fs-10">잔액 25,000 C</div>
-                </div>
-            </div>
-            <div class="hisCont mrb15 pdb15">
-                <div class="flex f-btw">
-                    <div class="">아웃백 사당점</div>
-                    <div class="fc-blue fw-bold">3,300 C</div>
-                </div>
-                <div class="flex f-btw mrt5">
-                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                    <div class="fc-gray fs-10">잔액 25,000 C</div>
-                </div>
-            </div>
-            <div class="hisCont mrb15 pdb15">
-                <div class="flex f-btw">
-                    <div class="">아웃백 사당점</div>
-                    <div class="fc-blue fw-bold">3,300 C</div>
-                </div>
-                <div class="flex f-btw mrt5">
-                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                    <div class="fc-gray fs-10">잔액 25,000 C</div>
-                </div>
-            </div>
-            <div class="hisCont mrb15 pdb15">
-                <div class="flex f-btw">
-                    <div class="">아웃백 사당점</div>
-                    <div class="fc-blue fw-bold">3,300 C</div>
-                </div>
-                <div class="flex f-btw mrt5">
-                    <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                    <div class="fc-gray fs-10">잔액 25,000 C</div>
+                    <div class="fc-gray fs-10">{{item.usrDt}}</div>
+                    <div class="fc-gray fs-10">잔액 {{comma(item.amountTarget)}} C</div>
                 </div>
             </div>
         </div>
     </div>
 
     <div layout:fragment="popup">
-        <div id="popupDialog" class="popup-wrap type-basic">
+        <div id="sDatePop" class="popup-wrap type-basic">
             <section class="popup demo1">
                 <div class="popup-body">
-                    <div class="popup-content">
-                        Popup Content
+                    <div class="popup-content flex f-evn">
+                        <select class="select demo3 wh fs-14 text-c">
+                            <option class="">2021</option>
+                        </select>
+                        <select class="select demo3 wh fs-14 text-c" v-model="sDate.month">
+                            <option class="" :key="i" :value="d.value" v-for="(d, i) in month">{{d.text}}</option>
+                        </select>
+                        <select class="select demo3 wh fs-14 text-c" v-model="sDate.day">
+                            <option class="" :key="i" :value="d.value" v-for="(d, i) in day">{{d.text}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn-succ-all" onclick="popupClose('popupDialog')"><span>확인</span></button>
+                        <button type="button" class="btn btn-succ-all" @click="dateChange('sDatePop')"><span>확인</span></button>
                     </div>
                 </div>
             </section>
         </div>
     </div>
+
+    <div layout:fragment="popup">
+        <div id="eDatePop" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content flex f-evn">
+                        <select class="select demo3 wh fs-14 text-c">
+                            <option class="">2021</option>
+                        </select>
+                        <select class="select demo3 wh fs-14 text-c" v-model="eDate.month">
+                            <option class="" :key="i" :value="d.value" v-for="(d, i) in month">{{d.text}}</option>
+                        </select>
+                        <select class="select demo3 wh fs-14 text-c" v-model="eDate.day">
+                            <option class="" :key="i" :value="d.value" v-for="(d, i) in day">{{d.text}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn-succ-all" @click="dateChange('eDatePop')"><span>확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
 
     <div layout:fragment="popup">
         <div id="popupDialogA" class="popup-wrap type-basic">
@@ -183,23 +166,159 @@
 
 <th:block layout:fragment="script">
     <script type="text/javascript">
-
         var app = new Vue({
             el: "#app",
             data: {
-                pay : 1,
-                date : 1,
+                cardNo : '[[${cardNo}]]',
+                pay : 1, // 결제 충전 여부
+                date : 0, // 날짜 선택 여부
+
+                sDate : {
+                    date : "",
+                    year : "",
+                    month : "",
+                    day : "",
+                },
+                eDate : {
+                    date : "",
+                    year : "",
+                    month : "",
+                    day : "",
+                },
+
+                useType : "00",
+
+                month: [
+                    {value:"01", text:"1"},
+                    {value:"02", text:"2"},
+                    {value:"03", text:"3"},
+                    {value:"04", text:"4"},
+                    {value:"05", text:"5"},
+                    {value:"06", text:"6"},
+                    {value:"07", text:"7"},
+                    {value:"08", text:"8"},
+                    {value:"09", text:"9"},
+                    {value:"10", text:"10"},
+                    {value:"11", text:"11"},
+                    {value:"12", text:"12"},
+                ],
+                day: [
+                    {value:"01", text:"1"},
+                    {value:"02", text:"2"},
+                    {value:"03", text:"3"},
+                    {value:"04", text:"4"},
+                    {value:"05", text:"5"},
+                    {value:"06", text:"6"},
+                    {value:"07", text:"7"},
+                    {value:"08", text:"8"},
+                    {value:"09", text:"9"},
+                    {value:"10", text:"10"},
+                    {value:"11", text:"11"},
+                    {value:"12", text:"12"},
+                    {value:"13", text:"13"},
+                ],
+
+                cardHisList : [],
+
+
+
+
                 hisCheckVal : true
             },
             mounted: function () {
+                this.init();
             },
             methods: {
+                init : function(){
+                    this.date = 7;
+                    this.dateSet(7);
+                },
                 changePay : function(val){
                     this.pay = val;
+                    this.useType = "00";
                 },
-                changeDate : function(val){
+                dateSet : function(val) {
                     this.date = val;
+
+                    var d = new Date();
+                    if(val == 7){
+                        this.getFormatDate( new Date(d.setDate(d.getDate() - 7)) , 'sDate');
+                    }else{
+                        this.getFormatDate( new Date(d.setMonth(d.getMonth() - val)) , 'sDate');
+                    }
+                    this.getFormatDate( new Date(), 'eDate');
                 },
+                //yyyyMMdd 포맷으로 반환
+                getFormatDate : function (date, dateVal){
+                    var dd = date.getDate();
+                    var mm = date.getMonth()+1; //January is 0!
+                    var yyyy = date.getFullYear();
+                    if(dd<10) {
+                        dd='0'+dd
+                    }
+                    if(mm<10) {
+                        mm='0'+mm
+                    }
+                    if(dateVal == 'sDate'){
+                        this.sDate.date = yyyy + '.' + mm + '.' + dd;
+                        this.sDate.year = yyyy;
+                        this.sDate.month = mm;
+                        this.sDate.day = dd;
+                        console.log("sdate")
+                        console.log(this.sDate)
+                    } else {
+                        this.eDate.date = yyyy + '.' + mm + '.' + dd;
+                        this.eDate.year = yyyy;
+                        this.eDate.month = mm;
+                        this.eDate.day = dd;
+                        console.log("edate")
+                        console.log(this.eDate)
+                    }
+                    //return yyyy+'.' + mm+'.'+dd;
+                },
+
+                dateChange : function(val){
+                    console.log(val)
+                    popupClose(val);
+                    this.date = "";
+                    if(val == 'sDatePop'){
+                        this.sDate.date = this.sDate.year + '.' + this.sDate.month + '.' + this.sDate.day;
+                    }else{
+                        this.eDate.date = this.eDate.year + '.' + this.eDate.month + '.' + this.eDate.day;
+                    }
+                },
+
+                popupOpenDate : function(val){
+                    console.log(val);
+                    popupOpen(val);
+                },
+
+                getHisInfo : function(){
+                    param = {
+                        cardNo : this.cardNo,
+                        useType : this.useType,
+                        sDate : this.sDate.date.replaceAll(".", "-"),
+                        eDate : this.eDate.date.replaceAll(".", "-"),
+                    }
+                    console.log(param)
+                    cf_call("/card/history/getHisInfo", param, this.getHisInfoCB)
+                },
+
+                getHisInfoCB : function(data){
+                    console.log(data)
+                    this.cardHisList = data.cardHisList;
+                },
+
+
+
+
+
+
+
+
+
+
+
                 hisCheck : function(){
                     console.log(this.hisCheckVal,111);
                     if (this.hisCheckVal === true){

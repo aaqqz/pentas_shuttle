@@ -20,4 +20,8 @@ public class CardSvc {
     public List<DevMap> getCardList(DevMap param){
         return cmmnDao.selectList("shuttle.card.getCardList", param);
     }
+
+    public List<DevMap> getHisInfo(DevMap param){
+        return cmmnDao.selectList("shuttle.card.getHisInfo", param);
+    }
 }
