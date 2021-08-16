@@ -9,4 +9,31 @@
         WHERE 1=1
             AND CARD_NO = #{cardNo}
     </update>
+
+    <insert id="cardUse" parameterType="Devmap">
+        /* shuttle.order.cardUse */
+        INSERT INTO TB_CARD_USE_STATEMENT (
+            USE_STATEMENT_ID
+            ,CARD_NO
+            ,AMOUNT
+            ,MERCHANT_ID
+            ,APPR_NO
+            ,USE_TYPE
+            ,TRANSACTION_TYPE
+            ,USE_DT
+            ,REG_DT
+            ,AMOUNT_TARGET
+        ) VALUES (
+            #{useStatementId}
+            ,#{cardNo}
+            ,#{amount}
+            ,#{metchantId}
+            ,#{apprNo}
+            ,#{useType}
+            ,#{transactionType}
+            ,sysdate
+            ,sysdate
+            ,#{amountTarget}
+        )
+    </insert>
 </mapper>

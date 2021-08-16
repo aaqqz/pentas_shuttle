@@ -29,21 +29,24 @@
         </div>
         <div class="flex f-btw align-center mrt10">
             <select class="select demo2 wh fs-14 text-c" v-model="useType">
-                <option class="" selected value="00">전체</option>
-                <option class="" v-if="pay == 1" value="01">결제완료</option>
-                <option class="" v-if="pay == 1" value="02">결제취소</option>
-                <option class="" v-if="pay == 2" value="03">충전완료</option>
-                <option class="" v-if="pay == 2" value="04">충전취소</option>
+                <option class="" selected value="00" th:text="#{all}">전체</option>
+                <option class="" v-if="pay == 1" value="01" th:text="#{paymentCompleted}">결제완료</option>
+                <option class="" v-if="pay == 1" value="02" th:text="#{paymentCancel}">결제취소</option>
+                <option class="" v-if="pay == 2" value="03" th:text="#{chargingComplete}">충전완료</option>
+                <option class="" v-if="pay == 2" value="04" th:text="#{chargeCancel}">충전취소</option>
             </select>
             <div class="searchBtn fc-white" @click="getHisInfo()" th:text="#{search}">검색</div>
         </div>
         <div class="cardInfo mrt15 flex f-btw align-center">
-            <div class="fs-10" v-if="hisCheckVal == true">총 0건</div>
-            <div class="fs-10" v-else>총 6건</div>
+            <div class="fs-10 flex" v-if="cardHisList <= 0">
+                <span th:text="#{total}">총</span> <span class="mrr5 mrl5">0</span> <span th:text="#{count}">건</span>
+            </div>
+            <div class="fs-10 flex" v-else>
+                <span th:text="#{total}">총</span> <span class="mrr5 mrl5">{{cardHisList.length}}</span> <span th:text="#{count}">건</span>
+            </div>
             <div class="text-r">
                 <div class="fs-10 fc-gray">{{sDate.date + ' ~ ' + eDate.date}}</div>
-                <div class="fs-10 fc-blue mrt5" v-if="hisCheckVal == true">0 C</div>
-                <div class="fs-10 fc-blue mrt5" v-else>29.700 C</div>
+                <div class="fs-10 fc-blue mrt5">{{comma(totalAmount)}} &#169;</div>
             </div>
         </div>
     </div>
@@ -53,18 +56,18 @@
         <div class="noneImg">
             <img th:src="@{/card/img/none.png}">
         </div>
-        <div class="mrt20 fc-gray fs-10">이용 내역이 없습니다.</div>
+        <div class="mrt20 fc-gray fs-10" th:text="#{noHistory}">이용 내역이 없습니다.</div>
     </div>
     <div class="cardHisIInfo" v-else>
         <div style="overflow:scroll;">
-            <div class="hisCont mrb15 pdb15" @click="popupOpen('popupDialogA')" v-for="(item, index) in cardHisList">
+            <div class="hisCont mrb15 pdb15" @click="hisDetailPop(item.useStatementId)" v-for="(item, index) in cardHisList">
                 <div class="flex f-btw">
                     <div class="">아웃백 사당점</div>
-                    <div class="fc-blue fw-bold">{{comma(item.amount)}} C</div>
+                    <div class="fc-blue fw-bold">{{comma(item.amount)}} &#169;</div>
                 </div>
                 <div class="flex f-btw mrt5">
                     <div class="fc-gray fs-10">{{item.usrDt}}</div>
-                    <div class="fc-gray fs-10">잔액 {{comma(item.amountTarget)}} C</div>
+                    <div class="fc-gray fs-10 flex"><span class="mrr5" th:text="#{cardBalance}">잔액</span><span>{{comma(item.amountTarget)}} &#169;</span></div>
                 </div>
             </div>
         </div>
@@ -88,7 +91,7 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn-succ-all" @click="dateChange('sDatePop')"><span>확인</span></button>
+                        <button type="button" class="btn btn-succ-all" @click="dateChange('sDatePop')"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -113,7 +116,7 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn-succ-all" @click="dateChange('eDatePop')"><span>확인</span></button>
+                        <button type="button" class="btn btn-succ-all" @click="dateChange('eDatePop')"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -129,11 +132,11 @@
                         <div class="flex align-center f-clm">
                             <div class="fw-bold fs-14">결제완료</div>
                             <div class="fc-gray mrt15">아웃백 사당점</div>
-                            <div class="fw-bold fc-blue fs-16 mrt5">3,300 C</div>
+                            <div class="fw-bold fc-blue fs-16 mrt5">{{comma(cardHisDetail.amount)}} &#169;</div>
                             <div class="bar-gray wh100 mrt15 mab15"></div>
                             <div class="flex f-btw wh100 mrt40">
                                 <div class="fc-gray">결제일시</div>
-                                <div class="fw-bold">2021.07.23. 14:20:57</div>
+                                <div class="fw-bold">{{cardHisDetail.usrDt}}</div>
                             </div>
                             <div class="flex f-btw wh100 mrt10">
                                 <div class="fc-gray">결제수단</div>
@@ -141,22 +144,19 @@
                             </div>
                             <div class="flex f-btw wh100 mrt10">
                                 <div class="fc-gray">승인번호</div>
-                                <div class="fw-bold">4358723</div>
+                                <div class="fw-bold">{{cardHisDetail.apprNo}}</div>
                             </div>
                             <div class="flex f-btw wh100 mrt10">
                                 <div class="fc-gray">결제유형</div>
-                                <div class="fw-bold">일시불</div>
-                            </div>
-                            <div class="flex f-btw wh100 mrt10">
-                                <div class="fc-gray">카드별칭</div>
-                                <div class="fw-bold">카드번호 1</div>
+                                <div class="fw-bold" v-if="cardHisDetail.transactionType == 0">매장 결제</div>
+                                <div class="fw-bold" v-else="">{{cardHisDetail.transactionType}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialogA')"><span>확인</span></button>
+                        <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialogA')"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -169,6 +169,11 @@
         var app = new Vue({
             el: "#app",
             data: {
+
+                headerTitleEN : 'سجل الاستخدام',
+                headerTitleKO : '이용 내역',
+                lang : '[[${session.lang}]]',
+
                 cardNo : '[[${cardNo}]]',
                 pay : 1, // 결제 충전 여부
                 date : 0, // 날짜 선택 여부
@@ -216,17 +221,41 @@
                     {value:"11", text:"11"},
                     {value:"12", text:"12"},
                     {value:"13", text:"13"},
+                    {value:"14", text:"14"},
+                    {value:"15", text:"15"},
+                    {value:"16", text:"16"},
+                    {value:"17", text:"17"},
+                    {value:"18", text:"18"},
+                    {value:"19", text:"19"},
+                    {value:"20", text:"20"},
+                    {value:"21", text:"21"},
+                    {value:"22", text:"22"},
+                    {value:"23", text:"23"},
+                    {value:"24", text:"24"},
+                    {value:"25", text:"25"},
+                    {value:"26", text:"26"},
+                    {value:"27", text:"27"},
+                    {value:"28", text:"28"},
+                    {value:"29", text:"29"},
+                    {value:"30", text:"30"},
+                    {value:"31", text:"31"},
+
+
+
                 ],
 
                 cardHisList : [],
 
+                totalAmount : 0,
 
+                cardHisDetail : [],
 
-
-                hisCheckVal : true
             },
             mounted: function () {
                 this.init();
+                if(this.cardNo == ""){
+                    this.cardNo = "9095054920910001";
+                }
             },
             methods: {
                 init : function(){
@@ -296,6 +325,7 @@
                 getHisInfo : function(){
                     param = {
                         cardNo : this.cardNo,
+                        payType : this.pay.toString(), // 결제 1 , 충전 2
                         useType : this.useType,
                         sDate : this.sDate.date.replaceAll(".", "-"),
                         eDate : this.eDate.date.replaceAll(".", "-"),
@@ -307,6 +337,21 @@
                 getHisInfoCB : function(data){
                     console.log(data)
                     this.cardHisList = data.cardHisList;
+
+                    this.totalAmount = 0;
+                    for(var i in data.cardHisList) {
+                        this.totalAmount += Number(data.cardHisList[i].amount);
+                    }
+                    console.log(this.totalAmount);
+                },
+
+                hisDetailPop : function(val){
+                    for(var i in this.cardHisList){
+                        if(this.cardHisList[i].useStatementId == val){
+                            this.cardHisDetail = this.cardHisList[i];
+                        }
+                    }
+                    popupOpen('popupDialogA');
                 },
 
 
@@ -316,18 +361,6 @@
 
 
 
-
-
-
-                hisCheck : function(){
-                    console.log(this.hisCheckVal,111);
-                    if (this.hisCheckVal === true){
-                        this.hisCheckVal = false;
-                    }else{
-                        this.hisCheckVal = true;
-                    }
-                    console.log(this.hisCheckVal,222);
-                }
 
             },
             computed: {

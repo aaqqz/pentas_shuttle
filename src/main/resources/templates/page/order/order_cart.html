@@ -17,7 +17,7 @@
 
 <div layout:fragment="content" class="content">
     <div class="container">
-        <h1 class="list-tit fs-14">장바구니 목록</h1>
+        <h1 class="list-tit fs-14" th:text="#{orderList}">장바구니 목록</h1>
         <div class="multi-time-sale time-sale">
             <div class="weekday">
                 <div class="items">
@@ -25,7 +25,7 @@
                         <div class="list-head">
                             <span class="check demo1" @click="allCheck()">
                                 <input type="checkbox" name="sCheck" id="sCheck0">
-                                <label for="sCheck0"><span class="fs-14">전체선택</span></label>
+                                <label for="sCheck0"><span class="fs-14" th:text="#{selectAll}">전체선택</span></label>
                             </span>
                         </div>
 
@@ -37,7 +37,7 @@
                                         <label for="sCheck1"><span class="blind">숨김처리</span></label>
                                     </span>
                                     <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span class="fs-14">삭제</span></button>
+                                        <button type="button" class="btn btn-close"><span class="fs-14" th:text="#{delete}">삭제</span></button>
                                     </div>
                                 </div>
 
@@ -52,7 +52,7 @@
 
                                             <input type='button' class="plus" @click='count("plus", "totalA")' value='+'/>
                                         </div>
-                                        <span class="price-num fs-num">3,600C</span>
+                                        <span class="price-num fs-num">10,300C</span>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                         <label for="sCheck2"><span class="blind">숨김처리</span></label>
                                     </span>
                                     <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span class="fs-14">삭제</span></button>
+                                        <button type="button" class="btn btn-close"><span class="fs-14" th:text="#{delete}">삭제</span></button>
                                     </div>
                                 </div>
 
@@ -79,15 +79,15 @@
 
                                             <input type='button' class="plus" @click='count("plus", "totalB")' value='+'/>
                                         </div>
-                                        <span class="price-num fs-num">3,600C</span>
+                                        <span class="price-num fs-num">10,300C</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="price-con">
-                            <div class="fot-price fs-16">총 가격</div>
-                            <div class="fot-num fs-16">27,200C</div>
+                            <div class="fot-price fs-16" th:text="#{totalPrice}">총 가격</div>
+                            <div class="fot-num fs-16">20,600C</div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="com-btn">
-            <button type="button" class="btn btn-com" @click="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
+            <button type="button" class="btn btn-com" @click="popupOpen('slideFootPopup')"><span class="fs-14" th:text="#{payment02}">결제하기</span></button>
         </div>
     </div>
 
@@ -104,7 +104,7 @@
         <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
             <section class="popup slide">
                 <div class="popup-head">
-                    <h3 class="popup-tit">결제카드 선택</h3>
+                    <h3 class="popup-tit" th:text="#{selectCard}">결제카드 선택</h3>
                 </div>
                 <div class="popup-body">
                     <div class="popup-content pdPop">
@@ -118,7 +118,7 @@
                                             <div class="cardBox pd15" style="height: 49vw;">
                                                 <div class="fc-white fs-16 mrt25 fw-bold">{{item.cardNoFormat}}</div>
                                                 <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
+                                                    <div class="fc-white fs-14" th:text="#{availableAmount}">사용 가능 금액</div>
                                                     <div class="fc-white fs-14">{{comma(item.cardBalance)}} C</div>
                                                 </div>
                                                 <div class="bar-white"></div>
@@ -129,15 +129,18 @@
                             </section>
                             <div class="price-con-cl">
                                 <!-- <button type="button" class="btn btn-char" onclick="goPage('/card/change')"><span class="fs-14">전환하기</span></button> -->
-                                <div class="fot-price fs-16">총금액<span class="fot-num fs-16 mrl5 mrr15">27,200C</span></div>
+                                <div class="fot-price fs-16">
+                                    <span class="fs-16" th:text="#{totalPrice}">총 금액</span>
+                                    <span class="fot-num fs-16 mrl5 mrr15">20,600C</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap"><!--popupOpen('popupAlert01')-->
-                        <button type="button" class="btn btn-exit" @click="popupClose('slideFootPopup')"><span>닫기</span></button>
-                        <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert02')"><span>결제하기</span></button>
+                        <button type="button" class="btn btn-exit" @click="popupClose('slideFootPopup')"><span th:text="#{cancel}">닫기</span></button>
+                        <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert02')"><span th:text="#{payment02}">결제하기</span></button>
                     </div>
                 </div>
                 <div class="popup-close">
@@ -158,10 +161,10 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap" v-if="succ == false">
-                        <button type="button" class="btn btn-succ-all" @click="popupClose('popupAlert01'), popupClose('popupAlert02')"><span>확인</span></button>
+                        <button type="button" class="btn btn-succ-all" @click="popupClose('popupAlert01'), popupClose('popupAlert02')"><span th:text="#{check}">확인</span></button>
                     </div>
                     <div class="btn_wrap" v-else>
-                        <button type="button" class="btn btn-succ-all" @click="goMain"><span>확인</span></button>
+                        <button type="button" class="btn btn-succ-all" @click="goMain"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -173,14 +176,14 @@
         <div id="popupAlert02" class="popup-wrap type-basic">
             <section class="popup demo1">
                 <div class="popup-body">
-                    <div class="popup-content fs-16">
+                    <div class="popup-content" th:text="#{paymentPopup}">
                         결제하시겠습니까?
                     </div>
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn btn-succ-al" @click="popupClose('popupAlert02')"><span>닫기</span></button>
-                        <button type="button" class="btn btn-succ-al" @click="goPayment()"><span>확인</span></button>
+                        <button type="button" class="btn btn btn-succ-al" @click="popupClose('popupAlert02')"><span th:text="#{cancel}">닫기</span></button>
+                        <button type="button" class="btn btn-succ-al" @click="goPayment()"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -195,12 +198,16 @@
         var app = new Vue({
             el: "#app",
             data: {
+                headerTitleEN : 'تاريخ الطلب',
+                headerTitleKO : '주문 내역',
+                lang : '[[${session.lang}]]',
+
                 cardList : {},
 
                 currSeq : 0,
                 currentItem : {},
 
-                totalPriceAmount : 27200,   // 제품 총가격
+                totalPriceAmount : 20600,   // 제품 총가격
                 totalCardBalance : 0,
 
                 alertText : "",
@@ -271,7 +278,12 @@
                     this.totalCardBalance = this.currentItem.cardBalance - this.totalPriceAmount;
                     console.log(this.totalCardBalance)
                     if(this.totalCardBalance < 0){
-                        this.alertText = "결제가능 금액을 초과하였습니다."
+                        if(this.lang == "en"){
+                            this.alertText = "تجاوز مبلغ الدفعة";
+                        }else{
+                            this.alertText = "결제가능 금액을 초과하였습니다."
+                        }
+
                         popupOpen('popupAlert01');
                         return false;
                     }
@@ -281,17 +293,30 @@
                 goPayment : function(){
                     if(!this.validate())
                         return
-
+                    console.log(this.currentItem)
                     param = {
-                        cardNo : this.currentItem.cardNo,
                         cardBalance : this.totalCardBalance.toString(),
+
+                        useStatementId : Math.floor(Math.random() * 10000000000),
+                        cardNo : this.currentItem.cardNo,
+                        amount : this.totalPriceAmount,
+                        metchantId : "1000002",
+                        apprNo : Math.floor(Math.random() * 10000000000000000),
+                        useType : "01",
+                        transactionType : "00",
+                        amountTarget : this.currentItem.cardBalance,
                     }
                     console.log(param)
                     console.log(222)
+                    //return;
                     cf_call("/order/order_card/payment", param, this.goPaymentCB);
                 },
                 goPaymentCB : function(){
-                    this.alertText = "결제가 완료되었습니다.";
+                    if(this.lang == "en"){
+                        this.alertText = "تم الانتهاء من الدفع";
+                    }else{
+                        this.alertText = "결제가 완료되었습니다.";
+                    }
                     popupOpen('popupAlert01');
                     this.succ = true;
                 },

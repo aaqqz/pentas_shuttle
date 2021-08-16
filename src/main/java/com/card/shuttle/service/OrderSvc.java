@@ -14,7 +14,7 @@ public class OrderSvc {
     public void payment(DevMap param){
 
         cmmnDao.update("shuttle.order.cardPayment", param);
-        //cmmnDao.insert("shuttle.order.cardUse", param);
+        cmmnDao.insert("shuttle.order.cardUse", param);
     }
 
 }

@@ -11,7 +11,7 @@
 <div layout:fragment="content" class="content">
   <div class="mrl20 mrr20 mrt20">
     <div class="pageTitle">
-      <div class="fs-14 mrt5 mrb10 fw-bold">카드 정보를 입력해 주세요.</div>
+      <div class="fs-14 mrt5 mrb10 fw-bold" th:text="#{joinCardInfoText}">카드 정보를 입력해 주세요.</div>
     </div>
     <div class="mrt20">Card No</div>
     <div class="cardNumInput mrt10">
@@ -27,7 +27,7 @@
         <span class="fs-14">CARD QR SCAN</span>
       </button>
     </div>
-    <div class="fs-10 fc-gray mrt20 text-c">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
+    <div class="fs-10 fc-gray mrt20 text-c" th:text="#{joinCardSubInfoText}">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
     <div class="com-btn registBtn">
       <button type="button" @click="regist" class="btn btn-com">
         <span class="fs-14">Register Card</span>
@@ -45,7 +45,7 @@
         </div>
         <div class="popup-foot">
           <div class="btn_wrap">
-            <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialog')"><span>확인</span></button>
+            <button type="button" class="btn btn btn-succ-all" @click="goMain"><span th:text="#{check}">확인</span></button>
           </div>
         </div>
       </section>
@@ -60,6 +60,10 @@
     var app = new Vue({
       el: "#app",
       data: {
+        headerTitleEN : 'تسجيل البطاقة',
+        headerTitleKO : '카드 등록',
+        lang : '[[${session.lang}]]',
+
         alertText : "",
       },
       mounted: function () {
@@ -102,9 +106,17 @@
           this.registerCardCB();
         },
         registerCardCB : function(){
-          console.log(111)
-          this.alertText = "카드가 등록되었습니다."
+          if(this.lang == "en"){
+            this.alertText = "البطاقة مسجلة"
+          }else{
+            this.alertText = "카드가 등록되었습니다."
+          }
+
           popupOpen('popupDialog');
+        },
+
+        goMain : function(){
+          location.href = "/card/main"
         }
 
       },

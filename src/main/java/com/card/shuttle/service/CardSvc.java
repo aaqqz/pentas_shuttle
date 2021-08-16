@@ -18,7 +18,14 @@ public class CardSvc {
     }
 
     public List<DevMap> getCardList(DevMap param){
-        return cmmnDao.selectList("shuttle.card.getCardList", param);
+        List<DevMap> rsltList = cmmnDao.selectList("shuttle.card.getCardList", param);
+
+        for (DevMap devMap : rsltList) {
+            System.out.println(devMap.get("cardNo"));
+            devMap.put("hisList", cmmnDao.selectList("shuttle.card.getCardHisList", devMap.get("cardNo")));
+        }
+
+        return rsltList;
     }
 
     public List<DevMap> getHisInfo(DevMap param){

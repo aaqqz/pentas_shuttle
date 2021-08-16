@@ -54,7 +54,7 @@
     width: 85%;
 }
 .loginCntBtn{
-    width: 25vw;
+    width: 27vw;
     display: flex;
     text-align: center;
     align-items: center;
@@ -157,3 +157,6 @@
     margin-right: 6vw;
 }
 
+.noneImg{
+    width: 14.44vw;
+}

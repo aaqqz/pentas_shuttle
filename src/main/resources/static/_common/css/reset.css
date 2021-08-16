@@ -425,8 +425,8 @@ font-family:'Noto Sans KR', sans-serif; font-size: 3.33vw;  color: #1a1a1a; font
 .mr100 {margin:27.78vw !important;}
 
 .mrl0 {margin-left:0px !important;}
-.mrl5 {margin-left:2.78vw !important;}
-.mrl10 {margin-left:1.39vw !important;}
+.mrl5 {margin-left:1.39vw !important;}
+.mrl10 {margin-left:2.78vw !important;}
 .mrl15 {margin-left:4.17vw !important;}
 .mrl20 {margin-left:5.56vw !important;}
 .mrl25 {margin-left:6.94vw !important;}
@@ -762,7 +762,9 @@ footer
 .fc-white{
     color: #fff;
 }
-
+.fc-black{
+    color: #0d0d0d !important;
+}
 .fw-bold{
     font-weight: bold;
 }

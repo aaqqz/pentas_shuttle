@@ -12,7 +12,7 @@
         <div class="main-banner">
             <div class="desc">
                 <!-- <span class="label label-speech"><b class="discount">~50%</b></span> -->
-                <h2 class="headline">샐러디</h2>
+                <h2 class="headline" th:text="#{salady}">샐러디</h2>
                 <p class="subcopy">SALADY</p>
             </div>
             <div class="thumbnail">
@@ -30,13 +30,13 @@
                     <div class="tab-nav demo1 ">
                         <ul role="tablist" class="tab-list">
                             <li id="tabItem21" role="tab" aria-controls="tabpanel21" aria-selected="true" class="js-tab is-active">
-                                <button type="button" class="btn"><span class="fs-14">인기메뉴</span></button>
+                                <button type="button" class="btn"><span class="fs-14" th:text="#{popularMenu}">인기메뉴</span></button>
                             </li>
                             <li id="tabItem22" role="tab" aria-controls="tabpanel22" aria-selected="false" class="js-tab">
-                                <button type="button" class="btn"><span class="fs-14">웜볼</span></button>
+                                <button type="button" class="btn"><span class="fs-14" th:text="#{warmBall}">웜볼</span></button>
                             </li>
                             <li id="tabItem23" role="tab" aria-controls="tabpanel23" aria-selected="false" class="js-tab">
-                                <button type="button" class="btn"><span class="fs-14">샐러디</span></button>
+                                <button type="button" class="btn"><span class="fs-14" th:text="#{salady}">샐러디</span></button>
                             </li>
                         </ul>
                     </div>
@@ -54,8 +54,7 @@
                                             <p class="name fs-14">명란마요 쉬림프 포케볼 Pollack Roe Mayo Shrimp Poke Bowl</p>
                                             <p class="list-content">쉬림프, 명란마요, 단무지, 양파, 옥수수, 칙피 *이탈리안허브</p>
                                             <div class="price">
-                                                <p class="sum fs-num">6,000C
-                                                </p>
+                                                <p class="sum fs-num">6,000C</p>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +77,7 @@
                                                     치킨, 할라피뇨, 칠리빈, 옥수수, 양파, 사워크림, *크리미칠리
                                                 </p>
                                                 <div class="price">
-                                                    <p class="sum fs-num">6,000C</b>
+                                                    <p class="sum fs-num">6,000C</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +105,7 @@
                                                     단호박, 두부, 칙피, 옥수수 *이탈리안허브
                                                 </p>
                                                 <div class="price">
-                                                    <p class="sum fs-num">24,000C</b>
+                                                    <p class="sum fs-num">6,000C</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,7 +129,7 @@
                                                     치킨소시지, 에그, 옥수수 *허니머스타드
                                                 </p>
                                                 <div class="price">
-                                                    <p class="sum fs-num">9,207C</b>
+                                                    <p class="sum fs-num">6,000C</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,7 +157,7 @@
                                                     치킨, 크랜베리 *시저
                                                 </p>
                                                 <div class="price">
-                                                    <p class="sum fs-num">24,000C</b>
+                                                    <p class="sum fs-num">6,000C</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +181,7 @@
                                                     리코타치즈, 크랜베리, 견과류, 통밀빵 *발사믹
                                                 </p>
                                                 <div class="price">
-                                                    <p class="sum fs-num">9,207C</b>
+                                                    <p class="sum fs-num">6,000C</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,13 +209,16 @@
                     <div class="popup-content">
                         <!-- <div class="container"> -->
                         <div class="popup-con-head">
-                            <p>가격</p>
+                            <p th:text="#{price}">가격</p>
                             <p>6,000C</p>
                         </div>
 
                         <div class="popup-con-body">
                             <div class="option-selec">
-                                <h3 class="popup-head-tit">메뉴 사이즈<span>필수선택</span></h3>
+                                <h3 class="popup-head-tit flex align-center">
+                                    <span class="fc-black fw-bold fs-16" th:text="#{menuSize}">메뉴 사이즈</span>
+                                    <span th:text="#{requiredSelection}">필수선택</span>
+                                </h3>
                                 <article class="silde-list">
                                     <div class="option">
                                         <span class="radio demo1">
@@ -224,7 +226,7 @@
                                             <label for="sRadio1"><span>Large</span></label>
                                         </span>
                                         <div class="option-price">
-                                            +4300C
+                                            +4,300C
                                         </div>
                                     </div>
 
@@ -234,7 +236,7 @@
                                             <label for="sRadio2"><span>middle</span></label>
                                         </span>
                                         <div class="option-price">
-                                            +4300C
+                                            +4,300C
                                         </div>
                                     </div>
 
@@ -244,14 +246,14 @@
                                             <label for="sRadio3"><span>smoll</span></label>
                                         </span>
                                         <div class="option-price">
-                                            +4300C
+                                            +4,300C
                                         </div>
                                     </div>
                                 </article>
                             </div>
                         </div>
                         <div class="price-con">
-                            <div class="fot-price fs-16">총 가격</div>
+                            <div class="fot-price fs-16" th:text="#{totalPrice}">총 가격</div>
                             <div class="fot-num fs-16">10,300C</div>
                         </div>
                     </div>
@@ -259,8 +261,8 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-                        <button type="button" class="btn btn-succ" onclick="popupOpen('popupAlert')"><span>주문담기</span></button>
+                        <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span th:text="#{close}">닫기</span></button>
+                        <button type="button" class="btn btn-succ" onclick="popupOpen('popupAlert')"><span th:text="#{order}">주문담기</span></button>
                     </div>
                 </div>
                 <div class="popup-close">
@@ -275,14 +277,13 @@
             <section class="popup demo1">
                 <div class="popup-body">
                     <div class="popup-content">
-                        주문을 담았습니다. <br>
-                        상단 장바구니 아이콘을 확인하세요.
+                        {{alertText}}
                     </div>
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
                         <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('popupAlert')"><span>닫기</span></button> -->
-                        <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup')]"><span>확인</span></button>
+                        <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup')]"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -299,10 +300,25 @@
         var app = new Vue({
             el: "#app",
             data: {
+                headerTitleEN : 'متجر',
+                headerTitleKO : '매장',
+                lang : '[[${session.lang}]]',
+
+                alertText : ""
             },
             mounted: function () {
+                this.init();
             },
             methods: {
+                init : function(){
+                    console.log(this.lang)
+                    if(this.lang == "en"){
+                        this.alertText = "يسجل طلبية \n" +
+                            "قمة " + "تحقق من أيقونة عربة التسوق";
+                    }else{
+                        this.alertText = "주문을 담았습니다. \n" + "상단 장바구니 아이콘을 확인하세요.";
+                    }
+                }
             },
             computed: {
             }

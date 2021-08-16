@@ -11,8 +11,10 @@
 <div layout:fragment="content" class="content">
     <div class="mrl20 mrr20 mrt20">
         <div class="pageTitle">
-            <div class="fs-14 fw-bold">셔틀카드만의 특별한 혜택!</div>
-            <div class="fs-14 mrt5 mrb10">여러분도 만나 보시겠습니까?</div>
+            <div class="fs-14 fw-bold">
+                <span class="mrr5">Shuttle</span><span th:text="#{eventTitle01}">만의 특별한 혜택!</span>
+            </div>
+            <div class="fs-14 mrt5 mrb10" th:text="#{eventTitle02}">여러분도 만나 보시겠습니까?</div>
         </div>
 
         <div class="bannerBox mrb20" @click="goPage()">
@@ -79,23 +81,26 @@
 
 
 <th:block layout:fragment="script">
-  <script type="text/javascript">
+<script type="text/javascript">
 
     var app = new Vue({
-      el: "#app",
-      data: {
-      },
-      mounted: function () {
-      },
-      methods: {
-          goPage : function(){
-              location.href="/event/detail";
-          }
-      },
-      computed: {
-      }
+        el: "#app",
+        data: {
+            headerTitleEN : 'الفوائد اليومية',
+            headerTitleKO : '일상의 혜택',
+            lang : '[[${session.lang}]]',
+        },
+        mounted: function () {
+        },
+        methods: {
+            goPage : function(){
+                location.href="/event/detail";
+            }
+        },
+        computed: {
+        }
     })
-  </script>
+</script>
 </th:block>
 
 </html>

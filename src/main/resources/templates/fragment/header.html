@@ -1,34 +1,25 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-    <div th:fragment="headerFragment">
-
-        <div class="header">
-            <header class="tenten_header header_main">
-                <div class="header_inner">
-                    <button type="button" class="header_opener">
-                        <div class="headerIcon" @click="goBack()">
-                            <img th:src="@{/_common/img/arrow.png}" style="background-color: #f1f5f8">
-                        </div>
-                        <span class="blind">메뉴 열기</span>
-                    </button>
-                    <h1 class="header_logo">
-                        <a href="#">
-                            <span class="back fs-14 mrl10">메인</span>
-                        </a>
-                    </h1>
-                    <div class="util">
-                        <!-- <a href="" class="btn_search"><i class="i_magnify"></i><span class="blind">검색</span></a> -->
-                        <!-- <a href="/order/order_cart" class="btn-shoppingbag">
-                            <span class="blind">장바구니</span><i class="i_bag"></i>
-                        </a> -->
-                        <div>
-                            <a href="/order/order_cart">
-                                <b-icon icon="handbag" font-scale="1.6"></b-icon>
-                            </a>
-                        </div>
-                    </div>  
+<div th:fragment="headerFragment">
+    <div class="header">
+        <header class="tenten_header header_main">
+            <div class="header_inner">
+                <button type="button" class="header_opener">
+                    <div class="headerIcon" @click="goBack()">
+                        <img th:src="@{/_common/img/arrow.png}" style="background-color: #f1f5f8">
+                    </div>
+                    <span class="blind">메뉴 열기</span>
+                </button>
+                <h1 class="header_logo">
+                    <span class="back fs-14 mrl10" v-if="lang == 'en'">{{headerTitleEN}}</span>
+                    <span class="back fs-14 mrl10" v-else>{{headerTitleKO}}</span>
+                </h1>
+                <div>
+                    <a href="/order/order_cart">
+                        <b-icon icon="handbag" font-scale="1.6"></b-icon>
+                    </a>
                 </div>
-            </header>
-        </div>
-
+            </div>
+        </header>
     </div>
+</div>
 </html>

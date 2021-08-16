@@ -32,21 +32,21 @@
                 <label for="sRadio12"><span class="fs14">Global</span></label>
             </span>
         </div>
-        <input type="text" class="loginInput mrt10" v-model="id" placeholder="ID">
-        <input type="password" class="loginInput mrt10" v-model="pw" placeholder="PW">
-        <div class="loginBtn mrt10" @click="login()">로그인</div>
+        <input type="text" class="loginInput mrt10" v-model="id" th:placeholder="#{ID}">
+        <input type="password" class="loginInput mrt10" v-model="pw" th:placeholder="#{password}">
+        <div class="loginBtn mrt10" th:text="#{login}" @click="login()">로그인</div>
         <div class="loginCntWrap flex f-evn mrt10 mrb10">
-            <div class="loginCntBtn">아이디 찾기</div>
+            <div class="loginCntBtn" th:text="#{findID}">아이디 찾기</div>
             <div class="hBar"></div>
-            <div class="loginCntBtn">비밀번호 찾기</div>
+            <div class="loginCntBtn" th:text="#{findPW}">비밀번호 찾기</div>
             <div class="hBar"></div>
-            <div class="loginCntBtn" @click="goSignUp">회원가입</div>
+            <div class="loginCntBtn" th:text="#{join}" @click="goSignUp">회원가입</div>
         </div>
     </div>
     <div class="cardWrap" v-else="">
         <div class="pageTitle mrl20 mrr20 mrt20">
-            <div class="fs-14 fw-bold"><span class="fc-blue fs-14 fw-bold">셔틀카드</span>고객님!</div>
-            <div class="fs-14 mrt5 mrb10" @click="dbTest()">안녕하십니까?</div>
+            <div class="fs-14 fw-bold"><span class="fc-blue fs-14 fw-bold mrr5">shuttle</span><span th:text="#{customer}">고객님!</span></div>
+            <div class="fs-14 mrt5 mrb10" @click="dbTest()" th:text="#{welcome}">안녕하십니까?</div>
         </div>
         <div class="swiper-pagination"></div>
         <swiper ref="swiperComponent" :options="swiperOption()" class="swiper">
@@ -55,53 +55,43 @@
                     <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
                     <div class="fc-white mrt5 fs-16 fw-bold">{{item.cardNoFormat}}</div>
                     <div class="flex f-btw mrt25 mrb25">
-                        <div class="fc-white fs-14">사용 가능 금액</div>
+                        <div class="fc-white fs-14" th:text="#{availableAmount}">사용 가능 금액</div>
                         <div class="fc-white fs-14">{{comma(item.cardBalance)}} &#169;</div>
                     </div>
                     <div class="bar-white mrt30"></div>
                     <div class="cardHis flex f-btw mrt25">
-                        <div class="fc-white">7월에 <span>9,900 &#169; </span>사용</div>
+                        <div class="fc-white flex">
+                            <span th:text="#{recently}">최근</span> <span class="mrr5 mrl5">{{comma(item.totalAmount)}} <span>&#169;</span></span><span th:text="#{used}">사용</span>
+                        </div>
                         <div class="cardHisArrow">
                             <img th:src="@{/card/img/arrow-down-white.png}">
                         </div>
                     </div>
                 </div>
-                <div class="cardHisAco">
-                    <div class="hisCont mrb15 pdb15">
+                <div class="cardHisAco" v-if="item.hisList.length > 0">
+                    <div class="hisCont mrb15 pdb15" v-for="hisItem in item.hisList">
                         <div class="flex f-btw">
                             <div class="">아웃백 사당점</div>
-                            <div class="fc-blue fw-bold">3,300 &#169;</div>
+                            <div class="fc-blue fw-bold">{{comma(hisItem.amount)}} &#169;</div>
                         </div>
                         <div class="flex f-btw mrt5">
-                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                            <div class="fc-gray fs-10">잔액 25,000 &#169;</div>
-                        </div>
-                    </div>
-                    <div class="hisCont mrb15 pdb15">
-                        <div class="flex f-btw">
-                            <div class="">아웃백 사당점</div>
-                            <div class="fc-blue fw-bold">3,300 C</div>
-                        </div>
-                        <div class="flex f-btw mrt5">
-                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                            <div class="fc-gray fs-10">잔액 25,000 C</div>
-                        </div>
-                    </div>
-                    <div class="hisCont mrb15 pdb15">
-                        <div class="flex f-btw">
-                            <div class="">아웃백 사당점</div>
-                            <div class="fc-blue fw-bold">3,300 C</div>
-                        </div>
-                        <div class="flex f-btw mrt5">
-                            <div class="fc-gray fs-10">2021.0723 14:20:45</div>
-                            <div class="fc-gray fs-10">잔액 25,000 C</div>
+                            <div class="fc-gray fs-10">{{hisItem.usrDt}}</div>
+                            <div class="fc-gray fs-10 flex"><span class="mrr5" th:text="#{cardBalance}">잔액</span><span>{{comma(hisItem.amountTarget)}} &#169;</span></div>
                         </div>
                     </div>
                     <div class="flex f-center" @click="goHistory()">
-                        <div class="fs-10 mrr10">더보기</div>
+                        <div class="fs-10 mrr10" th:text="#{more}">더보기</div>
                         <div class="cardHisDetailArrow">
                             <img th:src="@{/card/img/arrow-right-gray.png}">
                         </div>
+                    </div>
+                </div>
+                <div class="cardHisAco" v-else>
+                    <div class="hisCont pdb15 flex f-clm align-center">
+                        <div class="noneImg">
+                            <img th:src="@{/card/img/mainHisNone.png}">
+                        </div>
+                        <div class="mrt20 fc-gray fs-10" th:text="#{noHistory}">이용 내역이 없습니다.</div>
                     </div>
                 </div>
             </swiper-slide>
@@ -116,21 +106,21 @@
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/icon/price_cash.png}" style="width: 100%;">
                     </div>
-                    <div class="fs-10 mrt5">결제</div>
+                    <div class="fs-10 mrt5" th:text="#{payment}">결제</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="payTab(3), popupOpenMain('popupTop')">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/icon/price_chs.png}" style="width: 100%;">
                     </div>
-                    <div class="fs-10 mrt5">충전</div>
+                    <div class="fs-10 mrt5" th:text="#{charge}">충전</div>
                 </div>
                 <div class="hBar"></div>
                 <div class="flex f-clm align-center cardBtn" @click="goRegist()">
                     <div class="cardBtnImg">
                         <img th:src="@{/card/img/icon/price_plus.png}" style="width: 100%;">
                     </div>
-                    <div class="fs-10 mrt5">등록</div>
+                    <div class="fs-10 mrt5" th:text="#{registration}">등록</div>
                 </div>
             </div>
 <!--            <div class="flex f-evn mrt20">-->
@@ -165,9 +155,9 @@
 
         <div class="eventWrap mrt20">
             <div class="eventTop flex f-btw mrr15">
-                <div class="fw-bold fs-14">일상의 혜택</div>
+                <div class="fw-bold fs-14" th:text="#{dailyBenefit}">일상의 혜택</div>
                 <div class="flex f-btw align-center" @click="goEvent('list')">
-                    <div class="fs-10 mrr5">
+                    <div class="fs-10 mrr5" th:text="#{more}">
                         더보기
                     </div>
                     <div class="arrowRG flex align-center">
@@ -240,7 +230,7 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn btn-succ-all" @click="popupCloseMain('popupDialog')"><span>확인</span></button>
+                        <button type="button" class="btn btn btn-succ-all" @click="popupCloseMain('popupDialog')"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -251,8 +241,8 @@
         <div id="popupTop" class="popup-wrap-top type-select" role="dialog" aria-modal="false">
             <section class="popup slide">
                 <div class="popup-head">
-                    <h3 class="popup-tit" v-if="payTabVal != 3">결제하기</h3>
-                    <h3 class="popup-tit" v-else>충전하기</h3>
+                    <h3 class="popup-tit" v-if="payTabVal != 3" th:text="#{payment02}">결제하기</h3>
+                    <h3 class="popup-tit" v-else th:text="#{charge02}">충전하기</h3>
                 </div>
                 <div class="popup-body flex f-clm">
                     <div class="payTab" :class="{'on':payTabVal == 1}">
@@ -261,14 +251,14 @@
                             <div class="qrImg01">
                                 <img th:src="@{/card/img/qr_off.png}">
                             </div>
-                            <div class="payText fs-14 fw-bold mrt10">사용가능 금액</div>
+                            <div class="payText fs-14 fw-bold mrt10" th:text="#{availableAmount}">사용가능 금액</div>
                             <div class="fs-14 mrt10">{{comma(currentItem.cardBalance)}} C</div>
                             <div class="mrb20">
                                 <input class="payInput fs-14 text-c fc-blue" type="text" v-model="amount" @input="inputBalance"> C
                             </div>
                         </div>
                         <div class="btn_wrap-top flex f-center align-center">
-                            <div class="fw-bold fc-blue" @click="payTab(2), reCount()">결제하기</div>
+                            <div class="fw-bold fc-blue" @click="payTab(2), reCount()" th:text="#{payment}">결제하기</div>
                         </div>
                     </div>
                     <div class="payTab" :class="{'on':payTabVal == 2}" >
@@ -277,14 +267,14 @@
                             <div class="qrImg01 output" v-if="qrcodeInput">
                                 <img :src="newQRCode" alt="QRCode" />
                             </div>
-                            <div class="payText fs-14 fw-bold mrt10">결제예정 금액</div>
+                            <div class="payText fs-14 fw-bold mrt10" th:text="#{paymentSchedule}">결제예정 금액</div>
                             <div class="fs-14 mrt10 mrb10">{{comma(amount)}} C</div>
                             <div class="mrb20">
                                 <div class="fs-16 fc-blue mrt20">{{verifyTimeText}}</div>
                             </div>
                         </div>
                         <div class="btn_wrap-top flex f-center align-center" >
-                            <div class="fw-bold fc-blue" @click="reCount()">재요청</div>
+                            <div class="fw-bold fc-blue" @click="reCount()" th:text="#{reTry}">재요청</div>
                         </div>
                     </div>
                     <div class="payTab" :class="{'on':payTabVal == 3}" >
@@ -310,6 +300,8 @@
         var app = new Vue({
             el: "#app",
             data: {
+                headerTitleEN : 'الأساسي',
+                headerTitleKO : '메인',
                 userId : '[[${session.userId}]]',
                 lang : '[[${session.lang}]]',
                 id : "shuttle@shuttle.com",
@@ -335,15 +327,22 @@
                 logoutVal : 0,
             },
             mounted: function () {
-                this.init();
+                this.headerTitle('[[${session.lang}]]');
+
                 console.log(this.userId);
                 console.log(this.lang);
+
                 if(this.userId != ""){
                     this.getCardList();
                 }
             },
             methods: {
-                init : function(){
+                headerTitle : function(val){
+                    if(val == "en"){
+
+                    }else{
+
+                    }
                 },
                 langChange : function(){
                     if(this.lang == "ko"){
@@ -378,6 +377,12 @@
                     for(var i in data.cardList) {
                         var cardNoForMat = data.cardList[i].cardNo.replace(/(.{4})/g,"$1-").slice(0, -1);
                         data.cardList[i].cardNoFormat = cardNoForMat;
+                    }
+                    for(var i in data.cardList) {
+                        data.cardList[i].totalAmount = 0;
+                        for(var j in data.cardList[i].hisList){
+                            data.cardList[i].totalAmount += Number(data.cardList[i].hisList[j].amount);
+                        }
                     }
                     this.cardList = data.cardList;
                     this.currentItem = data.cardList[0];

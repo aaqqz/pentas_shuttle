@@ -100,7 +100,7 @@ border-bottom: 1px solid #ddd;
 .hisCont{
     border-bottom: 1px solid #ddd;
 }
-.hisCont:last-child{
-    border: none;
-}
+/*.hisCont:last-child{*/
+/*    border: none;*/
+/*}*/
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:v-bind="http://www.w3.org/1999/xhtml"
       layout:decorator="layout/default">
       
 <head>
@@ -20,7 +20,7 @@
                 <div class="search-container">
                     <div class="form-controls pdt20 pdb20 pdr20 pdl20">
                         <span class="file-add demo2 search-wrapper panel-heading col-sm-12">
-                            <input type="text" class="input search form-control" v-model="searchQuery" placeholder="찾고싶은 매장을 입력해주세요."/>
+                            <input type="text" class="input search form-control" v-model="searchQuery" th:placeholder="#{searchPlaceholder}"/>
                             <div class="searBtn" @click="search">
                                 <b-icon icon="search" font-scale="1.5"></b-icon>
                             </div>
@@ -33,7 +33,9 @@
                             margin: 0 auto;
                             background-color: rgb(36, 150, 238);
                             width: 60%;
-                            color: #fff;" @click="onQrScanner()"><span>매장 QR코드로 인증하기</span></button>
+                            color: #fff;" @click="onQrScanner()">
+                                <span th:text="#{QRsearchStore}">매장 QR코드로 인증하기</span>
+                            </button>
                         </div>
 <!--                        <h3 style="text-align: center; margin-top: 2vw;">매장 진입시 QR로 인증하세요.</h3>-->
                     </div>
@@ -80,6 +82,10 @@
         var app = new Vue({
             el: "#app",
             data: {
+                lang : '[[${session.lang}]]',
+                headerTitleEN : 'متجر',
+                headerTitleKO : '매장',
+
                 searchQuery: null,
                 resources:[
                     {title:"셀러디", uri: "../../order/img/store.png" ,category:"a",icon:null},

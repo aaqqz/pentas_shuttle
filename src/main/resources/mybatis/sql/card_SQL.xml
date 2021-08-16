@@ -16,6 +16,23 @@
         </if>
     </select>
 
+    <select id="getCardHisList" parameterType="devMap" resultType="devMap">
+        /* shuttle.card.getCardHisList */
+        SELECT
+            USE_STATEMENT_ID
+            ,AMOUNT
+            ,AMOUNT_TARGET
+            ,MERCHANT_ID
+            ,USE_TYPE
+            ,to_char(USE_DT, 'YYYY-MM-DD HH:MI:SS') AS USR_DT
+        FROM TB_CARD_USE_STATEMENT
+        WHERE 1=1
+            AND CARD_NO = #{cardNo}
+            <![CDATA[
+		        AND ROWNUM <= 3
+            ]]>
+    </select>
+
     <select id="getHisInfo" parameterType="DevMap" resultType="DevMap">
         /* shuttle.card.getHisInfo */
         SELECT
@@ -26,12 +43,25 @@
             ,APPR_NO
             ,USE_TYPE
             ,to_char(USE_DT, 'YYYY-MM-DD HH:MI:SS') AS USR_DT
+            ,TRANSACTION_TYPE
         FROM TB_CARD_USE_STATEMENT
         WHERE 1=1
             AND CARD_NO = #{cardNo}
             <if test='useType != "00"'>
                 AND USE_TYPE = #{useType}
             </if>
-            AND USE_DT BETWEEN TO_DATE(#{sDate}, 'YYYY-MM-DD') AND TO_DATE(#{eDate}, 'YYYY-MM-DD')
+            <if test='useType == "00"'>
+                <if test='payType == "1"'>
+                    AND (USE_TYPE = '01' OR USE_TYPE = '02')
+                </if>
+            </if>
+            <if test='useType == "00"'>
+                <if test='payType == "2"'>
+                    AND (USE_TYPE = '03' OR USE_TYPE = '04')
+                </if>
+            </if>
+            <![CDATA[
+                AND USE_DT BETWEEN TO_DATE(#{sDate}, 'YYYY-MM-DD') AND TO_DATE(#{eDate}, 'YYYY-MM-DD') + 0.99999
+            ]]>
     </select>
 </mapper>

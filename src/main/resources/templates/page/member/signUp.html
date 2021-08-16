@@ -11,48 +11,48 @@
 <div layout:fragment="content" class="content">
     <div class="mrl20 mrr20 mrt20">
         <div class="pageTitle">
-            <div class="fs-14 mrt5 mrb10 fw-bold">회원 정보를 입력해 주세요.</div>
+            <div class="fs-14 mrt5 mrb10 fw-bold" th:text="#{joimMemberInfoText}">회원 정보를 입력해 주세요.</div>
         </div>
-        <div class="mrt20">ID</div>
+        <div class="mrt20" th:text="#{ID}">ID</div>
         <input type="text"  class="wid100 mrt10" placeholder="shuttle@shuttle.com">
 
-        <div class="mrt20">PW</div>
+        <div class="mrt20" th:text="#{password}">PW</div>
         <input type="password"  class="wid100 mrt10">
 
-        <div class="mrt20">PW Check</div>
+        <div class="mrt20" th:text="#{passwordCheck}">PW Check</div>
         <input type="password"  class="wid100 mrt10">
         <div class="flex f-btw">
             <div>
-                <div class="mrt20">Name</div>
-                <input type="text"  class="wh mrt10" placeholder="Name">
+                <div class="mrt20" th:text="#{name}">Name</div>
+                <input type="text"  class="wh mrt10">
             </div>
             <div>
-                <div class="mrt20">Phone Number</div>
+                <div class="mrt20" th:text="#{phoneNumber}">Phone Number</div>
                 <input type="text"  class="wh mrt10" placeholder="010-5346-1234" onkeyup="telePhoneCheck(this)">
             </div>
         </div>
 
         <div class="pageTitle">
-            <div class="fs-14 mrt40 mrb10 fw-bold">카드 정보를 입력해 주세요.</div>
+            <div class="fs-14 mrt40 mrb10 fw-bold" th:text="#{joinCardInfoText}">카드 정보를 입력해 주세요.</div>
         </div>
-        <div class="mrt20">Card No</div>
+        <div class="mrt20" th:text="#{cardNo}">Card No</div>
         <div class="cardNumInput mrt10">
             <input type="number" class="inputs text-c" @input="nextInput('card02')" pattern="\d*" id="card01" maxlength="4"><div class="bar-black"></div>
             <input type="number" class="inputs text-c" @input="nextInput('card03')" pattern="\d*" id="card02" maxlength="4"><div class="bar-black"></div>
             <input type="number" class="inputs text-c" @input="nextInput('card04')" pattern="\d*" id="card03" maxlength="4"><div class="bar-black"></div>
             <input type="number" class="inputs text-c" @input="nextInput('cardPw')" pattern="\d*" id="card04" maxlength="4">
         </div>
-        <div class="mrt10">Card PW</div>
+        <div class="mrt10" th:text="#{cardPw}">Card PW</div>
         <input type="password" class="wid100 mrt10" id="cardPw">
         <div class="com-btn mrt20">
             <button type="button" @click="onQrScanner()" class="btn btn-com">
-                <span class="fs-14">CARD QR SCAN</span>
+                <span class="fs-14" th:text="#{cardQrScan}">CARD QR SCAN</span>
             </button>
         </div>
-        <div class="fs-10 fc-gray mrt20 text-c">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
+        <div class="fs-10 fc-gray mrt20 text-c" th:text="#{joinCardSubInfoText}">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
         <div class="com-btn registBtn mrt60" style="">
             <button type="button" @click="signUp" class="btn btn-com">
-                <span class="fs-14">Sign Up</span>
+                <span class="fs-14" th:text="#{signUp}">Sign Up</span>
             </button>
         </div>
     </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="popup-foot">
                     <div class="btn_wrap">
-                        <button type="button" class="btn btn btn-succ-all" @click="goMain()"><span>확인</span></button>
+                        <button type="button" class="btn btn btn-succ-all" @click="goMain()"><span th:text="#{check}">확인</span></button>
                     </div>
                 </div>
             </section>
@@ -82,6 +82,10 @@
         var app = new Vue({
             el: "#app",
             data: {
+                headerTitleEN : 'اشتراك',
+                headerTitleKO : '회원가입',
+                lang : '[[${session.lang}]]',
+
                 alertText : ""
             },
             mounted: function () {
@@ -121,7 +125,12 @@
                 },
 
                 signUp : function(){
-                    this.alertText = "회원가입이 완료되었습니다.";
+                    if(this.lang == "en"){
+                        this.alertText = "اكتمل التسجيل";
+                    }else{
+                        this.alertText = "회원가입이 완료되었습니다.";
+                    }
+
                     popupOpen("popupDialog");
                 },
                 goMain : function(){
