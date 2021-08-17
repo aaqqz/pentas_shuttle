@@ -219,9 +219,9 @@
                 cardSeq : 0
             },
             mounted: function () {
+                $(".orderIcon").css("color", "#2496ee")
                 this.init();
                 this.getCardList();
-
                 if(this.cart == "true"){
                     $(".storeCart").show();
                 }

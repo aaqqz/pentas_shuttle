@@ -12,7 +12,7 @@
     <div class="mrl20 mrr20 mrt20">
         <div class="pageTitle">
             <div class="fs-14 fw-bold">
-                <span class="mrr5">Shuttle</span><span th:text="#{eventTitle01}">만의 특별한 혜택!</span>
+                <span class="fc-blue fs-14 fw-bold mrr5">shuttle</span><span th:text="#{eventTitle01}">만의 특별한 혜택!</span>
             </div>
             <div class="fs-14 mrt5 mrb10" th:text="#{eventTitle02}">여러분도 만나 보시겠습니까?</div>
         </div>
@@ -93,6 +93,7 @@
 
         },
         mounted: function () {
+            $(".eventIcon").css("color", "#2496ee")
             if(this.cart == "true"){
                 $(".storeCart").show();
             }
