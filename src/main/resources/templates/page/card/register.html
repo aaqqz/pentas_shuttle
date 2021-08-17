@@ -64,11 +64,15 @@
         headerTitleEN : 'تسجيل البطاقة',
         headerTitleKO : '카드 등록',
         lang : '[[${session.lang}]]',
+        cart : '[[${session.cart}]]',
 
         alertText : "",
       },
       mounted: function () {
         //this.onCardScanner();
+        if(this.cart == "true"){
+          $(".storeCart").show();
+        }
       },
       methods: {
         onQrScanner : function(){

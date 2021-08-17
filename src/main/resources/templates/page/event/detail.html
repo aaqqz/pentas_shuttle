@@ -49,8 +49,13 @@
             headerTitleEN : 'الفوائد اليومية',
             headerTitleKO : '일상의 혜택',
             lang : '[[${session.lang}]]',
+            cart : '[[${session.cart}]]',
+
         },
         mounted: function () {
+            if(this.cart == "true"){
+                $(".storeCart").show();
+            }
         },
         methods: {
         },

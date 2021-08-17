@@ -173,6 +173,7 @@
                 headerTitleEN : 'سجل الاستخدام',
                 headerTitleKO : '이용 내역',
                 lang : '[[${session.lang}]]',
+                cart : '[[${session.cart}]]',
 
                 cardNo : '[[${cardNo}]]',
                 pay : 1, // 결제 충전 여부
@@ -256,6 +257,10 @@
                 if(this.cardNo == ""){
                     this.cardNo = "9095054920910001";
                 }
+                if(this.cart == "true"){
+                    $(".storeCart").show();
+                }
+
             },
             methods: {
                 init : function(){

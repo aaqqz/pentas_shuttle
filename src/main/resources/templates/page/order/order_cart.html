@@ -201,6 +201,7 @@
                 headerTitleEN : 'تاريخ الطلب',
                 headerTitleKO : '주문 내역',
                 lang : '[[${session.lang}]]',
+                cart : '[[${session.cart}]]',
 
                 cardList : {},
 
@@ -220,6 +221,10 @@
             mounted: function () {
                 this.init();
                 this.getCardList();
+
+                if(this.cart == "true"){
+                    $(".storeCart").show();
+                }
             },
             methods: {
                 init : function(){

@@ -304,6 +304,8 @@
                 headerTitleKO : '메인',
                 userId : '[[${session.userId}]]',
                 lang : '[[${session.lang}]]',
+                cart : '[[${session.cart}]]',
+
                 id : "shuttle@shuttle.com",
                 pw : "",
 
@@ -327,7 +329,6 @@
                 logoutVal : 0,
             },
             mounted: function () {
-                this.headerTitle('[[${session.lang}]]');
 
                 console.log(this.userId);
                 console.log(this.lang);
@@ -335,15 +336,13 @@
                 if(this.userId != ""){
                     this.getCardList();
                 }
+
+                if(this.cart == "true"){
+                    $(".storeCart").show();
+                }
             },
             methods: {
-                headerTitle : function(val){
-                    if(val == "en"){
 
-                    }else{
-
-                    }
-                },
                 langChange : function(){
                     if(this.lang == "ko"){
                         location.href = "/card/main?lang=ko";

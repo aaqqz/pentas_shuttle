@@ -70,6 +70,7 @@
                 headerTitleEN : 'سجل زيارة المتجر',
                 headerTitleKO : '매장 방문 내역',
                 lang : '[[${session.lang}]]',
+                cart : '[[${session.cart}]]',
 
                 totalA : 1,
                 totalB : 1,
@@ -77,6 +78,10 @@
             },
             mounted: function () {
                 this.init();
+                if(this.cart == "true"){
+                    $(".storeCart").show();
+                }
+
             },
             methods: {
                 init : function(){

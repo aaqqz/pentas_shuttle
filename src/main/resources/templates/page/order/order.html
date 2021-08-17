@@ -85,6 +85,7 @@
                 lang : '[[${session.lang}]]',
                 headerTitleEN : 'متجر',
                 headerTitleKO : '매장',
+                cart : '[[${session.cart}]]',
 
                 searchQuery: null,
                 resources:[
@@ -99,6 +100,9 @@
                 ],
             },
             mounted: function () {
+                if(this.cart == "true"){
+                    $(".storeCart").show();
+                }
             },
             methods: {
                 onQrScanner : function(){
