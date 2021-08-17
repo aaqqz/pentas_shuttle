@@ -11,59 +11,63 @@
 <div layout:fragment="content" class="content">
     <div class="bannerWrap bg-green">
         <div class="bannerTitle pdt30 pdl30" style="letter-spacing: -2px;">
-            <div class="fs-20 fw-bold">더우니까 줄서지 마세요</div>
-            <div class="mrt5 fs-20 " style="line-height: 1.2;">터치 몇번으로 주문은 간단하게!</div>
-            <div class="mrt70 fs-14 fc-grayb" style="line-height: 1.5;">스타벅스에서 주는 <br>특별한 선물!!! <br> 1,000원 할인권 받고<br> 혜택즐기자.</div>
+            <div class="fs-20 fw-bold" th:text="#{event_01_title}">더우니까 줄서지 마세요</div>
+            <div class="mrt5 fs-20 " style="line-height: 1.2;" th:text="#{event_01_subTitle}">터치 몇번으로 주문은 간단하게!</div>
+            <div class="mrt70 fs-14 fc-grayb" style="line-height: 1.5;">
+                <p class="fs-14 fc-grayb" th:text="#{event_02_subTitle}">특별한 선물!!!</p>
+                <p class="fs-14 fc-grayb" th:text="#{event_03_subTitle}">30% 할인권 받고</p>
+                <p class="fs-14 fc-grayb" th:text="#{event_04_subTitle}">혜택즐기자.</p>
+            </div>
         </div>
         <div class="detailImg">
             <img th:src="@{/event/img/event_prod_01.png}">
         </div>
     </div>
     <div class="infoWrap mrl20 mrr20">
-        <div class="mrt35 fw-bold">행사기간</div>
-        <div class="mrt10">2021.8.20(화) ~ 10.31(목)</div>
-        <div class="mrt15 fw-bold">대상카드</div>
-        <div class="mrt10">셔틀 멤버쉽 카드</div>
-        <div class="mrt15 fw-bold">행사내용</div>
-        <div class="mrt10">전국 모든 매장에서 대상 카드로</div>
-        <div class="mrt5">
-            <span class="fc-blue">불고기 버거 구매시 프라이드 1개 </span><span>증정</span>
+        <div class="mrt35 fw-bold" th:text="#{event_date}">행사기간</div>
+        <div class="mrt10">2021.8.21 ~ 2021.12.31</div>
+        <div class="mrt15 fw-bold" th:text="#{event_card}">대상카드</div>
+        <div class="mrt10" th:text="#{event_card_text}">셔틀 멤버쉽 카드</div>
+        <div class="mrt15 fw-bold" th:text="#{event_info}">행사내용</div>
+        <div class="mrt10" th:text="#{event_info_01}">전국 모든 매장에서 대상 카드로</div>
+        <div class="mrt5 flex">
+            <span class="fc-blue" th:text="#{event_info_02}">커피 주문시 커피 30% </span><span th:text="#{event_info_03}">할인</span>
         </div>
-        <div class="mrt5">(결제건당 1개, 1일 1회 적)</div>
+        <div class="mrt5" th:text="#{event_info_04}">(결제건당 1개, 1일 1회 적)</div>
         <div class="mrt25 mrb25 bar-gray"></div>
-        <div class="fw-bold" >유의사항</div>
-        <div class="fs-10 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>
-        <div class="fs-10 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>
-        <div class="fs-10 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>
-        <div class="fs-10 mrt10">- 다른 프로모션, 쿠포, 제휴카드 할인 및 혜택과 중복 적용되지 않습니다.</div>
+        <div class="fw-bold" th:text="#{event_notice}">유의사항</div>
+        <div class="fs-10 mrt10" th:text="#{event_notice_01}">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>
+<!--        <div class="fs-10 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>-->
+<!--        <div class="fs-10 mrt10">- 딜비러리 및 키오스크 주문 건은 제외됩니다.</div>-->
+        <div class="fs-10 mrt10" th:text="#{event_notice_02}">- 다른 프로모션, 쿠포, 제휴카드 할인 및 혜택과 중복 적용되지 않습니다.</div>
     </div>
 </div>
 
 
 <th:block layout:fragment="script">
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            headerTitleEN : 'الفوائد اليومية',
-            headerTitleKO : '일상의 혜택',
-            lang : '[[${session.lang}]]',
-            cart : '[[${session.cart}]]',
+        var app = new Vue({
+            el: "#app",
+            data: {
+                headerTitleEN : 'الفوائد اليومية',
+                headerTitleKO : '일상의 혜택',
+                lang : '[[${session.lang}]]',
+                cart : '[[${session.cart}]]',
 
-        },
-        mounted: function () {
-            $(".eventIcon").css("color", "#2496ee")
-            if(this.cart == "true"){
-                $(".storeCart").show();
+            },
+            mounted: function () {
+                $(".eventIcon").css("color", "#2496ee");
+                if(this.cart == "true"){
+                    $(".storeCart").show();
+                }
+            },
+            methods: {
+            },
+            computed: {
             }
-        },
-        methods: {
-        },
-        computed: {
-        }
-    })
-</script>
+        })
+    </script>
 </th:block>
 
 </html>
