@@ -52,7 +52,7 @@
 
                                             <input type='button' class="plus" @click='count("plus", "totalA")' value='+'/>
                                         </div>
-                                        <span class="price-num fs-num">10,300C</span>
+                                        <span class="price-num fs-num">10,300 &#169;</span>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
 
                                             <input type='button' class="plus" @click='count("plus", "totalB")' value='+'/>
                                         </div>
-                                        <span class="price-num fs-num">10,300C</span>
+                                        <span class="price-num fs-num">10,300 &#169;</span>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                         
                         <div class="price-con">
                             <div class="fot-price fs-16" th:text="#{totalPrice}">총 가격</div>
-                            <div class="fot-num fs-16">20,600C</div>
+                            <div class="fot-num fs-16">20,600 &#169;</div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                                                 <div class="fc-white fs-16 mrt25 fw-bold">{{item.cardNoFormat}}</div>
                                                 <div class="flex f-btw mrt75 mrb25">
                                                     <div class="fc-white fs-14" th:text="#{availableAmount}">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">{{comma(item.cardBalance)}} C</div>
+                                                    <div class="fc-white fs-14">{{comma(item.cardBalance)}} &#169;</div>
                                                 </div>
                                                 <div class="bar-white"></div>
                                             </div>
@@ -131,7 +131,7 @@
                                 <!-- <button type="button" class="btn btn-char" onclick="goPage('/card/change')"><span class="fs-14">전환하기</span></button> -->
                                 <div class="fot-price fs-16">
                                     <span class="fs-16" th:text="#{totalPrice}">총 금액</span>
-                                    <span class="fot-num fs-16 mrl5 mrr15">20,600C</span>
+                                    <span class="fot-num fs-16 mrl5 mrr15">20,600 &#169;</span>
                                 </div>
                             </div>
                         </div>

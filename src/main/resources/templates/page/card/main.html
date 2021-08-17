@@ -201,7 +201,7 @@
 
                 <div class="bar-gray"></div>
 
-                <div class="flex f-btw pdt15 pdb15">
+                <div class="flex f-btw pdt15 pdb15" @click="logout">
                     <div class="eventTextWrap">
                         <div class="fw-bold">더우니까 줄서지 마세요</div>
                         <div class="fs-10">터치 몇번으로 주문은 간단하게</div>
@@ -252,9 +252,9 @@
                                 <img th:src="@{/card/img/qr_off.png}">
                             </div>
                             <div class="payText fs-14 fw-bold mrt10" th:text="#{availableAmount}">사용가능 금액</div>
-                            <div class="fs-14 mrt10">{{comma(currentItem.cardBalance)}} C</div>
-                            <div class="mrb20">
-                                <input class="payInput fs-14 text-c fc-blue" type="text" v-model="amount" @input="inputBalance"> C
+                            <div class="fs-14 mrt10">{{comma(currentItem.cardBalance)}} &#169;</div>
+                            <div class="mrb20 flex align-center f-center">
+                                <input class="payInput fs-14 text-c fc-blue" type="text" v-model="amount" @input="inputBalance"> <span class="fc-blue fs-14">&#169;</span>
                             </div>
                         </div>
                         <div class="btn_wrap-top flex f-center align-center">
@@ -268,7 +268,7 @@
                                 <img :src="newQRCode" alt="QRCode" />
                             </div>
                             <div class="payText fs-14 fw-bold mrt10" th:text="#{paymentSchedule}">결제예정 금액</div>
-                            <div class="fs-14 mrt10 mrb10">{{comma(amount)}} C</div>
+                            <div class="fs-14 mrt10 mrb10">{{comma(amount)}} &#169;</div>
                             <div class="mrb20">
                                 <div class="fs-16 fc-blue mrt20">{{verifyTimeText}}</div>
                             </div>
@@ -423,7 +423,11 @@
                     if(parseInt(this.currentItem.cardBalance) < parseInt(this.amount.replace(/,/g, ""))){
                         this.closePopStatus = 0;
                         this.amount = "";
-                        this.alertText = "사용가능 금액을 초과하였습니다!"
+                        if(this.lang == "en"){
+                            this.alertText = "تجاوز مبلغ الدفعة";
+                        }else{
+                            this.alertText = "결제가능 금액을 초과하였습니다."
+                        }
                         this.popupOpenMain('popupDialog');
                     }
                     this.amount = comma(this.amount.replace(/,/g, ""))
@@ -462,7 +466,7 @@
                 reCount : function(){
                     clearInterval(this.timerInterval);
                     this.verifyTimeText = "01:00";//60000
-                    this.verifyTime = new Date(Date.now() + 6000);
+                    this.verifyTime = new Date(Date.now() + 60000);
                     this.timerInterval = setInterval(this.countDown, 1000);
                 },
                 countDown : function(){
@@ -470,7 +474,11 @@
                     var min = Math.floor(seconds / 60);
                     if(seconds <= 0 && min <= 0) {
                         clearInterval(this.timerInterval);
-                        this.alertText = "시간이 지났습니다!"
+                        if(this.lang == "en"){
+                            this.alertText = "لقد فات الأوان"
+                        }else{
+                            this.alertText = "시간이 지났습니다!"
+                        }
                         this.popupOpenMain('popupDialog');
                         return;
                     }

@@ -10,11 +10,11 @@ public class EventViewCtl {
 
     @GetMapping("/list")
     public String eventList(){
-        return "/page/event/list";
+        return "page/event/list";
     }
 
     @GetMapping("/detail")
     public String evenDetail(){
-        return "/page/event/detail";
+        return "page/event/detail";
     }
 }

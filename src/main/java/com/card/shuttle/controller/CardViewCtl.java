@@ -20,7 +20,7 @@ public class CardViewCtl {
     public String cardMain(HttpSession session, HttpServletRequest request){
         session.setAttribute("lang", commonCtl.langSet(request));
         System.out.println(commonCtl.langSet(request));
-        return "/page/card/main";
+        return "page/card/main";
     }
 
     @GetMapping("/history")
@@ -29,19 +29,19 @@ public class CardViewCtl {
         System.out.println("cardNO >>> " + cardNo);
 
         model.addAttribute("cardNo", cardNo);
-        return "/page/card/history";
+        return "page/card/history";
     }
 
     @GetMapping("/register")
     public String cardRegister(){
-        return "/page/card/register";
+        return "page/card/register";
     }
     @GetMapping("/change")
     public String cardChange(){
-        return "/page/card/change";
+        return "page/card/change";
     }
     @GetMapping("/change_sw")
     public String changeSw(){
-        return "/page/card/change_sw";
+        return "page/card/change_sw";
     }
 }

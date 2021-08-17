@@ -176,11 +176,20 @@ function cf_whatIsIt(obj){
 }
 
 function cf_loadingbarShow(){
+    // var backHeight = $(document).height();
+    var backGroundCover = "";
 
+    if(!$(".loading").length){
+        backGroundCover += "<div class='loading'>Loading&#8230;</div>";
+        $('body').append(backGroundCover);
+    }
+    // $('#back').css({ width: '100%', height: backHeight, background: '#0000007a', position : 'absolute', top: '0px', 'z-index': '99999999999999999999' });
+    // $('.loadingImg').css({ left: '50%', top: '50%', position : 'fixed', 'margin-top': '-5%', 'margin-left': '-5%' });
+    // $('#back').show();
 }
 
 function cf_loadingbarHide(){
-
+    $('.loading').hide();
 }
 
 function telePhoneCheck(obj) {

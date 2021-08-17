@@ -10,18 +10,18 @@ public class OrderViewCtl {
 
     @GetMapping("/order")
     public String order(){
-        return "/page/order/order";
+        return "page/order/order";
     }
     @GetMapping("/order_de")
     public String orderDetail(){
-        return "/page/order/order_de";
+        return "page/order/order_de";
     }
     @GetMapping("/order_cart")
     public String orderCart(){
-        return "/page/order/order_cart";
+        return "page/order/order_cart";
     }
     @GetMapping("/order_visit")
     public String orderVisit(){
-        return "/page/order/order_visit";
+        return "page/order/order_visit";
     }
 }

@@ -10,6 +10,6 @@ public class MemberCtl {
 
     @GetMapping("/signUp")
     public String signUp(){
-        return "/page/member/signUp";
+        return "page/member/signUp";
     }
 }

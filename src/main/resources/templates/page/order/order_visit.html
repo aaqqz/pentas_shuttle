@@ -17,16 +17,16 @@
 
 <div layout:fragment="content" class="content">
     <div class="container">
-        <h1 class="list-tit fs-14">매장방문 내역</h1>
+        <h1 class="list-tit fs-14" th:text="#{visitStoreList}">매장방문 내역</h1>
         <div class="multi-time-sale time-sale">
             <div class="weekday">
                 <div class="items">
                     <div class="container">
                         <div class="list-head" style="display: flex; justify-content: space-between; align-items: center;">
-                            <h3 class="tit fs-14">셀러디</h3>
+                            <h3 class="tit fs-14" th:text="#{salady}">샐러디</h3>
                             <div class="btn_wrap" @click="goPage('/order/order_de')">
                                 <div style="display: flex; justify-content: center;">
-                                    <span style="margin-right: 1.33vw; color: #b3b3b3;">매장 바로가기</span>
+                                    <span style="margin-right: 1.33vw; color: #b3b3b3;" th:text="#{goStore}">매장 바로가기</span>
                                     <b-icon icon="chevron-right" font-scale="1" style="color: #b3b3b3;"></b-icon>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                     <h3 class="contents fs-14">할라피뇨치킨 JALAPENO CHICKEN</h3>
                                     <div class="sub">할라피뇨추가</div>
                                     <div class="menu-fot"  style="display: flex; justify-content: flex-end;">
-                                        <span class="price-num fs-num">2021.08.11<span>
+                                        <span class="price-num fs-num">2021.08.11</span>
                                     </div>
                                 </div>
                             </div>
@@ -48,103 +48,16 @@
                                     <h3 class="contents fs-14">명란마요 쉬림프 포케볼 Pollack Roe Mayo Shrimp Poke Bowl</h3>
                                     <div class="sub">야채추가</div>
                                     <div class="menu-fot"  style="display: flex; justify-content: flex-end;">
-                                        <span class="price-num fs-num">2021.08.11<span>
+                                        <span class="price-num fs-num">2021.08.11</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="price-con">
-                            <div class="fot-price fs-16">총 가격</div>
-                            <div class="fot-num fs-16">27,200C</div>
-                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- <div class="com-btn">
-            <button type="button" class="btn btn-com" onclick="popupOpen('slideFootPopup')"><span class="fs-14">결제하기</span></button>
-        </div> -->
     </div>
-    <div layout:fragment="slideFootPopup">
-        <div id="slideFootPopup" class="popup-wrap type-select" role="dialog" aria-modal="false">
-            <section class="popup slide">
-                <div class="popup-head">
-                    <h3 class="popup-tit">결제카드 선택</h3>
-                </div>
-
-                <div class="popup-body">
-                    <div class="popup-content">
-                        <!-- <div class="popup-con-head"></div> -->
-                        <div class="popup-con-body">
-                            <section class="card-option">
-                                <div class="cardWrap">
-
-                                    <div class="swiper-pagination"></div>
-                                    <swiper ref="swiperComponent" :options="swiperOption()">
-                                        <swiper-slide>
-                                            <div class="cardBox pd15" style="height: 49vw;">
-                                                <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
-                                                <div class="fc-white fs-16 mrt25 fw-bold">1234-1234-1234-1234</div>
-                                                <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
-                                                </div>
-                                                <div class="bar-white"></div>
-                                            </div>
-                                        </swiper-slide>
-                                        <swiper-slide>
-                                            <div class="cardBox pd15" style="background-color: #ff8030; height: 49vw;">
-                                                <!-- <div class="cardName fc-white fs-14 fw-bold">1번 카드</div> -->
-                                                <div class="fc-white fs-16 mrt25 fw-bold">1234-1234-1234-1234</div>
-                                                <div class="flex f-btw mrt75 mrb25">
-                                                    <div class="fc-white fs-14">사용 가능 금액</div>
-                                                    <div class="fc-white fs-14">5,000C</div>
-                                                </div>
-                                            </div>
-                                        </swiper-slide>
-                                    </swiper>
-                                </div>
-                            </section>
-
-                            <div class="price-con-cl" style="border-top: 0.56vw solid #1a1a1a;">
-                                <div class="fot-price fs-16">총금액<span class="fot-num fs-16 mrl5">27,200C</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="popup-foot">
-                    <div class="btn_wrap">
-                        <button type="button" class="btn btn-exit" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-                        <button type="button" class="btn btn-succ" @click="popupOpen('popupAlert')"><span>결제하기</span></button>
-                    </div>
-                </div>
-                <div class="popup-close">
-                    <button type="button" class="btn btn-close" onclick="popupClose('slideFootPopup')"><span>닫기</span></button>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <!-- 카드로 결제했을시 완료 팝업 -->
-    <div layout:fragment="popupAlert">
-        <div id="popupAlert" class="popup-wrap type-basic">
-            <section class="popup demo1">
-                <div class="popup-body">
-                    <div class="popup-content fs-16">
-                        결제가 완료되었습니다.
-                    </div>
-                </div>
-                <div class="popup-foot">
-                    <div class="btn_wrap">
-                        <!-- <button type="button" class="btn btn-close-al" onclick="popupClose('slideFootPopup')"><span>닫기</span></button> -->
-                        <button type="button" class="btn btn-succ-all" @click="[popupClose('popupAlert'), popupClose('slideFootPopup'), goPage('/card/main')]"><span>확인</span></button>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
 </div>
 
 
