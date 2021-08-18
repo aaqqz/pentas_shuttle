@@ -109,6 +109,14 @@
           }
         },
         regist : function(){
+          param = {
+            cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
+            cardState : "01"
+          }
+
+          console.log(param)
+          return
+          cf_call("/card/register/cardRegist", param, this.registerCardCB);
           this.registerCardCB();
         },
         registerCardCB : function(){

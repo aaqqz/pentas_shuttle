@@ -24,13 +24,14 @@
             ,AMOUNT_TARGET
             ,MERCHANT_ID
             ,USE_TYPE
-            ,to_char(USE_DT, 'YYYY-MM-DD HH:MI:SS') AS USR_DT
+            ,to_char(USE_DT, 'YYYY-MM-DD HH24:MI:SS') AS USR_DT
         FROM TB_CARD_USE_STATEMENT
         WHERE 1=1
             AND CARD_NO = #{cardNo}
             <![CDATA[
 		        AND ROWNUM <= 3
             ]]>
+            ORDER BY USR_DT DESC
     </select>
 
     <select id="getHisInfo" parameterType="DevMap" resultType="DevMap">
@@ -42,7 +43,7 @@
             ,MERCHANT_ID
             ,APPR_NO
             ,USE_TYPE
-            ,to_char(USE_DT, 'YYYY-MM-DD HH:MI:SS') AS USR_DT
+            ,to_char(USE_DT, 'YYYY-MM-DD HH24:MI:SS') AS USR_DT
             ,TRANSACTION_TYPE
         FROM TB_CARD_USE_STATEMENT
         WHERE 1=1
@@ -63,5 +64,14 @@
             <![CDATA[
                 AND USE_DT BETWEEN TO_DATE(#{sDate}, 'YYYY-MM-DD') AND TO_DATE(#{eDate}, 'YYYY-MM-DD') + 0.99999
             ]]>
+            ORDER BY USR_DT DESC
     </select>
+
+    <update id="cardRegist" parameterType="DevMap">
+        /* shuttle.card.cardRegist */
+        UPDATE TB_CARD SET
+        CARD_STATE = #{cardState}
+        WHERE 1=1
+        AND CARD_NO = #{cardNo}
+    </update>
 </mapper>

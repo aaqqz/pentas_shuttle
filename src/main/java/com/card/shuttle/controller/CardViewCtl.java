@@ -26,7 +26,6 @@ public class CardViewCtl {
     @GetMapping("/history")
     public String cardHistory(HttpServletRequest req, Model model){
         String cardNo = req.getParameter("cardNo");
-        System.out.println("cardNO >>> " + cardNo);
 
         model.addAttribute("cardNo", cardNo);
         return "page/card/history";

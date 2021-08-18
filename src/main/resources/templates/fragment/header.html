@@ -14,7 +14,7 @@
                     <span class="back fs-14 mrl10" v-else>{{headerTitleKO}}</span>
                 </h1>
                 <div>
-                    <a class="storeCart" href="/order/order_cart" style="color: #2496ee; display: none">
+                    <a class="storeCart" @click="goPage('/order/order_cart')" style="color: #2496ee; display: none">
                         <template>
                             <b-row class="text-md-center">
                                 <b-col md="6" class="mb-3">

@@ -36,9 +36,9 @@
         <input type="password" class="loginInput mrt10" v-model="pw" th:placeholder="#{password}">
         <div class="loginBtn mrt10" th:text="#{login}" @click="login()">로그인</div>
         <div class="loginCntWrap flex f-evn mrt10 mrb10">
-            <div class="loginCntBtn" th:text="#{findID}">아이디 찾기</div>
+            <div class="loginCntBtn" th:text="#{findID}" @click="ready()">아이디 찾기</div>
             <div class="hBar"></div>
-            <div class="loginCntBtn" th:text="#{findPW}">비밀번호 찾기</div>
+            <div class="loginCntBtn" th:text="#{findPW}" @click="ready()">비밀번호 찾기</div>
             <div class="hBar"></div>
             <div class="loginCntBtn" th:text="#{join}" @click="goSignUp">회원가입</div>
         </div>
@@ -71,7 +71,8 @@
                 <div class="cardHisAco" v-if="item.hisList.length > 0">
                     <div class="hisCont mrb15 pdb15" v-for="hisItem in item.hisList">
                         <div class="flex f-btw">
-                            <div class="">아웃백 사당점</div>
+                            <div class="" v-if="lang == 'en'">سلطة</div>
+                            <div class="" v-else>SALADY</div>
                             <div class="fc-blue fw-bold">{{comma(hisItem.amount)}} &#169;</div>
                         </div>
                         <div class="flex f-btw mrt5">
@@ -434,11 +435,14 @@
 
                 popupOpenMain : function(val){
                     if(this.userId == ""){
-                        this.alertText = "로그인 후 이용가능합니다."
+                        if(this.lang == "en"){
+                            this.alertText = "متاح بعد تسجيل الدخول"
+                        }else{
+                            this.alertText = "로그인 후 이용가능합니다."
+                        }
                         popupOpen('popupDialog');
                         return;
                     }
-                    console.log(1111)
                     popupOpen(val);
                 },
 
@@ -494,17 +498,21 @@
 
 
                 ready : function(){
-                    this.alertText = "준비중입니다."
+                    if(this.lang == "en"){
+                        this.alertText = "قريبا"
+                    }else{
+                        this.alertText = "준비중 입니다."
+                    }
                     popupOpen('popupDialog');
                 },
 
-                onQrScanner : function(){
-                    window.Android.onQrScanner();
-                },
-                qrScanResult : function (rsltData){
-                    this.alertText = "충전이 완료되었습니다."
-                    popupOpen('popupDialog');
-                },
+                // onQrScanner : function(){
+                //     window.Android.onQrScanner();
+                // },
+                // qrScanResult : function (rsltData){
+                //     this.alertText = "충전이 완료되었습니다."
+                //     popupOpen('popupDialog');
+                // },
 
 
 
@@ -520,7 +528,16 @@
                     location.href="/card/change"
                 },
                 goRegist : function(){
-                    location.href="/card/register"
+                    if(this.userId == ""){
+                        if(this.lang == "en"){
+                            this.alertText = "متاح بعد تسجيل الدخول"
+                        }else{
+                            this.alertText = "로그인 후 이용가능합니다."
+                        }
+                        popupOpen('popupDialog');
+                        return;
+                    }
+                        location.href="/card/register"
                 },
                 goSignUp : function(){
                     location.href="/member/signUp"

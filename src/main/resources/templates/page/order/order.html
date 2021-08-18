@@ -47,17 +47,19 @@
                                     <!-- <div class="search-list" v-if="resultQuery.length > 0">
                                         <h3 class="storeSer fs-14" style="padding: 38vw 0;">검색어를 입력해주세요.</h3>
                                     </div> -->
-                                    <div class="search-list" @click="goPage('/order/order_de')">
+                                    <div class="search-list">
                                         <div class="search-detail" >
-                                            <div class="weekday mrb20" v-for="item in resultQuery" >
+                                            <div class="weekday mrb20" v-for="(item, index) in resultQuery" @click="goShop(index, '/order/order_de')">
                                                 <div class="items">
                                                     <div class="thumbnail_list">
                                                         <img :src="item.uri" />
                                                     </div>
                                                     <div class="desc">
                                                         <div class="">
-                                                            <p class="name"><a v-bind:href="item.uri" target="_blank">{{item.title}}</a></p>
-                                                            <p class="list-content">현대인의 건강을 책임지는 감성 셀러드 전문전 셀러디입니다.</p>
+                                                            <p class="name" v-if="lang == 'en'"><a v-bind:href="item.uri" target="_blank">{{item.titleEn}}</a></p>
+                                                            <p class="name" v-else><a v-bind:href="item.uri" target="_blank">{{item.titleKo}}</a></p>
+                                                            <p class="list-content" v-if="lang == 'en'">{{item.contentEn}}</p>
+                                                            <p class="list-content" v-else>{{item.contentKo}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -74,6 +76,23 @@
         </div>
     </div>
       <!-- contents -->
+
+    <div layout:fragment="popup">
+        <div id="popupDialog" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        {{alertText}}
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialog')"><span th:text="#{check}">확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
 
 
@@ -89,21 +108,21 @@
 
                 searchQuery: null,
                 resources:[
-                    {title:"샐러디", uri: "../../order/img/store.png" ,category:"a",icon:null},
-                    {title:"Accounting Services",uri: "../../order/img/store.png",category:"a",icon:null},
-                    {title:"Administration",uri: "../../order/img/store.png",category:"a",icon:null},
-                    {title:"Advanced Student Lookup",uri: "../../order/img/store.png",category:"b",icon:null},
-                    {title:"Art & Sciences",uri: "../../order/img/store.png",category:"b",icon:null},
-                    {title:"Auxiliares Services",uri: "../../order/img/store.png",category:"b",icon:null},
-                    {title:"Basic Skills",uri: "../../order/img/store.png",category:"c",icon:null},
-                    {title:"Board of Trustees",uri: "../../order/img/store.png",category:"d",icon:null}
+                    {titleKo:"샐러디", titleEn : "سلطة", uri: "../../order/img/store.png" ,category:"a",icon:null, contentEn : "هذا متجر سلطة معقول 'Salady' المسؤول عن صحة الناس المعاصرين.", contentKo : "현대인의 건강을 책임지는 감성 샐러드 매장 '샐러디'입니다."},
+                    {titleKo:"STARBUCKS", titleEn : "STARBUCKS",uri: "../../order/img/starbucks.png",category:"a",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
+                    {titleKo:"LION BRAND", titleEn : "LION BRAND", uri: "../../order/img/lion.jpg",category:"b",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다." },
+                    {titleKo:"BURGER KING", titleEn : "BURGER KING", uri: "../../order/img/burgerKing.jpg",category:"a",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
+                    {titleKo:"ABC MART", titleEn : "ABC MART", uri: "../../order/img/abc.png",category:"b",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
                 ],
+
+                alertText : ""
             },
             mounted: function () {
                 $(".orderIcon").css("color", "#2496ee")
                 if(this.cart == "true"){
                     $(".storeCart").show();
                 }
+                console.log(this.lang)
             },
             methods: {
                 onQrScanner : function(){
@@ -117,12 +136,26 @@
                     console.log(111)
                 },
 
+                goShop : function(index, link){
+                    if(index == 0){
+                        goPage(link);
+                    }else{
+                        if(this.lang == "en"){
+                            this.alertText = "قريبا"
+                        }else{
+                            this.alertText = "준비중 입니다."
+                        }
+                        popupOpen('popupDialog');
+                    }
+                },
+
             },
             computed: {
                 resultQuery(){
+                    console.log(this.lang)
                     if(this.searchQuery){
                         return this.resources.filter((item)=>{
-                            return this.searchQuery.toLowerCase().split(' ').every(v => item.title.toLowerCase().includes(v))
+                            return this.searchQuery.toLowerCase().split(' ').every(v => item.titleKo.toLowerCase().includes(v))
                         })
                     }else{
                         return this.resources;

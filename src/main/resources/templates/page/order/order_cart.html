@@ -23,63 +23,39 @@
                 <div class="items">
                     <div class="container">
                         <div class="list-head">
-                            <span class="check demo1" @click="allCheck()">
-                                <input type="checkbox" name="sCheck" id="sCheck0">
-                                <label for="sCheck0"><span class="fs-14" th:text="#{selectAll}">전체선택</span></label>
+                            <span class="check demo1">
+                                <input type="checkbox"  id="selectAll" @change="getCartTotalPrice">
+                                <label for="selectAll"><span class="fs-14" th:text="#{selectAll}">전체선택</span></label>
                             </span>
                         </div>
 
                         <div class="list-body">
-                            <div class="list-price">
+                            <div class="list-price" v-for="(item,  index) in cartItem" :key = "index">
                                 <div class="check-del">
                                     <span class="check demo1">
-                                        <input type="checkbox" name="sCheck" id="sCheck1">
-                                        <label for="sCheck1"><span class="blind">숨김처리</span></label>
+                                        <input type="checkbox" name="sCheck" :id="index" :value="item.totalPrice" @change="getCartTotalPrice">
+                                        <label :for="index"><span class="blind">숨김처리</span></label>
                                     </span>
                                     <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span class="fs-14" th:text="#{delete}">삭제</span></button>
+                                        <button type="button" class="btn btn-close">
+                                            <span class="fs-14" th:text="#{delete}" @click="cartItemDel(index, getCartTotalPrice) ">삭제</span>
+                                        </button>
                                     </div>
                                 </div>
 
                                 <div class="menu-list">
-                                    <h3 class="contents fs-14">할라피뇨치킨 JALAPENO CHICKEN</h3>
-                                    <div class="sub">할라피뇨추가</div>
+                                    <h3 class="contents fs-14" v-if="lang == 'en'">{{item.titleEn}}</h3>
+                                    <h3 class="contents fs-14" v-else>{{item.titleKo}}</h3>
+                                    <div class="sub">{{item.size}}</div>
                                     <div class="menu-fot">
                                         <div class="num">
-                                            <input type='button' class="miner" @click='count("minus", "totalA")'  value='-'/>
+                                            <input type='button' class="miner" @click='count("minus", item.count, index, getCartTotalPrice)'  value='-'/>
 
-                                            <div class="num-cout fs-14" >{{totalA}}</div>
+                                            <div class="num-cout fs-14" >{{item.count}}</div>
 
-                                            <input type='button' class="plus" @click='count("plus", "totalA")' value='+'/>
+                                            <input type='button' class="plus" @click='count("plus", item.count, index, getCartTotalPrice)' value='+'/>
                                         </div>
-                                        <span class="price-num fs-num">10,300 &#169;</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="list-price">
-                                <div class="check-del">
-                                    <span class="check demo1">
-                                        <input type="checkbox" name="sCheck" id="sCheck2">
-                                        <label for="sCheck2"><span class="blind">숨김처리</span></label>
-                                    </span>
-                                    <div style="display: inline-flex;align-items: center;border: 1px solid #ddd;">
-                                        <button type="button" class="btn btn-close"><span class="fs-14" th:text="#{delete}">삭제</span></button>
-                                    </div>
-                                </div>
-
-                                <div class="menu-list">
-                                    <h3 class="contents fs-14">명란마요 쉬림프 포케볼 Pollack Roe Mayo Shrimp Poke Bowl</h3>
-                                    <div class="sub">야채추가</div>
-                                    <div class="menu-fot">
-                                        <div class="num">
-                                            <input type='button' class="miner" @click='count("minus", "totalB")'  value='-'/>
-
-                                            <div class="num-cout fs-14" >{{totalB}}</div>
-
-                                            <input type='button' class="plus" @click='count("plus", "totalB")' value='+'/>
-                                        </div>
-                                        <span class="price-num fs-num">10,300 &#169;</span>
+                                        <span class="price-num fs-num">{{comma(item.totalPrice)}} &#169;</span>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +63,7 @@
                         
                         <div class="price-con">
                             <div class="fot-price fs-16" th:text="#{totalPrice}">총 가격</div>
-                            <div class="fot-num fs-16">20,600 &#169;</div>
+                            <div class="fot-num fs-16">{{comma(cartTotalPrice)}} &#169;</div>
                         </div>
                     </div>
                 </div>
@@ -131,7 +107,7 @@
                                 <!-- <button type="button" class="btn btn-char" onclick="goPage('/card/change')"><span class="fs-14">전환하기</span></button> -->
                                 <div class="fot-price fs-16">
                                     <span class="fs-16" th:text="#{totalPrice}">총 금액</span>
-                                    <span class="fot-num fs-16 mrl5 mrr15">20,600 &#169;</span>
+                                    <span class="fot-num fs-16 mrl5 mrr15">{{comma(cartTotalPrice)}} &#169;</span>
                                 </div>
                             </div>
                         </div>
@@ -200,6 +176,7 @@
             data: {
                 headerTitleEN : 'تاريخ الطلب',
                 headerTitleKO : '주문 내역',
+                userId : '[[${session.userId}]]',
                 lang : '[[${session.lang}]]',
                 cart : '[[${session.cart}]]',
 
@@ -208,36 +185,45 @@
                 currSeq : 0,
                 currentItem : {},
 
-                totalPriceAmount : 20600,   // 제품 총가격
                 totalCardBalance : 0,
 
                 alertText : "",
 
                 succ : false,
+
+                cartItem : [
+                    {titleKo : "할라피뇨 치킨", titleEn : "دجاج هلابينو", size : "Large" , price : 10300, count : 1, totalPrice : 10300, checked : false},
+                    {titleKo : "명란마요 쉬림프 포케볼", titleEn : "وعاء بوكي الروبيان كود رو مايو", size: "Medium", price : 10300, count : 1 , totalPrice : 10300, checked : false}
+                ],
+
+                cartTotalPrice : 0,
+
                 totalA : 1,
                 totalB : 1,
                 cardSeq : 0
             },
             mounted: function () {
+                console.log(this.lang)
                 $(".orderIcon").css("color", "#2496ee")
                 this.init();
                 this.getCardList();
+                this.getCartTotalPrice();
                 if(this.cart == "true"){
                     $(".storeCart").show();
                 }
             },
             methods: {
                 init : function(){
-                    $("#sCheck0").click(function(){
-                        //만약 전체 선택 체크박스가 체크된상태일경우
-                        if($("#sCheck0").prop("checked")) {
-                            // 해당화면에 전체 checkbox들을 체크해준다
-                            $("input[type=checkbox]").prop("checked",true);
-                            // 전체선택 체크박스가 해제된 경우
-                        } else {
-                            //해당화면에 모든 checkbox들의 체크를해제시킨다.
-                            $("input[type=checkbox]").prop("checked",false); }
-                    })
+
+                    $("#selectAll").click(function() {
+                        $("input[type=checkbox]").prop("checked", $(this).prop("checked"));
+                    });
+
+                    $("input[type=checkbox]").click(function() {
+                        if (!$(this).prop("checked")) {
+                            $("#selectAll").prop("checked", false);
+                        }
+                    });
                 },
 
                 getCardList : function(){
@@ -280,10 +266,10 @@
                     };
                 },
                 validate : function(){
-                    this.totalCardBalance = this.currentItem.cardBalance - this.totalPriceAmount;
+                    this.totalCardBalance = this.currentItem.cardBalance - this.cartTotalPrice;
                     console.log(this.totalCardBalance)
                     if(this.totalCardBalance < 0){
-                        if(this.lang == "en"){
+                        if(this.lang === "en"){
                             this.alertText = "تجاوز مبلغ الدفعة";
                         }else{
                             this.alertText = "결제가능 금액을 초과하였습니다."
@@ -304,7 +290,7 @@
 
                         useStatementId : Math.floor(Math.random() * 10000000000),
                         cardNo : this.currentItem.cardNo,
-                        amount : this.totalPriceAmount,
+                        amount : this.cartTotalPrice.toString(),
                         metchantId : "1000002",
                         apprNo : Math.floor(Math.random() * 10000000000000000),
                         useType : "01",
@@ -317,7 +303,7 @@
                     cf_call("/order/order_card/payment", param, this.goPaymentCB);
                 },
                 goPaymentCB : function(){
-                    if(this.lang == "en"){
+                    if(this.lang === "en"){
                         this.alertText = "تم الانتهاء من الدفع";
                     }else{
                         this.alertText = "결제가 완료되었습니다.";
@@ -326,47 +312,42 @@
                     this.succ = true;
                 },
 
+                count : function (type, totalVal, index, callback)  {
+                    if(type === 'plus') {
+                        totalVal = totalVal + 1;
+                    }else if(type === 'minus')  {
+                        totalVal = totalVal - 1;
+                    }
 
+                    if(totalVal < 1 ){
+                        totalVal = 1;
+                    }
 
+                    this.cartItem[index].count = totalVal;
+                    this.cartItem[index].totalPrice = this.cartItem[index].price * totalVal;
+                    callback();
+                },
+                getCartTotalPrice : function(){
+                    this.cartTotalPrice = 0;
+                    $("input:checkbox[name=sCheck]:checked").each(function(i,elements){
+                        //해당 index(순서)값을 가져옵니다.
 
-
+                        var index = $(elements).index("input:checkbox[name=sCheck]");
+                        console.log(index)
+                        app.cartTotalPrice += app.cartItem[index].totalPrice;
+                    });
+                    // for(var i in this.cartItem){
+                    //     this.cartTotalPrice += this.cartItem[i].totalPrice;
+                    // }
+                },
+                cartItemDel : function(index, callBack){
+                    console.log(index);
+                    this.cartItem.splice(index, index +1);
+                    callBack();
+                },
                 goMain : function(){
                     location.href = "/card/main"
                 },
-
-
-
-
-                count : function (type, totalVal)  {
-                    var num = 0
-                    if(totalVal == "totalA"){
-                        num = this.totalA;
-                    }else{
-                        num = this.totalB;
-                    }
-                    // 더하기/빼기
-                    if(type === 'plus') {
-                        num = parseInt(num) + 1;
-                    }else if(type === 'minus')  {
-                        num = parseInt(num) - 1;
-                    }
-
-                    if(num < 1 ){
-                        num = 1;
-                    }
-                    if(totalVal == "totalA"){
-                        this.totalA = num;
-                    }else{
-                        this.totalB = num;
-                    }
-                    // 결과 출력
-                    // resultElement.innerText = number;
-                },
-                allCheck : function(){
-
-                },
-
-
             },
             computed: {
             }

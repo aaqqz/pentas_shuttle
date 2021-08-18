@@ -31,8 +31,8 @@
             ,#{apprNo}
             ,#{useType}
             ,#{transactionType}
-            ,sysdate
-            ,sysdate
+            ,sysdate - 6/24
+            ,sysdate - 6/24
             ,#{amountTarget}
         )
     </insert>

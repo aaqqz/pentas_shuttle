@@ -201,7 +201,7 @@ function goBack(){
 }
 
 function goPage(url){
-    window.location.href=url;
+    location.href=url;
 }
 function comma(x) {
     if(typeof x === "undefined" || x == null )

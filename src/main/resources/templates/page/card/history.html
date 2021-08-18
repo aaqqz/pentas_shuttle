@@ -62,7 +62,8 @@
         <div style="overflow:scroll;">
             <div class="hisCont mrb15 pdb15" @click="hisDetailPop(item.useStatementId)" v-for="(item, index) in cardHisList">
                 <div class="flex f-btw">
-                    <div class="">아웃백 사당점</div>
+                    <div class="" v-if="lang == 'en'">سلطة</div>
+                    <div class="" v-else>SALADY</div>
                     <div class="fc-blue fw-bold">{{comma(item.amount)}} &#169;</div>
                 </div>
                 <div class="flex f-btw mrt5">
@@ -130,24 +131,28 @@
                 <div class="popup-body">
                     <div class="popup-content fs-16">
                         <div class="flex align-center f-clm">
-                            <div class="fw-bold fs-14">결제완료</div>
-                            <div class="fc-gray mrt15">아웃백 사당점</div>
+                            <div class="fw-bold fs-14" v-if="cardHisDetail.useType == '01'" th:text="#{paymentCompleted}">결제완료</div>
+                            <div class="fw-bold fs-14" v-if="cardHisDetail.useType == '02'" th:text="#{paymentCancel}">결제취소</div>
+                            <div class="fw-bold fs-14" v-if="cardHisDetail.useType == '03'" th:text="#{chargingComplete}">충전완료</div>
+                            <div class="fw-bold fs-14" v-if="cardHisDetail.useType == '04'" th:text="#{chargeCancel}">충전취소</div>
+                            <div class="fc-gray mrt15" v-if="lang == 'en'">سلطة</div>
+                            <div class="fc-gray mrt15" v-else>SALADY</div>
                             <div class="fw-bold fc-blue fs-16 mrt5">{{comma(cardHisDetail.amount)}} &#169;</div>
                             <div class="bar-gray wh100 mrt15 mab15"></div>
                             <div class="flex f-btw wh100 mrt40">
-                                <div class="fc-gray">결제일시</div>
+                                <div class="fc-gray" th:text="#{paymentDate}">결제일시</div>
                                 <div class="fw-bold">{{cardHisDetail.usrDt}}</div>
                             </div>
                             <div class="flex f-btw wh100 mrt10">
-                                <div class="fc-gray">결제수단</div>
-                                <div class="fw-bold">셔틀카드</div>
+                                <div class="fc-gray" th:text="#{paymentMethod}">결제수단</div>
+                                <div class="fw-bold">Shuttle Card</div>
                             </div>
                             <div class="flex f-btw wh100 mrt10">
-                                <div class="fc-gray">승인번호</div>
+                                <div class="fc-gray" th:text="#{approvalNumber}">승인번호</div>
                                 <div class="fw-bold">{{cardHisDetail.apprNo}}</div>
                             </div>
                             <div class="flex f-btw wh100 mrt10">
-                                <div class="fc-gray">결제유형</div>
+                                <div class="fc-gray" th:text="#{paymentType}">결제유형</div>
                                 <div class="fw-bold" v-if="cardHisDetail.transactionType == 0">매장 결제</div>
                                 <div class="fw-bold" v-else="">{{cardHisDetail.transactionType}}</div>
                             </div>
@@ -356,6 +361,7 @@
                         if(this.cardHisList[i].useStatementId == val){
                             this.cardHisDetail = this.cardHisList[i];
                         }
+                        console.log(this.cardHisDetail);
                     }
                     popupOpen('popupDialogA');
                 },

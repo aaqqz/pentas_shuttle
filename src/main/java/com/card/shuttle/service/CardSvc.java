@@ -31,4 +31,8 @@ public class CardSvc {
     public List<DevMap> getHisInfo(DevMap param){
         return cmmnDao.selectList("shuttle.card.getHisInfo", param);
     }
+
+    public void cardRegist(DevMap param){
+        cmmnDao.update("shuttle.card.cardRegist", param);
+    }
 }

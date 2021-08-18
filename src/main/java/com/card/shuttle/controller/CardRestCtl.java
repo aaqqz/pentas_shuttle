@@ -46,6 +46,13 @@ public class CardRestCtl {
         return rslt;
     }
 
+    @PostMapping("/card/register/cardRegist")
+    public DevMap cardRegist(@RequestBody DevMap param){
+        DevMap rslt = new DevMap();
+        cardSvc.cardRegist(param);
+        rslt.put("succ", "succ");
+        return rslt;
+    }
 
 
 
