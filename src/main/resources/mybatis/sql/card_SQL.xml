@@ -11,7 +11,8 @@
         FROM
             TB_CARD
         WHERE 1=1
-        AND CARD_STATE = '01'
+        AND
+        CARD_STATE = '03'
         <if test='usrId != null and usrId != ""'>
         </if>
     </select>

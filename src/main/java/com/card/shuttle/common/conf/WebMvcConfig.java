@@ -55,6 +55,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 				.addResourceLocations("classpath:/static/card/");
 		registry.addResourceHandler("/order/**")
 				.addResourceLocations("classpath:/static/order/");
+		registry.addResourceHandler("/tablet/**")
+				.addResourceLocations("classpath:/static/tablet/");
 	}
 
 	@Bean

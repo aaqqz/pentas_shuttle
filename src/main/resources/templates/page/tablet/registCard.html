@@ -5,34 +5,46 @@
       layout:decorator="~{layout/default}">
 
 <head>
+  <link rel="stylesheet" th:href="@{/tablet/css/registCard.css}">
   <link rel="stylesheet" th:href="@{/card/css/register.css}">
 </head>
 
 <div layout:fragment="content" class="content">
-  <div class="mrl20 mrr20 mrt20">
+  <div class="mrl20t mrr20t mrt20t">
     <div class="pageTitle">
-      <div class="fs-14 mrt5 mrb10 fw-bold" th:text="#{joinCardInfoText}">카드 정보를 입력해 주세요.</div>
+      <div class="fs-14 mrt5t mrb10t fw-bold" th:text="#{joinCardInfoText}">카드 정보를 입력해 주세요.</div>
     </div>
-    <div class="com-btn mrt20">
-      <button type="button" @click="onQrScanner()" class="btn btn-com">
-        <span class="fs-14" th:text="#{qrCardScan}">CARD QR SCAN</span>
-      </button>
-    </div>
-    <div class="mrt20" th:text="#{cardNo}">Card No</div>
-    <div class="cardNumInput mrt10">
+
+    <div class="mrt20t" th:text="#{cardNo}">Card No</div>
+    <div class="cardNumInput mrt10t">
       <input type="number" class="inputs text-c" @input="nextInput('card02')" pattern="\d*" id="card01" maxlength="4"><div class="bar-black"></div>
       <input type="number" class="inputs text-c" @input="nextInput('card03')" pattern="\d*" id="card02" maxlength="4"><div class="bar-black"></div>
       <input type="number" class="inputs text-c" @input="nextInput('card04')" pattern="\d*" id="card03" maxlength="4"><div class="bar-black"></div>
       <input type="number" class="inputs text-c" @input="nextInput('cardPw')" pattern="\d*" id="card04" maxlength="4">
     </div>
-    <div class="mrt10" th:text="#{cardPw}">Card PW</div>
-    <input type="password" class="wid100 mrt10" id="cardPw">
+    <div class="dWrap flex f-btw">
+      <div style="width: 45vw;">
+        <div class="mrt10" th:text="#{cardPw}">Card PW</div>
+        <input type="password" class="wid100 mrt10t" id="cardPw">
+      </div>
+      <div style="width: 45vw;">
+        <div class="mrt10" >발급 금액</div>
+        <input type="number" class="wid100 mrt10t">
+      </div>
+    </div>
 
-    <div class="fs-10 fc-gray mrt20 text-c" th:text="#{joinCardSubInfoText}">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
-    <div class="com-btn registBtn">
-      <button type="button" @click="regist" class="btn btn-com">
-        <span class="fs-14" th:text="#{registerCard}">confirm</span>
-      </button>
+<!--    <div class="fs-10 fc-gray mrt20 text-c" th:text="#{joinCardSubInfoText}">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>-->
+    <div class="flex f-btw">
+      <div class="com-btn mrt20t" style="width: 45vw;">
+        <button type="button" @click="onQrScanner()" class="btn btn-com">
+          <span class="fs-14" th:text="#{qrCardScan}">CARD QR SCAN</span>
+        </button>
+      </div>
+      <div class="com-btn mrt20t" style="width: 45vw;">
+        <button type="button" @click="regist" class="btn btn-com">
+          <span class="fs-14" th:text="#{registerCard}">confirm</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -46,7 +58,7 @@
         </div>
         <div class="popup-foot">
           <div class="btn_wrap">
-            <button type="button" class="btn btn btn-succ-all" @click="goMain"><span th:text="#{check}">확인</span></button>
+            <button type="button" class="btn btn btn-succ-all" @click="succ"><span th:text="#{check}">확인</span></button>
           </div>
         </div>
       </section>
@@ -70,12 +82,17 @@
       },
       mounted: function () {
         //this.onCardScanner();
-        $(".mainIcon").css("color", "#2496ee")
-        if(this.cart == "true"){
-          $(".storeCart").show();
-        }
+        // $(".mainIcon").css("color", "#2496ee")
+        // if(this.cart == "true"){
+        //   $(".storeCart").show();
+        // }
+        this.landscape();
+
       },
       methods: {
+        landscape : function(){
+          window.Android.landscape();
+        },
         onQrScanner : function(){
           window.Android.onQrScanner();
         },
@@ -129,9 +146,10 @@
           popupOpen('popupDialog');
         },
 
-        goMain : function(){
-          location.href = "/card/main"
+        succ : function(){
+          location.reload();
         }
+
 
       },
       computed: {
