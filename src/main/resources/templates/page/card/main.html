@@ -218,7 +218,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div layout:fragment="popup">
@@ -353,11 +352,19 @@
                 },
                 login : function(){
                     if(this.id !== "shuttle@shuttle.com"){
-                        this.alertText = "아이디를 확인 해주세요!"
+                        if(this.lang == "en"){
+                            this.alertText = "يرجى التحقق من هويتك"
+                        }else{
+                            this.alertText = "아이디를 확인 해주세요!"
+                        }
                         popupOpen('popupDialog');
                         return;
                     }else if(this.pw !== "1234"){
-                        this.alertText = "비밀번호를 확인 해주세요!"
+                        if(this.lang == "en"){
+                            this.alertText = "يرجى التأكد من صحة كلمة المرور الخاصة بك"
+                        }else{
+                            this.alertText = "비밀번호를 확인 해주세요!"
+                        }
                         popupOpen('popupDialog');
                         return;
                     }

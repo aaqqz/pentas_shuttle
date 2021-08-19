@@ -5,157 +5,188 @@
       layout:decorator="~{layout/default}">
 
 <head>
-  <link rel="stylesheet" th:href="@{/tablet/css/registCard.css}">
-  <link rel="stylesheet" th:href="@{/card/css/register.css}">
+    <link rel="stylesheet" th:href="@{/card/css/register.css}">
+    <link rel="stylesheet" th:href="@{/tablet/css/tablet.css}">
 </head>
 
 <div layout:fragment="content" class="content">
-  <div class="mrl20t mrr20t mrt20t">
-    <div class="pageTitle">
-      <div class="fs-14 mrt5t mrb10t fw-bold" th:text="#{joinCardInfoText}">카드 정보를 입력해 주세요.</div>
-    </div>
-
-    <div class="mrt20t" th:text="#{cardNo}">Card No</div>
-    <div class="cardNumInput mrt10t">
-      <input type="number" class="inputs text-c" @input="nextInput('card02')" pattern="\d*" id="card01" maxlength="4"><div class="bar-black"></div>
-      <input type="number" class="inputs text-c" @input="nextInput('card03')" pattern="\d*" id="card02" maxlength="4"><div class="bar-black"></div>
-      <input type="number" class="inputs text-c" @input="nextInput('card04')" pattern="\d*" id="card03" maxlength="4"><div class="bar-black"></div>
-      <input type="number" class="inputs text-c" @input="nextInput('cardPw')" pattern="\d*" id="card04" maxlength="4">
-    </div>
-    <div class="dWrap flex f-btw">
-      <div style="width: 45vw;">
-        <div class="mrt10" th:text="#{cardPw}">Card PW</div>
-        <input type="password" class="wid100 mrt10t" id="cardPw">
-      </div>
-      <div style="width: 45vw;">
-        <div class="mrt10" >발급 금액</div>
-        <input type="number" class="wid100 mrt10t">
-      </div>
-    </div>
-
-<!--    <div class="fs-10 fc-gray mrt20 text-c" th:text="#{joinCardSubInfoText}">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>-->
-    <div class="flex f-btw">
-      <div class="com-btn mrt20t" style="width: 45vw;">
-        <button type="button" @click="onQrScanner()" class="btn btn-com">
-          <span class="fs-14" th:text="#{qrCardScan}">CARD QR SCAN</span>
-        </button>
-      </div>
-      <div class="com-btn mrt20t" style="width: 45vw;">
-        <button type="button" @click="regist" class="btn btn-com">
-          <span class="fs-14" th:text="#{registerCard}">confirm</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div layout:fragment="popup">
-    <div id="popupDialog" class="popup-wrap type-basic">
-      <section class="popup demo1">
-        <div class="popup-body">
-          <div class="popup-content">
-            {{alertText}}
-          </div>
+    <div class="mrl20 mrr20 mrt20 flex f-clm align-center">
+        <div>
+            <div class="pageTitle">
+                <div class="mrt5 mrb10 fw-bold" th:text="#{joinCardInfoText}">카드 정보를 입력해 주세요.</div>
+            </div>
+            <div class="com-btn mrt20">
+                <button type="button" @click="onQrScanner()" class="btn btn-com w63">
+                    <span class="" th:text="#{qrCardScan}">CARD QR SCAN</span>
+                </button>
+            </div>
+            <div class="mrt20" th:text="#{cardNo}">Card No</div>
+            <div class="cardNumInput mrt10 w63">
+                <input type="number" class="inputs text-c" @input="nextInput('card02')" pattern="\d*" id="card01" maxlength="4"><div class="bar-black"></div>
+                <input type="number" class="inputs text-c" @input="nextInput('card03')" pattern="\d*" id="card02" maxlength="4"><div class="bar-black"></div>
+                <input type="number" class="inputs text-c" @input="nextInput('card04')" pattern="\d*" id="card03" maxlength="4"><div class="bar-black"></div>
+                <input type="number" class="inputs text-c" @input="nextInput('cardPw')" pattern="\d*" id="card04" maxlength="4">
+            </div>
+            <div class="mrt10" th:text="#{cardPw}">Card PW</div>
+            <input type="password" class="wid100 mrt10 w63" id="cardPw">
+            <div class="mrt10" th:text="#{amount}">Amount</div>
+            <input type="text" class="wid100 mrt10 w63" v-model="amount" @input="inputBalance">
+            <div class="com-btn registBtn mrt20">
+                <button type="button" @click="goRegist" class="btn btn-com">
+                    <span class="" th:text="#{registerCard}">Confilm</span>
+                </button>
+            </div>
         </div>
-        <div class="popup-foot">
-          <div class="btn_wrap">
-            <button type="button" class="btn btn btn-succ-all" @click="succ"><span th:text="#{check}">확인</span></button>
-          </div>
-        </div>
-      </section>
     </div>
-  </div>
 
+    <div layout:fragment="popup">
+        <div id="popupDialogA" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        {{alertText}}
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialogA')"><span th:text="#{check}">확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div layout:fragment="popup">
+        <div id="popupDialogB" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        {{alertText}}
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn btn-succ-all" @click="popupCloseRC()"><span th:text="#{check}">확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
 
 
 <th:block layout:fragment="script">
-  <script type="text/javascript">
-    var app = new Vue({
-      el: "#app",
-      data: {
-        headerTitleEN : 'تسجيل البطاقة',
-        headerTitleKO : '카드 등록',
-        lang : '[[${session.lang}]]',
-        cart : '[[${session.cart}]]',
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                headerTitleEN : 'تسجيل البطاقة',
+                headerTitleKO : '카드 등록',
+                lang : '[[${session.lang}]]',
+                userId : '[[${session.cashierId}]]',
 
-        alertText : "",
-      },
-      mounted: function () {
-        //this.onCardScanner();
-        // $(".mainIcon").css("color", "#2496ee")
-        // if(this.cart == "true"){
-        //   $(".storeCart").show();
-        // }
-        this.landscape();
+                cardNo : "",
+                amount : "",
 
-      },
-      methods: {
-        landscape : function(){
-          window.Android.landscape();
-        },
-        onQrScanner : function(){
-          window.Android.onQrScanner();
-        },
-        qrScanResult : function (rsltData){
-          this.setCardNo(rsltData);
-        },
-        setCardNo : function(rsltData){
-          $("#card01").val(rsltData.toString().substring(0,4));
-          $("#card02").val(rsltData.toString().substring(4,8));
-          $("#card03").val(rsltData.toString().substring(8,12));
-          $("#card04").val(rsltData.toString().substring(12,16));
-        },
-        nextInput : function (nextId){
-          event.target.value=event.target.value.replace(/[^0-9]/g,'');
-          var charLimit = event.target.value.length;
-          //console.log(event.target.value);
-          //console.log(event.target.value.length);
+                alertText : "",
+            },
+            mounted: function () {
+                console.log(this.userId);
+            },
+            methods: {
+                onQrScanner : function(){
+                    window.Android.onQrScanner();
+                },
+                qrScanResult : function (rsltData){
+                    this.cardNo = rsltData;
+                    this.cardRegistCheck(rsltData)
+                },
+                cardRegistCheck : function(cardNo){
+                    param = {
+                        cardNo : cardNo,
+                    }
+                    cf_call("/card/register/cardRegistCheck", param, this.cardRegistCheckCB);
+                },
+                cardRegistCheckCB : function(data){
+                    console.log(data.rsltData.cardState);
+                    if(data.rsltData.cardState == 01 || data.rsltData.cardState == 03){
+                        if(this.lang == "en"){
+                            this.alertText = "هذه البطاقة مسجلة بالفعل"
+                        }else{
+                            this.alertText = "이미 등록된 카드 입니다."
+                        }
+                        $('#card01').val("");
+                        $('#card02').val("");
+                        $('#card03').val("");
+                        $('#card04').val("");
+                        popupOpen('popupDialogA');
+                    }else{
+                        this.setCardNo(this.cardNo)
+                    }
+                },
 
-          if (4 == charLimit) {
-            $('#'+nextId).focus();
-          }
-          else if(4 < charLimit){
-            var a = event.target.value.substring(0,4);
-            var b = event.target.value.substring(4,8);
-            var c = event.target.value.substring(8,12);
-            var d = event.target.value.substring(12,16);
-            $('#card01').val(a);
-            $('#card02').val(b);
-            $('#card03').val(c);
-            $('#card04').val(d);
-          }
-        },
-        regist : function(){
-          param = {
-            cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
-            cardState : "03"
-          }
-
-          // console.log(param)
-          // return
-          // cf_call("/card/register/cardRegist", param, this.registerCardCB);
-          this.registerCardCB();
-        },
-        registerCardCB : function(){
-          if(this.lang == "en"){
-            this.alertText = "البطاقة مسجلة"
-          }else{
-            this.alertText = "카드가 등록되었습니다."
-          }
-
-          popupOpen('popupDialog');
-        },
-
-        succ : function(){
-          location.reload();
-        }
+                goRegist : function(){
+                    if(this.amount == ""){
+                        return
+                    }
 
 
-      },
-      computed: {
-      }
-    })
-  </script>
+
+                    param = {
+                        cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
+                        cardState : "01",
+                        amount : this.amount.replaceAll(",", ""),
+                        userId : this.userId,
+                    }
+                    console.log(param)
+                    // return;
+                    cf_call("/card/register/cardRegist", param, this.goRegistCB);
+                },
+                goRegistCB : function(data){
+                    if(this.lang == "en"){
+                        this.alertText = "البطاقة مسجلة"
+                    }else{
+                        this.alertText = "카드가 등록되었습니다."
+                    }
+                    popupOpen('popupDialogB');
+                },
+
+                popupCloseRC : function(){
+                    popupClose('popupDialog')
+                    location.reload()
+                },
+
+                setCardNo : function(rsltData){
+                    $("#card01").val(rsltData.toString().substring(0,4));
+                    $("#card02").val(rsltData.toString().substring(4,8));
+                    $("#card03").val(rsltData.toString().substring(8,12));
+                    $("#card04").val(rsltData.toString().substring(12,16));
+                },
+                nextInput : function (nextId){
+                    event.target.value=event.target.value.replace(/[^0-9]/g,'');
+                    var charLimit = event.target.value.length;
+
+                    if (4 == charLimit) {
+                        $('#'+nextId).focus();
+                    } else if(4 < charLimit){
+                        var a = event.target.value.substring(0,4);
+                        var b = event.target.value.substring(4,8);
+                        var c = event.target.value.substring(8,12);
+                        var d = event.target.value.substring(12,16);
+                        $('#card01').val(a);
+                        $('#card02').val(b);
+                        $('#card03').val(c);
+                        $('#card04').val(d);
+                    }
+                },
+                inputBalance : function(){
+                    this.amount = comma(this.amount.replace(/,/g, ""))
+                },
+            },
+            computed: {
+            }
+        })
+    </script>
 </th:block>
 
 </html>

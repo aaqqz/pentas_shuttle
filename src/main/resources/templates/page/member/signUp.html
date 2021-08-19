@@ -51,7 +51,7 @@
         <input type="password" class="wid100 mrt10" id="cardPw">
         <div class="fs-10 fc-gray mrt20 text-c" th:text="#{joinCardSubInfoText}">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
         <div class="com-btn registBtn mrt60" style="">
-            <button type="button" @click="signUp" class="btn btn-com">
+            <button type="button" @click="cardRegistCheck" class="btn btn-com">
                 <span class="fs-14" th:text="#{signUp}">Sign Up</span>
             </button>
         </div>
@@ -86,6 +86,7 @@
                 headerTitleKO : '회원가입',
                 lang : '[[${session.lang}]]',
 
+                cardState : false,
                 alertText : ""
             },
             mounted: function () {
@@ -125,7 +126,37 @@
                     }
                 },
 
+                cardRegistCheck : function(){
+                    param = {
+                        cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
+                    }
+
+                    cf_call("/card/register/cardRegistCheck", param, this.cardRegistCheckCB);
+                },
+                cardRegistCheckCB : function(data){
+                    console.log(data.rsltData.cardState);
+                    if(data.rsltData.cardState == 03){
+                        if(this.lang == "en"){
+                            this.alertText = "هذه البطاقة مسجلة بالفعل"
+                        }else{
+                            this.alertText = "이미 등록된 카드 입니다."
+                        }
+                        popupOpen('popupDialog');
+                    }else{
+                        this.cardState = true;
+                        this.signUp();
+                    }
+                },
                 signUp : function(){
+                    param = {
+                        cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
+                        cardState : "03",
+                        amount : ""
+                    }
+
+                    cf_call("/card/register/cardRegist", param, this.signUpCB);
+                },
+                signUpCB : function(){
                     if(this.lang == "en"){
                         this.alertText = "اكتمل التسجيل";
                     }else{
@@ -135,7 +166,11 @@
                     popupOpen("popupDialog");
                 },
                 goMain : function(){
-                    location.href = "/card/main"
+                    if(this.cardState == true){
+                        location.href = "/card/main"
+                    }else{
+                        popupClose('popupDialog')
+                    }
                 }
 
             },

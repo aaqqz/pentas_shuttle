@@ -29,6 +29,7 @@
         FROM TB_CARD_USE_STATEMENT
         WHERE 1=1
             AND CARD_NO = #{cardNo}
+            AND USE_TYPE = '01'
             <![CDATA[
 		        AND ROWNUM <= 3
             ]]>
@@ -71,9 +72,15 @@
     <update id="cardRegist" parameterType="DevMap">
         /* shuttle.card.cardRegist */
         UPDATE TB_CARD SET
-        CARD_STATE = #{cardState}
+            CARD_STATE = #{cardState}
+            <if test='amount != ""'>
+                ,CARD_BALANCE = #{amount}
+                ,CARD_PASSWORD = #{amount}
+                ,MOD_ID = #{userId}
+                ,MOD_DT = sysdate - 6/24
+            </if>
         WHERE 1=1
-        AND CARD_NO = #{cardNo}
+            AND CARD_NO = #{cardNo}
     </update>
 
     <select id="cardRegistCheck" parameterType="DevMap" resultType="DevMap">
@@ -84,5 +91,23 @@
             TB_CARD
         WHERE 1=1
             AND CARD_NO = #{cardNo}
+    </select>
+
+
+    <select id="getCashierInfo" parameterType="DevMap" resultType="DevMap">
+        /* shuttle.card.getCashierInfo */
+        SELECT
+            CARD_PASSWORD AS AMOUNT
+            ,CARD_NO
+            ,MOD_ID
+            ,to_char(MOD_DT, 'YYYY-MM-DD HH24:MI:SS') AS MOD_DT
+        FROM
+        TB_CARD
+            WHERE 1=1
+            AND MOD_ID = #{userId}
+            <![CDATA[
+                AND MOD_DT BETWEEN TO_DATE(#{sDate}, 'YYYY-MM-DD') AND TO_DATE(#{eDate}, 'YYYY-MM-DD') + 0.99999
+            ]]>
+            ORDER BY MOD_DT DESC
     </select>
 </mapper>

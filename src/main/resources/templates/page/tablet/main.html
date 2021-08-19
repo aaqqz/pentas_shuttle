@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<head>
+    <link rel="stylesheet" th:href="@{/tablet/css/tablet.css}">
+</head>
+
+<div layout:fragment="content" class="content">
+    <div class="fw-bold fs-16 text-c">Alf layla Wa Layla Park</div>
+    <div class="loginWrap mrt20">
+        <div class="radio-demo1-area mrt10">
+            <span class="radio demo1">
+                <input type="radio" name="sRadio1" id="sRadio11" v-model="lang" value="ko" @change="langChange">
+                <label for="sRadio11"><span class="fs14">Korea</span></label>
+            </span>
+            <span class="radio demo1">
+                <input type="radio" name="sRadio1" id="sRadio12" v-model="lang" value="en" @change="langChange">
+                <label for="sRadio12"><span class="fs14">Global</span></label>
+            </span>
+        </div>
+        <select class="select demo2 wh fs-14 text-c mrt10" v-model="cashierId">
+            <option class="" selected value="00">cashier select</option>
+            <option class="" value="cashier01">cashier01</option>
+            <option class="" value="cashier02">cashier02</option>
+        </select>
+        <input type="password" class="loginInput mrt10" v-model="pw" th:placeholder="#{password}">
+        <div style="display: flex; width: 85%; justify-content: space-between;">
+            <div class="loginBtn" th:text="#{login}" @click="login()">로그인</div>
+            <div class="loginBtn" @click="goSearchList()" th:text="#{cashierSearch}">검색</div>
+        </div>
+    </div>
+    <div layout:fragment="popup">
+        <div id="popupDialog" class="popup-wrap type-basic">
+            <section class="popup demo1">
+                <div class="popup-body">
+                    <div class="popup-content">
+                        {{alertText}}
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <div class="btn_wrap">
+                        <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialog')"><span th:text="#{check}">확인</span></button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: {
+                headerTitleEN : 'الأساسي',
+                headerTitleKO : '메인',
+                userId : '[[${session.cashierId}]]',
+                lang : '[[${session.lang}]]',
+                cashierId : "00",
+                alertText : "",
+
+                pw : "",
+            },
+            mounted: function () {
+                console.log(this.lang)
+            },
+            methods: {
+                langChange : function(){
+                    if(this.lang == "ko"){
+                        location.href = "/tablet/main?lang=ko";
+                    }else{
+                        location.href = "/tablet/main?lang=en";
+                    }
+                },
+
+                login : function(){
+                    if(this.cashierId == "00"){
+                        if(this.lang == "en"){
+                            this.alertText = "الرجاء تحديد أمين الصندوق"
+                        }else{
+                            this.alertText = "캐셔를 선택해주세요."
+                        }
+                        popupOpen('popupDialog');
+                        return;
+                    }else if(this.pw !== "1234"){
+                        if(this.lang == "en"){
+                            this.alertText = "يرجى التأكد من صحة كلمة المرور الخاصة بك"
+                        }else{
+                            this.alertText = "비밀번호를 확인 해주세요!"
+                        }
+                        popupOpen('popupDialog');
+                        return;
+                    }
+                    param = {
+                        cashierId : this.cashierId
+                    }
+                    cf_call("/tablet/main/loginProc", param, this.loginCB)
+                },
+                loginCB : function(data){
+                    console.log(data);
+                    location.href="/tablet/registCard";
+                },
+                goSearchList : function(){
+                    location.href="/tablet/list"
+                }
+
+            },
+            computed: {
+            }
+        })
+    </script>
+</th:block>
+
+</html>
