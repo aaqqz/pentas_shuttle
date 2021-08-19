@@ -153,7 +153,7 @@
                             </div>
                             <div class="flex f-btw wh100 mrt10">
                                 <div class="fc-gray" th:text="#{paymentType}">결제유형</div>
-                                <div class="fw-bold" v-if="cardHisDetail.transactionType == 0">매장 결제</div>
+                                <div class="fw-bold" v-if="cardHisDetail.transactionType == 0" th:text="#{storePayment}">매장 결제</div>
                                 <div class="fw-bold" v-else="">{{cardHisDetail.transactionType}}</div>
                             </div>
                         </div>
