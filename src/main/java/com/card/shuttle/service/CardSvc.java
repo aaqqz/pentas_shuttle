@@ -35,4 +35,9 @@ public class CardSvc {
     public void cardRegist(DevMap param){
         cmmnDao.update("shuttle.card.cardRegist", param);
     }
+
+    public DevMap cardRegistCheck(DevMap param){
+        return cmmnDao.selectOne("shuttle.card.cardRegistCheck", param);
+    }
+
 }

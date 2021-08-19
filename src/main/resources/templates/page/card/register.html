@@ -65,7 +65,7 @@
         headerTitleKO : '카드 등록',
         lang : '[[${session.lang}]]',
         cart : '[[${session.cart}]]',
-
+        cardState : false,
         alertText : "",
       },
       mounted: function () {
@@ -80,7 +80,11 @@
           window.Android.onQrScanner();
         },
         qrScanResult : function (rsltData){
-          this.setCardNo(rsltData);
+          this.cardRegistCheck(rsltData);
+          if(this.cardState == true){
+            this.setCardNo(rsltData);
+          }
+
         },
         setCardNo : function(rsltData){
           $("#card01").val(rsltData.toString().substring(0,4));
@@ -108,18 +112,50 @@
             $('#card04').val(d);
           }
         },
+
+        cardRegistCheck : function(cardNo){
+          param = {
+            cardNo : cardNo,
+          }
+          cf_call("/card/register/cardRegistCheck", param, this.cardRegistCheckCB);
+
+        },
+
+        cardRegistCheckCB : function(data){
+          console.log(data.rsltData.cardState);
+          if(data.rsltData.cardState == 03){
+            if(this.lang == "en"){
+              this.alertText = "هذه البطاقة مسجلة بالفعل"
+            }else{
+              this.alertText = "이미 등록된 카드 입니다."
+            }
+            popupOpen('popupDialog');
+          }else{
+            this.cardState = true;
+            this.setCardNo(rsltData);
+          }
+        },
+
+
+
         regist : function(){
+          if(this.cardState == false){
+            if(this.lang == "en"){
+              this.alertText = "يرجى التحقق من المعلومات"
+            }else{
+              this.alertText = "정보를 확인해주세요."
+            }
+            popupOpen('popupDialog');
+            return;
+          }
+
           param = {
             cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
             cardState : "03"
           }
-
-          // console.log(param)
-          // return
-          // cf_call("/card/register/cardRegist", param, this.registerCardCB);
-          this.registerCardCB();
+          cf_call("/card/register/cardRegist", param, this.registCB);
         },
-        registerCardCB : function(){
+        registCB : function(){
           if(this.lang == "en"){
             this.alertText = "البطاقة مسجلة"
           }else{
@@ -130,6 +166,10 @@
         },
 
         goMain : function(){
+          if(this.cardState == false){
+            popupClose('popupDialog');
+            return;
+          }
           location.href = "/card/main"
         }
 

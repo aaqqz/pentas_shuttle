@@ -55,6 +55,14 @@ public class CardRestCtl {
     }
 
 
+    @PostMapping("/card/register/cardRegistCheck")
+    public DevMap cardRegistCheck(@RequestBody DevMap param){
+        DevMap rslt = new DevMap();
+        rslt.put("rsltData",cardSvc.cardRegistCheck(param));
+        return rslt;
+    }
+
+
 
 
 

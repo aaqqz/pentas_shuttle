@@ -75,4 +75,14 @@
         WHERE 1=1
         AND CARD_NO = #{cardNo}
     </update>
+
+    <select id="cardRegistCheck" parameterType="DevMap" resultType="DevMap">
+        /* shuttle.card.cardRegistCheck */
+        SELECT
+            CARD_STATE
+        FROM
+            TB_CARD
+        WHERE 1=1
+            AND CARD_NO = #{cardNo}
+    </select>
 </mapper>
