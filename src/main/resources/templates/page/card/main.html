@@ -460,9 +460,9 @@
 
                 qrCodeSet : function(val){
                     if(val == 2){
-                        this.qrcodeInput = "cardNo : "  + this.currentItem.cardNo + ", amount : " + this.amount;
+                        this.qrcodeInput = this.currentItem.cardNo + "," + this.amount.replaceAll(",","");
                     }else if(val == 3){
-                        this.qrcodeInput = "cardNo : "  + this.currentItem.cardNo;
+                        this.qrcodeInput = this.currentItem.cardNo;
                     }
                 },
 
