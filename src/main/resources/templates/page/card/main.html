@@ -458,6 +458,9 @@
                     popupClose(val);
                     this.amount = "";
                     this.payTab(1);
+                    if(val == 'popupTop'){
+                        this.getCardList();
+                    }
                 },
 
                 payTab : function(val){

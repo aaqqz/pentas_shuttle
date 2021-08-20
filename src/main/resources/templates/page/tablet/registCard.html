@@ -129,9 +129,6 @@
                     if(this.amount == ""){
                         return
                     }
-
-
-
                     param = {
                         cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
                         cardState : "01",
@@ -152,7 +149,6 @@
                 },
 
                 popupCloseRC : function(){
-                    popupClose('popupDialog')
                     location.reload()
                 },
 

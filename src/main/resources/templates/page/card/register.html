@@ -30,14 +30,30 @@
 
     <div class="fs-10 fc-gray mrt20 text-c" th:text="#{joinCardSubInfoText}">카드정보는 카드사를 통한 인증 후 별도로 이용하지 않습니다.</div>
     <div class="com-btn registBtn">
-      <button type="button" @click="cardRegistCheck" class="btn btn-com">
+      <button type="button" @click="goRegist" class="btn btn-com">
         <span class="fs-14" th:text="#{registerCard}">Confilm</span>
       </button>
     </div>
   </div>
 
   <div layout:fragment="popup">
-    <div id="popupDialog" class="popup-wrap type-basic">
+    <div id="popupDialogA" class="popup-wrap type-basic">
+      <section class="popup demo1">
+        <div class="popup-body">
+          <div class="popup-content">
+            {{alertText}}
+          </div>
+        </div>
+        <div class="popup-foot">
+          <div class="btn_wrap">
+            <button type="button" class="btn btn btn-succ-all" @click="popupClose('popupDialogA')"><span th:text="#{check}">확인</span></button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div layout:fragment="popup">
+    <div id="popupDialogB" class="popup-wrap type-basic">
       <section class="popup demo1">
         <div class="popup-body">
           <div class="popup-content">
@@ -66,7 +82,8 @@
         lang : '[[${session.lang}]]',
         cart : '[[${session.cart}]]',
 
-        cardState : false,
+        cardNo : "",
+
         alertText : "",
       },
       mounted: function () {
@@ -81,8 +98,53 @@
           window.Android.onQrScanner();
         },
         qrScanResult : function (rsltData){
-          this.setCardNo(rsltData);
+          this.cardNo = rsltData;
+          this.cardRegistCheck(rsltData)
         },
+        cardRegistCheck : function(cardNo){
+          param = {
+            cardNo : cardNo,
+          }
+          cf_call("/card/register/cardRegistCheck", param, this.cardRegistCheckCB);
+        },
+        cardRegistCheckCB : function(data){
+          console.log(data.rsltData.cardState);
+          if(data.rsltData.cardState == 03){
+            if(this.lang == "en"){
+              this.alertText = "هذه البطاقة مسجلة بالفعل"
+            }else{
+              this.alertText = "이미 등록된 카드 입니다."
+            }
+            $('#card01').val("");
+            $('#card02').val("");
+            $('#card03').val("");
+            $('#card04').val("");
+            popupOpen('popupDialogA');
+          }else{
+            this.setCardNo(this.cardNo)
+          }
+        },
+
+        goRegist : function(){
+          param = {
+            cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
+            cardState : "03",
+            amount : "",
+          }
+          console.log(param)
+          cf_call("/card/register/cardRegist", param, this.goRegistCB);
+        },
+        goRegistCB : function(data){
+          if(this.lang == "en"){
+            this.alertText = "البطاقة مسجلة"
+          }else{
+            this.alertText = "카드가 등록되었습니다."
+          }
+          popupOpen('popupDialogB');
+        },
+
+
+
         setCardNo : function(rsltData){
           $("#card01").val(rsltData.toString().substring(0,4));
           $("#card02").val(rsltData.toString().substring(4,8));
@@ -92,8 +154,6 @@
         nextInput : function (nextId){
           event.target.value=event.target.value.replace(/[^0-9]/g,'');
           var charLimit = event.target.value.length;
-          //console.log(event.target.value);
-          //console.log(event.target.value.length);
 
           if (4 == charLimit) {
             $('#'+nextId).focus();
@@ -110,58 +170,9 @@
           }
         },
 
-        cardRegistCheck : function(){
-          param = {
-            cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
-          }
-
-          cf_call("/card/register/cardRegistCheck", param, this.cardRegistCheckCB);
-        },
-        cardRegistCheckCB : function(data){
-          console.log(data.rsltData.cardState);
-          if(data.rsltData.cardState == 03){
-            if(this.lang == "en"){
-              this.alertText = "هذه البطاقة مسجلة بالفعل"
-            }else{
-              this.alertText = "이미 등록된 카드 입니다."
-            }
-            popupOpen('popupDialog');
-          }else{
-            this.cardState = true;
-            this.regist();
-          }
-        },
-
-
-
-
-
-
-        regist : function(){
-          param = {
-            cardNo : $('#card01').val() + $('#card02').val() + $('#card03').val() + $('#card04').val(),
-            cardState : "03",
-            amount : ""
-          }
-
-          cf_call("/card/register/cardRegist", param, this.registerCardCB);
-        },
-        registerCardCB : function(){
-          if(this.lang == "en"){
-            this.alertText = "البطاقة مسجلة"
-          }else{
-            this.alertText = "카드가 등록되었습니다."
-          }
-
-          popupOpen('popupDialog');
-        },
 
         goMain : function(){
-          if(this.cardState == true){
-            location.href = "/card/main"
-          }else{
-            popupClose('popupDialog')
-          }
+          location.href = "/card/main"
         }
       },
       computed: {
