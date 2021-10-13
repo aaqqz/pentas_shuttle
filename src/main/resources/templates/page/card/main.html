@@ -36,6 +36,7 @@
         <input type="password" class="loginInput mrt10" v-model="pw" th:placeholder="#{password}">
         <div class="loginBtn mrt10" th:text="#{login}" @click="login()">로그인</div>
         <div class="loginCntWrap flex f-evn mrt10 mrb10">
+            <!--<div class="loginCntBtn" th:text="#{findID}" @click="ready()">아이디 찾기</div>-->
             <div class="loginCntBtn" th:text="#{findID}" @click="ready()">아이디 찾기</div>
             <div class="hBar"></div>
             <div class="loginCntBtn" th:text="#{findPW}" @click="ready()">비밀번호 찾기</div>
@@ -61,7 +62,7 @@
                     <div class="bar-white mrt30"></div>
                     <div class="cardHis flex f-btw mrt25">
                         <div class="fc-white flex">
-                            <span th:text="#{recently}">최근</span> <span class="mrr5 mrl5">{{comma(item.totalAmount)}} <span>&#169;</span></span><span th:text="#{used}">사용</span>
+                            <span th:text="#{recently}">ㄱ</span> <span class="mrr5 mrl5">{{comma(item.totalAmount)}} <span>&#169;</span></span><span th:text="#{used}">사용</span>
                         </div>
                         <div class="cardHisArrow">
                             <img th:src="@{/card/img/arrow-down-white.png}">
@@ -71,7 +72,7 @@
                 <div class="cardHisAco" v-if="item.hisList.length > 0">
                     <div class="hisCont mrb15 pdb15" v-for="hisItem in item.hisList">
                         <div class="flex f-btw">
-                            <div class="" v-if="lang == 'en'">سلطة</div>
+                            <div class="" v-if="lang == 'en'">SALADY</div>
                             <div class="" v-else>SALADY</div>
                             <div class="fc-blue fw-bold">{{comma(hisItem.amount)}} &#169;</div>
                         </div>
@@ -300,7 +301,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                headerTitleEN : 'الأساسي',
+                headerTitleEN : 'главный',
+                headerTitleArab : 'الأساسي',
                 headerTitleKO : '메인',
                 userId : '[[${session.userId}]]',
                 lang : '[[${session.lang}]]',
@@ -353,7 +355,8 @@
                 login : function(){
                     if(this.id !== "shuttle@shuttle.com"){
                         if(this.lang == "en"){
-                            this.alertText = "يرجى التحقق من هويتك"
+                            //this.alertText = "يرجى التحقق من هويتك"
+                            this.alertText = "Пожалуйста, проверьте свое удостоверение личности";
                         }else{
                             this.alertText = "아이디를 확인 해주세요!"
                         }
@@ -361,7 +364,8 @@
                         return;
                     }else if(this.pw !== "1234"){
                         if(this.lang == "en"){
-                            this.alertText = "يرجى التأكد من صحة كلمة المرور الخاصة بك"
+                            //this.alertText = "يرجى التأكد من صحة كلمة المرور الخاصة بك"
+                            this.alertText = "Пожалуйста, подтвердите свой пароль"
                         }else{
                             this.alertText = "비밀번호를 확인 해주세요!"
                         }
@@ -443,7 +447,8 @@
                 popupOpenMain : function(val){
                     if(this.userId == ""){
                         if(this.lang == "en"){
-                            this.alertText = "متاح بعد تسجيل الدخول"
+                            //this.alertText = "متاح بعد تسجيل الدخول"
+                            this.alertText = "Доступно после входа в систему.";
                         }else{
                             this.alertText = "로그인 후 이용가능합니다."
                         }
@@ -509,7 +514,8 @@
 
                 ready : function(){
                     if(this.lang == "en"){
-                        this.alertText = "قريبا"
+                        //this.alertText = "قريبا"
+                        this.alertText = "Скоро будет"
                     }else{
                         this.alertText = "준비중 입니다."
                     }
@@ -540,7 +546,8 @@
                 goRegist : function(){
                     if(this.userId == ""){
                         if(this.lang == "en"){
-                            this.alertText = "متاح بعد تسجيل الدخول"
+                            //this.alertText = "متاح بعد تسجيل الدخول"
+                            this.alertText = "Доступно после входа в систему.";
                         }else{
                             this.alertText = "로그인 후 이용가능합니다."
                         }

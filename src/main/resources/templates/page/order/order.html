@@ -102,17 +102,18 @@
             el: "#app",
             data: {
                 lang : '[[${session.lang}]]',
-                headerTitleEN : 'متجر',
+                headerTitleEN : 'хранить',
+                headerTitleArab : 'متجر',
                 headerTitleKO : '매장',
                 cart : '[[${session.cart}]]',
 
                 searchQuery: null,
                 resources:[
-                    {titleKo:"샐러디", titleEn : "سلطة", uri: "../../order/img/store.png" ,category:"a",icon:null, contentEn : "هذا متجر سلطة معقول 'Salady' المسؤول عن صحة الناس المعاصرين.", contentKo : "현대인의 건강을 책임지는 감성 샐러드 매장 '샐러디'입니다."},
-                    {titleKo:"STARBUCKS", titleEn : "STARBUCKS",uri: "../../order/img/starbucks.png",category:"a",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
-                    {titleKo:"LION BRAND", titleEn : "LION BRAND", uri: "../../order/img/lion.jpg",category:"b",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다." },
-                    {titleKo:"BURGER KING", titleEn : "BURGER KING", uri: "../../order/img/burgerKing.jpg",category:"a",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
-                    {titleKo:"ABC MART", titleEn : "ABC MART", uri: "../../order/img/abc.png",category:"b",icon:null, contentEn : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
+                    {titleKo:"샐러디", titleEn : "SALADY", titleArab : "سلطة", uri: "../../order/img/store.png" ,category:"a",icon:null, contentEn : "Salady - это эмоциональная салатная лавка, отвечающая за здоровье современных людей", contentKo : "현대인의 건강을 책임지는 감성 샐러드 매장 '샐러디'입니다."},
+                    {titleKo:"STARBUCKS", titleEn : "STARBUCKS",uri: "../../order/img/starbucks.png",category:"a",icon:null, contentEn: "Магазин готовится", contentArab : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
+                    {titleKo:"LION BRAND", titleEn : "LION BRAND", uri: "../../order/img/lion.jpg",category:"b",icon:null, contentEn: "Магазин готовится", contentArab : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다." },
+                    {titleKo:"BURGER KING", titleEn : "BURGER KING", uri: "../../order/img/burgerKing.jpg",category:"a",icon:null, contentEn: "Магазин готовится", contentArab : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
+                    {titleKo:"ABC MART", titleEn : "ABC MART", uri: "../../order/img/abc.png",category:"b",icon:null, contentEn: "Магазин готовится", contentArab : "يتم تحضير المتجر", contentKo : "준비중인 매장 입니다."},
                 ],
 
                 alertText : ""
@@ -141,7 +142,8 @@
                         goPage(link);
                     }else{
                         if(this.lang == "en"){
-                            this.alertText = "قريبا"
+                            //this.alertText = "قريبا"
+                            this.alertText = "Скоро будет"
                         }else{
                             this.alertText = "준비중 입니다."
                         }

@@ -35,8 +35,9 @@
                             <li class="js-tab" :class="{'is-active':menuCategory == 'warmBawl'}" @click="changeCategory('warmBawl')">
                                 <button type="button" class="btn"><span class="fs-14" th:text="#{warmBall}">웜볼</span></button>
                             </li>
+
                             <li class="js-tab" :class="{'is-active':menuCategory == 'salad'}" @click="changeCategory('salad')">
-                                <button type="button" class="btn"><span class="fs-14" th:text="#{salady}">샐러디</span></button>
+                                <button type="button" class="btn"><span class="fs-14" th:text="#{salad}">샐러디</span></button>
                             </li>
                         </ul>
                     </div>
@@ -227,7 +228,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                headerTitleEN : 'متجر',
+                headerTitleEN : 'хранить',
+                headerTitleArab : 'متجر',
                 headerTitleKO : '매장',
                 lang : '[[${session.lang}]]',
                 cart : '[[${session.cart}]]',

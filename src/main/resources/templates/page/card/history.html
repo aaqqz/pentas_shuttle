@@ -62,7 +62,7 @@
         <div style="overflow:scroll;">
             <div class="hisCont mrb15 pdb15" @click="hisDetailPop(item.useStatementId)" v-for="(item, index) in cardHisList">
                 <div class="flex f-btw">
-                    <div class="" v-if="lang == 'en'">سلطة</div>
+                    <div class="" v-if="lang == 'en'">SALADY</div>
                     <div class="" v-else>SALADY</div>
                     <div class="fc-blue fw-bold">{{comma(item.amount)}} &#169;</div>
                 </div>
@@ -135,7 +135,7 @@
                             <div class="fw-bold fs-14" v-if="cardHisDetail.useType == '02'" th:text="#{paymentCancel}">결제취소</div>
                             <div class="fw-bold fs-14" v-if="cardHisDetail.useType == '03'" th:text="#{chargingComplete}">충전완료</div>
                             <div class="fw-bold fs-14" v-if="cardHisDetail.useType == '04'" th:text="#{chargeCancel}">충전취소</div>
-                            <div class="fc-gray mrt15" v-if="lang == 'en'">سلطة</div>
+                            <div class="fc-gray mrt15" v-if="lang == 'en'">SALADY</div>
                             <div class="fc-gray mrt15" v-else>SALADY</div>
                             <div class="fw-bold fc-blue fs-16 mrt5">{{comma(cardHisDetail.amount)}} &#169;</div>
                             <div class="bar-gray wh100 mrt15 mab15"></div>
@@ -175,7 +175,8 @@
             el: "#app",
             data: {
 
-                headerTitleEN : 'سجل الاستخدام',
+                headerTitleEN : 'История использования',
+                headerTitleArab : 'سجل الاستخدام',
                 headerTitleKO : '이용 내역',
                 lang : '[[${session.lang}]]',
                 cart : '[[${session.cart}]]',

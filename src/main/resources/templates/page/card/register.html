@@ -111,7 +111,8 @@
           console.log(data.rsltData.cardState);
           if(data.rsltData.cardState == 03){
             if(this.lang == "en"){
-              this.alertText = "هذه البطاقة مسجلة بالفعل"
+              //this.alertText = "هذه البطاقة مسجلة بالفعل"
+              this.alertText = "Эта карта уже зарегистрирована"
             }else{
               this.alertText = "이미 등록된 카드 입니다."
             }
@@ -136,7 +137,8 @@
         },
         goRegistCB : function(data){
           if(this.lang == "en"){
-            this.alertText = "البطاقة مسجلة"
+            //this.alertText = "البطاقة مسجلة"
+            this.alertText = "карта зарегистрирована"
           }else{
             this.alertText = "카드가 등록되었습니다."
           }

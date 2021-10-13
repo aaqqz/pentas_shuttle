@@ -31,6 +31,18 @@
             <input type="password" class="wid100 mrt10 w63" id="cardPw">
             <div class="mrt10" th:text="#{amount}">Amount</div>
             <input type="text" class="wid100 mrt10 w63" v-model="amount" @input="inputBalance">
+            <div class="pageTitle">
+                <div class="mrt5 mrt10 mrb10 fw-bold" th:text="#{joimMemberInfoText02}">개인 정보를 입력해 주세요.</div>
+            </div>
+            <div>
+                <div class="mrt10" th:text="#{name}">Name</div>
+                <input type="text"  class="wid100 mrt10 w63">
+            </div>
+            <div>
+                <div class="mrt10" th:text="#{phoneNumber}">Phone Number</div>
+                <input type="text"  class="wid100 mrt10 w63" placeholder="010-5346-1234" onkeyup="telePhoneCheck(this)">
+            </div>
+
             <div class="com-btn registBtn mrt20">
                 <button type="button" @click="goRegist" class="btn btn-com">
                     <span class="" th:text="#{registerCard}">Confilm</span>

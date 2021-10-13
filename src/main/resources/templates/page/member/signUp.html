@@ -11,7 +11,7 @@
 <div layout:fragment="content" class="content">
     <div class="mrl20 mrr20 mrt20">
         <div class="pageTitle">
-            <div class="fs-14 mrt5 mrb10 fw-bold" th:text="#{joimMemberInfoText}">회원 정보를 입력해 주세요.</div>
+            <div class="fs-14 mrt5 mrb10 fw-bold" th:text="#{joinMemberInfoText}">회원 정보를 입력해 주세요.</div>
         </div>
         <div class="mrt20" th:text="#{ID}">ID</div>
         <input type="text"  class="wid100 mrt10" placeholder="shuttle@shuttle.com">
@@ -98,7 +98,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                headerTitleEN : 'اشتراك',
+                headerTitleEN : 'присоединиться к членству',
+                headerTitleArab : 'اشتراك',
                 headerTitleKO : '회원가입',
                 lang : '[[${session.lang}]]',
 
@@ -132,7 +133,8 @@
                     console.log(data.rsltData.cardState);
                     if(data.rsltData.cardState == 03){
                         if(this.lang == "en"){
-                            this.alertText = "هذه البطاقة مسجلة بالفعل"
+                            //this.alertText = "هذه البطاقة مسجلة بالفعل"
+                            this.alertText = "Эта карта уже зарегистрирована"
                         }else{
                             this.alertText = "이미 등록된 카드 입니다."
                         }
@@ -156,9 +158,11 @@
                 },
                 goRegistCB : function(data){
                     if(this.lang == "en"){
-                        this.alertText = "اكتمل التسجيل";
+                        //this.alertText = "اكتمل التسجيل";
+                        this.alertText = "Регистрация завершена";
                     }else{
                         this.alertText = "회원가입이 완료되었습니다.";
+
                     }
                     popupOpen("popupDialogB");
                 },
