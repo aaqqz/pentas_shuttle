@@ -174,7 +174,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                headerTitleEN : 'تاريخ الطلب',
+                headerTitleEN : 'История заказов',
+                headerTitleArab : 'تاريخ الطلب',
                 headerTitleKO : '주문 내역',
                 userId : '[[${session.userId}]]',
                 lang : '[[${session.lang}]]',
@@ -192,8 +193,8 @@
                 succ : false,
 
                 cartItem : [
-                    {titleKo : "할라피뇨 치킨", titleEn : "دجاج هلابينو", size : "Large" , price : 10300, count : 1, totalPrice : 10300, checked : false},
-                    {titleKo : "명란마요 쉬림프 포케볼", titleEn : "وعاء بوكي الروبيان كود رو مايو", size: "Medium", price : 10300, count : 1 , totalPrice : 10300, checked : false}
+                    {titleKo : "할라피뇨 치킨", titleEn : "Цыпленок Халапеньо", titleArab : "دجاج هلابينو", size : "Large" , price : 10300, count : 1, totalPrice : 10300, checked : false},
+                    {titleKo : "명란마요 쉬림프 포케볼", titleEn : "Покебол с икрой трески и креветками", titleArab : "وعاء بوكي الروبيان كود رو مايو", size: "Medium", price : 10300, count : 1 , totalPrice : 10300, checked : false}
                 ],
 
                 cartTotalPrice : 0,
@@ -270,7 +271,8 @@
                     console.log(this.totalCardBalance)
                     if(this.totalCardBalance < 0){
                         if(this.lang === "en"){
-                            this.alertText = "تجاوز مبلغ الدفعة";
+                            //this.alertText = "تجاوز مبلغ الدفعة";
+                            this.alertText = "Превышена сумма к оплате";
                         }else{
                             this.alertText = "결제가능 금액을 초과하였습니다."
                         }
@@ -304,7 +306,8 @@
                 },
                 goPaymentCB : function(){
                     if(this.lang === "en"){
-                        this.alertText = "تم الانتهاء من الدفع";
+                        //this.alertText = "تم الانتهاء من الدفع";
+                        this.alertText = "Оплата была произведена";
                     }else{
                         this.alertText = "결제가 완료되었습니다.";
                     }
