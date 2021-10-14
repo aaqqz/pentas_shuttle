@@ -35,7 +35,8 @@
                         <div class="list-body">
                             <div class="list-price">
                                 <div class="menu-list">
-                                    <h3 class="contents fs-14" v-if="lang == 'en'">دجاج هلابينو</h3>
+                                    <!--<h3 class="contents fs-14" v-if="lang == 'en'">دجاج هلابينو</h3>-->
+                                    <h3 class="contents fs-14" v-if="lang == 'en'">Цыпленок Халапеньо</h3>
                                     <h3 class="contents fs-14" v-else>할라피뇨 치킨</h3>
                                     <div class="sub">Large</div>
                                     <div class="menu-fot"  style="display: flex; justify-content: flex-end;">
@@ -46,7 +47,8 @@
 
                             <div class="list-price">
                                 <div class="menu-list">
-                                    <h3 class="contents fs-14" v-if="lang == 'en'">وعاء بوكي الروبيان كود رو مايو</h3>
+                                    <!--<h3 class="contents fs-14" v-if="lang == 'en'">وعاء بوكي الروبيان كود رو مايو</h3>-->
+                                    <h3 class="contents fs-14" v-if="lang == 'en'">Покебол с креветками</h3>
                                     <h3 class="contents fs-14" v-else>명란마요 쉬림프 포케볼</h3>
                                     <div class="sub">Medium</div>
                                     <div class="menu-fot"  style="display: flex; justify-content: flex-end;">
@@ -69,7 +71,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                headerTitleEN : 'سجل زيارة المتجر',
+                headerTitleEn : 'История посещений магазина',
+                headerTitleArab : 'سجل زيارة المتجر',
                 headerTitleKO : '매장 방문 내역',
                 lang : '[[${session.lang}]]',
                 cart : '[[${session.cart}]]',
