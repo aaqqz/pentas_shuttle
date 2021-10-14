@@ -32,7 +32,7 @@
             <div class="mrt10" th:text="#{amount}">Amount</div>
             <input type="text" class="wid100 mrt10 w63" v-model="amount" @input="inputBalance">
             <div class="pageTitle">
-                <div class="mrt5 mrt10 mrb10 fw-bold" th:text="#{joimMemberInfoText02}">개인 정보를 입력해 주세요.</div>
+                <div class="mrt5 mrt10 mrb10 fw-bold" th:text="#{joinMemberInfoText02}">개인 정보를 입력해 주세요.</div>
             </div>
             <div>
                 <div class="mrt10" th:text="#{name}">Name</div>
@@ -92,7 +92,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                headerTitleEN : 'تسجيل البطاقة',
+                headerTitleEN : 'регистрация карты',
+                headerTitleArab : 'تسجيل البطاقة',
                 headerTitleKO : '카드 등록',
                 lang : '[[${session.lang}]]',
                 userId : '[[${session.cashierId}]]',
@@ -123,7 +124,8 @@
                     console.log(data.rsltData.cardState);
                     if(data.rsltData.cardState == 01 || data.rsltData.cardState == 03){
                         if(this.lang == "en"){
-                            this.alertText = "هذه البطاقة مسجلة بالفعل"
+                            //this.alertText = "هذه البطاقة مسجلة بالفعل"
+                            this.alertText = "Эта карта уже зарегистрирована"
                         }else{
                             this.alertText = "이미 등록된 카드 입니다."
                         }
@@ -153,7 +155,7 @@
                 },
                 goRegistCB : function(data){
                     if(this.lang == "en"){
-                        this.alertText = "البطاقة مسجلة"
+                        this.alertText = "карта зарегистрирована"
                     }else{
                         this.alertText = "카드가 등록되었습니다."
                     }
